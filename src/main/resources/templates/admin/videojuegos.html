@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+Bienvenido a la parte de adminsitracion de la tienda <br>
+
+<a href="registrarVideojuego">registrar un nuevo Videojuego</a><br>
+<a href="obtenerGeneros">Administrar generos</a><br>
+<a href="obtenerUsuarios">Administrar Usuarios</a><br>
+<br>
+listado de videojuegos:
+
+<div th:each="videojuego : ${videojuegos}" style="margin: 10px;" >
+	<img height="80px" th:src="@{${ '../mostrar_imagen?id=' + videojuego.id }}" />
+	<p>nombre: <span th:text="${videojuego.nombre}" ></span></p><br>	
+	<p>descripcion: <span th:text="${videojuego.descripcion}"></span></p><br>
+	<p>precio: <span th:text="${videojuego.precio}"></span></p> <br>
+	<p>genero: <span th:text="${videojuego.genero.nombre}"></span></p> <br>
+	
+	<div>
+		<a th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}">Editar</a>
+		<a th:href="@{${ 'borrarVideojuego?id=' + videojuego.id }}" onclick="return confirm('Estás Seguro')">Borrar</a>
+	</div>
+	
+</div>
+
+
+</body>
+</html>

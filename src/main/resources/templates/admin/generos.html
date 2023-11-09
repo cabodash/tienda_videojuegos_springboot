@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+Bienvenido a la parte de adminsitracion de la tienda <br>
+
+<a href="registrarGenero">registrar un nuevo Generos</a><br>
+<a href="obtenerVideojuegos">Administrar Videojuegos</a><br>
+<a href="obtenerUsuarios">Administrar Usuarios</a><br>
+<br>
+listado de Generos:
+
+<div th:each="genero : ${generos}" style="margin: 10px;" >
+	<p>nombre: <span th:text="${genero.nombre}" ></span></p><br>	
+	<p>descripcion: <span th:text="${genero.descripcion}"></span></p><br>
+	
+	<div>
+		<a th:href="@{${ 'editarGenero?id=' + genero.id }}">Editar</a>
+		<a th:href="@{${ 'borrarGenero?id=' + genero.id }}" onclick="return confirm('Estás Seguro')">Borrar</a>
+	</div>
+	
+</div>
+
+
+</body>
+</html>
