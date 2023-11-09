@@ -1,6 +1,5 @@
 package springboot.tienda.controllers.admin;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.servicios.ServicioGeneros;
 import springboot.tienda.servicios.ServicioVideojuegos;
-import springboot.tienda.utilidades.GestorArchivos;
 
 @Controller
 @RequestMapping("admin/")

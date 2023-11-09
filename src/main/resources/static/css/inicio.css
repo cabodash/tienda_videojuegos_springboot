@@ -1,0 +1,500 @@
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Inicio */
+body {
+  width: 100vw;
+  background-color: #F2F2F2;
+}
+
+.btn-primary {
+  position: relative;
+  white-space: nowrap;
+  background-color: #003087;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+.btn-primary:hover {
+  background-color: rgb(0, 50, 100);
+  color: #9dbcff;
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+}
+
+.navbar {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 80%;
+  margin: 5px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1em;
+  background-color: lightsteelblue;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.listado {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.listado .item-listado {
+  margin: 5px;
+  background-color: lightblue;
+  padding: 15px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+  gap: 10px;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.listado .item-listado .img-usuario {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 0;
+  border-radius: 100px;
+}
+.listado .item-listado .img-videojuego {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 0;
+  border-radius: 10px;
+}
+.listado .item-listado p span {
+  margin-left: 10px;
+}
+.listado .item-listado .item-enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  gap: 2em;
+  position: relative;
+}
+
+.contenedor {
+  width: 100vw;
+  padding: 20px;
+}
+
+/* Registro */
+.div-registro #formUsuario {
+  margin: 20px auto;
+  width: 35vw;
+  min-width: 350px;
+  max-width: 400px;
+  background-color: #FFFFFF;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+.div-registro #formUsuario .preview {
+  width: 40%;
+  height: 40%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+/* por hacer */
+#formUsuario,
+#form_login,
+.formulario {
+  margin: 20px auto;
+  width: 35vw;
+  min-width: 350px;
+  max-width: 400px;
+  background-color: #FFFFFF;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+#formUsuario input[type=text],
+#formUsuario input[type=email],
+#formUsuario input[type=password],
+#form_login input[type=text],
+#form_login input[type=email],
+#form_login input[type=password],
+.formulario input[type=text],
+.formulario input[type=email],
+.formulario input[type=password] {
+  font-size: 1rem;
+  outline: 0;
+  border-width: 0 0 1px;
+  border-color: #CFCFCF;
+  border-radius: 0px;
+  width: 90%;
+  padding: 10px;
+}
+#formUsuario input[type=text]::focus,
+#formUsuario input[type=email]::focus,
+#formUsuario input[type=password]::focus,
+#form_login input[type=text]::focus,
+#form_login input[type=email]::focus,
+#form_login input[type=password]::focus,
+.formulario input[type=text]::focus,
+.formulario input[type=email]::focus,
+.formulario input[type=password]::focus {
+  border-color: #1A6AC3;
+  outline: 1px solid #1A6AC3;
+}
+#formUsuario input[type=submit],
+#form_login input[type=submit],
+.formulario input[type=submit] {
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px 0;
+  border: none;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+  background-color: #246EB9;
+  color: white;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+#formUsuario input[type=submit]:hover,
+#form_login input[type=submit]:hover,
+.formulario input[type=submit]:hover {
+  background-color: #1c5996;
+}
+#formUsuario .div-requisitos,
+#form_login .div-requisitos,
+.formulario .div-requisitos {
+  width: 90%;
+  background-color: #CE1818;
+  color: white;
+  border-radius: 0.3rem;
+}
+#formUsuario .div-requisitos .ul-errores,
+#form_login .div-requisitos .ul-errores,
+.formulario .div-requisitos .ul-errores {
+  width: 80%;
+  margin: 0 auto;
+}
+#formUsuario .div-requisitos .ul-errores .errorText,
+#form_login .div-requisitos .ul-errores .errorText,
+.formulario .div-requisitos .ul-errores .errorText {
+  visibility: visible;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+#formUsuario .div-requisitos .ul-errores .noErrorText,
+#form_login .div-requisitos .ul-errores .noErrorText,
+.formulario .div-requisitos .ul-errores .noErrorText {
+  visibility: hidden;
+  height: 0;
+}
+
+/* Listado videojuegos */
+.listado-videojuegos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.listado-videojuegos .item-listado {
+  margin: 5px;
+  background-color: lightblue;
+  padding: 15px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+  gap: 10px;
+}
+.listado-videojuegos .item-listado .item-enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  position: relative;
+}
+
+/* Carrito de la compra */
+.carrito h2 {
+  width: 100%;
+  background-color: lightblue;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+.carrito .contenedor-articulos {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.carrito .contenedor-articulos .item-carrito {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: lightblue;
+  border-radius: 10px;
+}
+.carrito .contenedor-articulos .item-carrito img {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 15px;
+}
+.carrito .contenedor-articulos .item-carrito .item-cantidad {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+.carrito .contenedor-articulos .item-carrito .item-cantidad input {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 40%;
+}
+.carrito .contenedor-boton-realizar-pedido {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/* checkout */
+.producto-item {
+  margin: 5px;
+  background-color: lightblue;
+  padding: 15px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+}
+.producto-item .item-enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+}
+
+.contenedor-checkout-4 {
+  min-width: 600px;
+  width: 50%;
+  background-color: white;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.contenedor-checkout-4 .header-resumen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
+}
+.contenedor-checkout-4 .formulario-paso-4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+.contenedor-checkout-4 .formulario-paso-4 .contenedor-resumen-videojuegos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+.contenedor-checkout-4 .formulario-paso-4 .contenedor-resumen-videojuegos .item-videojuego {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.25rem;
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+.contenedor-checkout-4 .formulario-paso-4 .contenedor-resumen-videojuegos .item-videojuego img {
+  width: 90%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 10px;
+}

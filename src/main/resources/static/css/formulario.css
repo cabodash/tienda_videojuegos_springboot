@@ -1,0 +1,97 @@
+.formulario {
+  margin: 30px auto;
+  width: 50%;
+  min-width: 200px;
+  max-width: 400px;
+  border: 2px solid #c9c9c9;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 30px 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+.formulario .input-box, .formulario .textarea-box {
+  position: relative;
+}
+.formulario .input-box label, .formulario .textarea-box label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  padding: 0 4px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+  color: #C9C9C9;
+  pointer-events: none;
+  -webkit-transition: top 0.1s linear, font-size 0.1s linear;
+  transition: top 0.1s linear, font-size 0.1s linear;
+}
+.formulario .input-box input, .formulario .input-box textarea, .formulario .textarea-box input, .formulario .textarea-box textarea {
+  width: 100%;
+  height: 56px;
+  font-size: 18px;
+  padding: 5px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #C9C9C9;
+  outline: 1px solid #c9c9c9;
+}
+.formulario .input-box input:hover, .formulario .input-box textarea:hover, .formulario .textarea-box input:hover, .formulario .textarea-box textarea:hover {
+  outline: 1px solid #007a91;
+  color: #007a91;
+}
+.formulario .input-box input:focus, .formulario .input-box textarea:focus, .formulario .textarea-box input:focus, .formulario .textarea-box textarea:focus {
+  outline: 2px solid #007a91;
+  color: #007a91;
+}
+.formulario .input-box input:hover + label, .formulario .input-box textarea:hover + label, .formulario .textarea-box input:hover + label, .formulario .textarea-box textarea:hover + label {
+  color: #007a91;
+}
+.formulario .input-box input:focus + label, .formulario .input-box textarea:focus + label, .formulario .textarea-box input:focus + label, .formulario .textarea-box textarea:focus + label {
+  color: #007a91;
+  top: 0;
+  font-size: 12px;
+  background-color: white;
+}
+.formulario .input-box .suggestion, .formulario .textarea-box .suggestion {
+  position: absolute;
+  bottom: -30px;
+  left: 16px;
+  font-size: 12px;
+  color: #C9C9C9;
+}
+.formulario .input-box .error label, .formulario .textarea-box .error label {
+  color: #b3261e;
+}
+.formulario .input-box.is-filled input, .formulario .input-box.is-filled textarea, .formulario .textarea-box.is-filled input, .formulario .textarea-box.is-filled textarea {
+  color: black;
+}
+.formulario .input-box.is-filled label, .formulario .textarea-box.is-filled label {
+  top: 0;
+  font-size: 12px;
+  background-color: white;
+}
+.formulario .btn-enviar {
+  color: white;
+  background-color: #007a91;
+  width: 64%;
+  padding: 20px 0;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+.formulario .btn-enviar:hover {
+  background-color: #005263;
+}

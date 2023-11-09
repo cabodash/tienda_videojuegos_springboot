@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../css/inicio.css">
+<title>Insert title here</title>
+</head>
+<body>
+
+Bienvenido a la parte de adminsitracion de la tienda <br>
+
+<a href="registrarUsuario">registrar un nuevo Usuario</a><br>
+<a href="obtenerVideojuegos">Administrar Videojuegos</a><br>
+<a href="obtenerGeneros">Administrar Generos</a><br>
+<br>
+listado de Usuarios:
+<div class="listado">
+	<div class="item-listado" th:each="usuario : ${usuarios}">
+		<img class="img-usuario" th:src="@{${ '../mostrar_imagen_usuario?id=' + usuario.id }}" />
+		<p>Nombre: <span th:text="${usuario.nombre}" ></span></p>
+		<p>Email: <span th:text="${usuario.email}"></span></p>
+		
+		<div class="item-enlaces">
+			<a class="btn-primary" th:href="@{${ 'editarUsuario?id=' + usuario.id }}">Editar</a>
+			<a class="btn-primary" th:href="@{${ 'borrarUsuario?id=' + usuario.id }}" onclick="return confirm('Estás Seguro')">Borrar</a>
+		</div>
+		
+	</div>
+</div>
+
+
+</body>
+</html>

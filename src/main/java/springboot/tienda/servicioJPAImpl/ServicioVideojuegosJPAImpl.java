@@ -69,7 +69,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 			}
 		}
 		entityManager.merge(v);
-		
+		 
 	}
 
 	@Override

@@ -9,6 +9,7 @@
 	<form action="#" th:action="guardarCambiosGenero" th:object="${generoEditar}" method="post">
 		nombre: <input type="text" th:field="*{nombre}" /> <br>
 		descripcion:<br> <textarea rows="3" cols="20" th:field="*{descripcion}"></textarea><br>
+		<input type="hidden" th:field="*{id}"/>
 		<input type="submit" value="Guardar cambios"/>
 	</form>
 

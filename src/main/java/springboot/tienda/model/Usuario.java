@@ -1,8 +1,10 @@
 package springboot.tienda.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -16,6 +18,10 @@ public class Usuario {
 	private String nombre;
 	private String email;
 	private String pass;
+	
+	@Lob  // Campo tipo clob / blob. Tipo de dato que almacena un array de bytes
+    @Column(name = "imagen_perfil")
+    private byte[] imagenPerfil;
 	
 	@OneToOne
 	private Carrito carrito;
@@ -69,6 +75,19 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public byte[] getImagenPerfil() {
+		return imagenPerfil;
+	}
+	public void setImagenPerfil(byte[] imagenPerfil) {
+		this.imagenPerfil = imagenPerfil;
+	}
+	public MultipartFile getFotoSubida() {
+		return fotoSubida;
+	}
+	public void setFotoSubida(MultipartFile fotoSubida) {
+		this.fotoSubida = fotoSubida;
+	}
+	
 
 	
 	

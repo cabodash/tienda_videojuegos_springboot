@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<form action="#" th:action="guardarCambiosUsuario" th:object="${usuarioEditar}"  method="post" enctype="multipart/form-data" >
+		<img height="80px" th:src="@{ '../mostrar_imagen_usuario?id=' + ${usuarioEditar.id} }" /><br>
+		nombre: <input type="text" th:field="*{nombre}" /> <br>
+		email:<input type="email" th:field="*{email}"/><br>
+		password:<input type="text" th:field="*{pass}"/><br>
+		foto de perfil:<input type="file" th:field="*{fotoSubida}"/><br>
+		<input type="hidden" th:field="*{id}"/>
+		<input type="submit" value="Guardar cambios"/>
+	</form>
+
+</body>
+</html>

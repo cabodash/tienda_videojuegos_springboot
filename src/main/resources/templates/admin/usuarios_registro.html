@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+introduce los datos del nuevo usuario:
+
+<form action="#" th:action="guardarUsuario" th:object="${nuevoUsuario}" method="post" enctype="multipart/form-data" >
+	<img height="80px" src="" />
+	nombre: <input type="text" th:field="*{nombre}" /> <br>
+	email: <input type="text" th:field="*{email}" /> <br>
+	nombre: <input type="text" th:field="*{pass}" /> <br>
+	portada: <input type="file" th:field="*{fotoSubida}"/>
+	<input type="submit" value="Registrar Usuario"/>
+</form>
+
+</body>
+</html>

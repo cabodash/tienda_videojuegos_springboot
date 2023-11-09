@@ -31,7 +31,7 @@ public class GenerosController {
 	}
 
 	@RequestMapping("guardarGenero")
-	public String guardarVideojuego(Genero generoNuevo, HttpServletRequest request) {
+	public String guardarGenero(Genero generoNuevo, HttpServletRequest request) {
 		servicioGeneros.registrarGenero(generoNuevo);
 		return "admin/generos_registro_ok";
 	}
