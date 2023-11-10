@@ -30,6 +30,8 @@ body {
   color: #9dbcff;
   -webkit-transform: translateY(-3px);
           transform: translateY(-3px);
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navbar {
@@ -158,107 +160,6 @@ body {
   height: 40%;
   -o-object-fit: contain;
      object-fit: contain;
-}
-
-/* por hacer */
-#formUsuario,
-#form_login,
-.formulario {
-  margin: 20px auto;
-  width: 35vw;
-  min-width: 350px;
-  max-width: 400px;
-  background-color: #FFFFFF;
-  border-radius: 0.4rem;
-  font-size: 1.1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding-top: 1rem;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 1rem;
-}
-#formUsuario input[type=text],
-#formUsuario input[type=email],
-#formUsuario input[type=password],
-#form_login input[type=text],
-#form_login input[type=email],
-#form_login input[type=password],
-.formulario input[type=text],
-.formulario input[type=email],
-.formulario input[type=password] {
-  font-size: 1rem;
-  outline: 0;
-  border-width: 0 0 1px;
-  border-color: #CFCFCF;
-  border-radius: 0px;
-  width: 90%;
-  padding: 10px;
-}
-#formUsuario input[type=text]::focus,
-#formUsuario input[type=email]::focus,
-#formUsuario input[type=password]::focus,
-#form_login input[type=text]::focus,
-#form_login input[type=email]::focus,
-#form_login input[type=password]::focus,
-.formulario input[type=text]::focus,
-.formulario input[type=email]::focus,
-.formulario input[type=password]::focus {
-  border-color: #1A6AC3;
-  outline: 1px solid #1A6AC3;
-}
-#formUsuario input[type=submit],
-#form_login input[type=submit],
-.formulario input[type=submit] {
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px 0;
-  border: none;
-  border-bottom-left-radius: 0.4rem;
-  border-bottom-right-radius: 0.4rem;
-  background-color: #246EB9;
-  color: white;
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-}
-#formUsuario input[type=submit]:hover,
-#form_login input[type=submit]:hover,
-.formulario input[type=submit]:hover {
-  background-color: #1c5996;
-}
-#formUsuario .div-requisitos,
-#form_login .div-requisitos,
-.formulario .div-requisitos {
-  width: 90%;
-  background-color: #CE1818;
-  color: white;
-  border-radius: 0.3rem;
-}
-#formUsuario .div-requisitos .ul-errores,
-#form_login .div-requisitos .ul-errores,
-.formulario .div-requisitos .ul-errores {
-  width: 80%;
-  margin: 0 auto;
-}
-#formUsuario .div-requisitos .ul-errores .errorText,
-#form_login .div-requisitos .ul-errores .errorText,
-.formulario .div-requisitos .ul-errores .errorText {
-  visibility: visible;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-#formUsuario .div-requisitos .ul-errores .noErrorText,
-#form_login .div-requisitos .ul-errores .noErrorText,
-.formulario .div-requisitos .ul-errores .noErrorText {
-  visibility: hidden;
-  height: 0;
 }
 
 /* Listado videojuegos */
