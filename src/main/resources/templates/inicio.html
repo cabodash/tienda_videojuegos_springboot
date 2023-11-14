@@ -2,13 +2,56 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/inicio.css">
+<link rel="stylesheet" href="css/select.css">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/formulario.css">
 <title>Insert title here</title>
 </head>
 <body>
+	<div style="text-align: center;">
+		<a href="admin/obtenerVideojuegos">Acceso a administracion (Parte
+			servidor)</a>
+	</div>
 
-<a href="admin/obtenerVideojuegos">acceder a la administracion de la tienda</a> <br>
+	<div
+		style="margin: 20px; padding: 7px; border-radius: 10px; background-color: lightblue; font-size: 2em; text-align: center;">
+		Bienvenido a la parte pública de la tienda (parte cliente)</div>
 
-Bienvenido a la parte publica de la tienda
+
+	<div style="margin: 10px; text-align: center;" id="mensaje_login">
+		usuario no identificado</div>
+
+	<div class="navbar">
+		<a class="btn-primary" href="#" id="inicio">Inicio</a>
+		<a class="btn-primary" href="#" id="videojuegos">Videojuegos</a>
+		<a class="btn-primary" href="#" id="registro">Registro</a>
+		<a class="btn-primary" href="#" id="identificar">Identificarme</a>
+		<a class="btn-primary" href="#" id="carrito">Ver carrito</a>
+		<a class="btn-primary" href="#" >Mis datos</a>
+		<a class="btn-primary" href="#" id="logout">Cerrar sesion</a>
+	</div>
+
+	<div id="contenedor" style="width: fit-content; margin: 20px auto;">
+
+
+
+	</div>
+
+
+
+	<script src="libreriasJS/jquery.js"></script>
+	<script src="libreriasJS/mustache.js"></script>
+	<script src="libreriasJS/js.cookie.min.js"></script>
+	
+	
+	<script src="js/index.js"></script>
+	<script src="js/globales.js"></script>
+	<script src="js/listado_videojuegos.js"></script>
+	<script src="js/registrarse.js"></script>
+	<script src="js/identificarse.js"></script>
+	<script src="js/carrito.js"></script>
+	<script src="js/logout.js"></script>
 
 </body>
 </html>

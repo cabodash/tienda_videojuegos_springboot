@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,6 +69,21 @@ public class ServicioUsuariosJPAImpl implements ServicioUsuarios{
 		}
 		entityManager.merge(u);
 		
+	}
+	
+	
+	@Override
+	public Usuario obtenerUsuarioPorEmailYpass(String email, String pass) {
+		Query query = entityManager.createQuery("select u from Usuario u where u.email = :email and u.pass = :pass");
+		query.setParameter("email", email);
+		query.setParameter("pass", pass);
+		
+		List<Usuario> resultado = query.getResultList();
+		if(resultado.size() == 0) {
+			return null;
+		}else {
+			return resultado.get(0);
+		}
 	}
 
 

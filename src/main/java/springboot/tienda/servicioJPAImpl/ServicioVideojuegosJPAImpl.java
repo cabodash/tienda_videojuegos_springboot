@@ -6,10 +6,14 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import org.hibernate.query.internal.NativeQueryImpl;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import springboot.tienda.constantesSQL.ConstantesSQL;
 import springboot.tienda.model.Genero;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.servicios.ServicioVideojuegos;
@@ -74,8 +78,11 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 
 	@Override
 	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = entityManager.createNativeQuery(
+				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_PARA_JSON);
+		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
+		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		return nativeQuery.getResultList();
 	}
 
 	@Override

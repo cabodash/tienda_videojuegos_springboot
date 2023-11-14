@@ -1,0 +1,25 @@
+<div class="contenedor-checkout-2">
+	<h2>Realizar pedido</h2>
+	<h3>Paso 2</h3>
+	<p>Introduce tus datos de Pago (Fase de pruebas, nunca introduzcas tus datos reales)</p>
+	
+	<div class="formulario-paso-2 formulario">
+		<div class="select">
+			<select id="tipo_tarjeta" class="select-text" required>
+				<option value="visa">VISA</option>
+				<option value="master_card">MasterCard</option>
+			</select>
+			<span class="select-highlight"></span>
+			<span class="select-bar"></span>
+			<label class="select-label">Tipo de Tarjeta</label>
+		</div>
+		
+		<input type="text" placeholder="Numero de Tarjeta" id="numero_tarjeta"/>
+		<input type="text" placeholder="Titular de la Tarjeta" id="titular_tarjeta"/>
+		<input type="text" placeholder="Fecha de caducidad" id="fecha_caducidad"/>
+		<input type="text" placeholder="Código de Seguridad (CVV)" id="cvv_tarjeta"/>
+		
+		<input type="submit" id="aceptar_paso_2" value="Aceptar"/>
+	</div>
+	
+</div>

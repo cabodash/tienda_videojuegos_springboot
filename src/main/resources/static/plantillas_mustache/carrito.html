@@ -1,0 +1,22 @@
+<div class="carrito">
+	<h2>Carrito de la compra</h2>
+	<div class="contenedor-articulos">
+		{{#.}}
+			<div class="item-carrito">
+				<p>Nombre: <span>{{nombre}}</span></p>
+				<img src="subidas/{{videojuego_id}}.jpg" />
+				<p>Precio: <span>{{precio}}</span> &euro;</p>
+				<div class="item-cantidad">
+					<p>Cantidad: </p>
+					<input type="number" value="{{cantidad}}"/>
+				</div>
+				<a class="btn-primary" href="#">Borrar producto</a>
+			</div>
+		
+		{{/.}}
+	</div>
+	
+	<div class="contenedor-boton-realizar-pedido">
+		<a id="realizar_pedido" class="boton-realizar-pedido btn-primary" href="#" >Realizar Pedido</a>
+	</div>
+</div>

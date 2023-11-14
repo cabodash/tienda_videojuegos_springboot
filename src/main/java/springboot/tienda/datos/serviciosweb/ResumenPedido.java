@@ -1,33 +1,24 @@
-package springboot.tienda.model;
+package springboot.tienda.datos.serviciosweb;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-@Entity
-public class Pedido {
+//Informacion que recibe el usuario para confirmar el pedido
+public class ResumenPedido {
 	
-	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
-	private List<ProductoPedido> productosPedidos = new ArrayList<ProductoPedido>();
+	//Productos del carrito
+	private List<Map<String, Object>> videojuegos;
 	
-	private String estado;
 	
-	//Se pide en paso 1:
+	//Datos paso 1
 	private String nombre;
 	private String apellidos;
 	private String direccion;
-	private String Ciudad;
+	private String ciudad;
 	private String codigoPostal;
 	private String provincia;
 	
-	
-	//paso 2:
+	//Datos paso 2
 	private String titularTarjeta;
 	private String numeroTarjeta;
 	private String tipoTarjeta;
@@ -40,151 +31,90 @@ public class Pedido {
 	
 	
 	
-	
-	@ManyToOne(targetEntity = Usuario.class, optional = false)
-	private Usuario usuario;
-	
-	@Id
-	@GeneratedValue
-	private int id;
-
-	public List<ProductoPedido> getProductosPedidos() {
-		return productosPedidos;
+	public List<Map<String, Object>> getVideojuegos() {
+		return videojuegos;
 	}
-
-	public void setProductosPedidos(List<ProductoPedido> productosPedidos) {
-		this.productosPedidos = productosPedidos;
+	public void setVideojuegos(List<Map<String, Object>> videojuegos) {
+		this.videojuegos = videojuegos;
 	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-
-	public String getTitularTarjeta() {
-		return titularTarjeta;
-	}
-
-	public void setTitularTarjeta(String titularTarjeta) {
-		this.titularTarjeta = titularTarjeta;
-	}
-
-	public String getNumeroTarjeta() {
-		return numeroTarjeta;
-	}
-
-	public void setNumeroTarjeta(String numeroTarjeta) {
-		this.numeroTarjeta = numeroTarjeta;
-	}
-
-	public String getTipoTarjeta() {
-		return tipoTarjeta;
-	}
-
-	public void setTipoTarjeta(String tipoTarjeta) {
-		this.tipoTarjeta = tipoTarjeta;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getApellidos() {
 		return apellidos;
 	}
-
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	public String getCodigoPostal() {
 		return codigoPostal;
 	}
-
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
 	}
-
-	public String getCiudad() {
-		return Ciudad;
+	public String getProvincia() {
+		return provincia;
 	}
-
-	public void setCiudad(String ciudad) {
-		Ciudad = ciudad;
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
-
+	public String getTitularTarjeta() {
+		return titularTarjeta;
+	}
+	public void setTitularTarjeta(String titularTarjeta) {
+		this.titularTarjeta = titularTarjeta;
+	}
+	public String getNumeroTarjeta() {
+		return numeroTarjeta;
+	}
+	public void setNumeroTarjeta(String numeroTarjeta) {
+		this.numeroTarjeta = numeroTarjeta;
+	}
+	public String getTipoTarjeta() {
+		return tipoTarjeta;
+	}
+	public void setTipoTarjeta(String tipoTarjeta) {
+		this.tipoTarjeta = tipoTarjeta;
+	}
 	public String getFechaCaducidad() {
 		return fechaCaducidad;
 	}
-
 	public void setFechaCaducidad(String fechaCaducidad) {
 		this.fechaCaducidad = fechaCaducidad;
 	}
-
 	public String getCvv() {
 		return cvv;
 	}
-
 	public void setCvv(String cvv) {
 		this.cvv = cvv;
 	}
-
 	public String getPersonaContacto() {
 		return personaContacto;
 	}
-
 	public void setPersonaContacto(String personaContacto) {
 		this.personaContacto = personaContacto;
 	}
-
 	public String getTelefonoContacto() {
 		return telefonoContacto;
 	}
-
 	public void setTelefonoContacto(String telefonoContacto) {
 		this.telefonoContacto = telefonoContacto;
 	}
-	
-	
 	
 	
 	

@@ -13,4 +13,6 @@ public interface ServicioUsuarios {
 	void borrarUsuario(int id);
 	Usuario obtenerUsuarioPorId(int id);
 	void guardarCambiosUsuario(Usuario u);
+	
+	Usuario obtenerUsuarioPorEmailYpass(String email, String pass);
 }

@@ -1,0 +1,49 @@
+<div class="contenedor-checkout-4">
+	<div class="header-resumen">
+		<h2>Realizar pedido</h2>
+		<h3>Paso 4</h3>
+		<p>Resumen del pedido</p>
+	</div>
+	
+	<div class="formulario-paso-4">
+		<div id="productos_pedido" class="contenedor-resumen-videojuegos">
+			{{#videojuegos}}
+				<div class="item-videojuego">
+				    <img src="subidas/{{videojuego_id}}.jpg?t={{fecha_hora_actual}}"/>
+				    <p>{{nombre}}</p>
+				    <p>Precio/Unidad: <span class="precio">{{precio}}€</span class="precio"></p>
+				    <p>cantidad: <span>{{cantidad}}</span></p>
+				    
+				</div>
+			{{/videojuegos}}
+		</div>
+		
+		<div class="datos-envio">
+			<h4>Datos de Envío</h4>
+			<p>Nombre: <span>{{nombre}}</span></p>
+			<p>Apellidos: <span>{{apellidos}}</span></p>
+			<p>Dirección: <span>{{direccion}}</span></p>
+			<p>Ciudad: <span>{{ciudad}}</span></p>
+			<p>Codigo Postal: <span>{{codigoPostal}}</span></p>
+			<p>Provincia: <span>{{provincia}}</span></p>	
+		</div>
+		
+		<div class="datos-pago">
+			<h4>Datos de Pago</h4>
+			<p>Tipo de Tarjeta: <span>{{tipoTarjeta}}</span></p>
+			<p>Titular de la Tarjeta: <span>{{titularTarjeta}}</span></p>
+			<p>Número de Tarjeta: <span>{{numeroTarjeta}}</span></p>
+			<p>Fecha de Caducidad: <span>{{fechaCaducidad}}</span></p>
+			<p>Codigo de Seguridad (CVV): <span>{{cvv}}</span></p>
+		</div>
+		
+		<div class="datos-contacto">
+			<h4>Datos de Contacto</h4>
+			<p>Persona de contacto: <span>{{personaContacto}}</span></p>
+			<p>Telefono de contacto: <span>{{telefonoContacto}}</span></p>
+		</div>
+		
+		<input type="submit" class="btn-primary" id="btn_confirmar_pedido" value="Confirmar pedido"/>
+	</div>
+	
+</div>

@@ -1,0 +1,21 @@
+<div class="div-registro">
+	<form id="formUsuario">
+		<h2>Registrate</h2>
+		<img class="preview" id="preview-img" src="img-resources/1.jpg" alt="Imagen por defecto">
+		
+		<input type="text" placeholder="Nombre" name="nombre" id="nombre">
+        <input type="email" placeholder="Email" name="email" id="email">
+		<input type="password" placeholder="Contraseña" name="pass" id="pass">
+		<input type="file" placeholder="Avatar (opcional)" name="avatar" id="avatar"/>
+		
+		<div class="div-requisitos" id="requisitos">
+            <ul class="ul-errores" id="ulRequisitos">
+                <li class="noErrorText" id="errorNombre">Por favor completa el nombre</li>
+                <li class="noErrorText" id="errorEmail">Por favor completa el correo</li>
+                <li class="noErrorText" id="errorPass">Por favor completa la contraseña</li>
+            </ul>
+        </div>
+		
+		<input type="submit" value="Regisrarse"/>
+	</form>
+</div>

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import springboot.tienda.model.Genero;
-import springboot.tienda.model.Videojuego;
 
 public interface ServicioGeneros {
 	Map<String, String> obtenerGenerosParaDesplegable();

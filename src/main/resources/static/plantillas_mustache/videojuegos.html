@@ -1,0 +1,22 @@
+<div class="listado-videojuegos">
+
+
+	{{#.}}
+	<div class="item-listado">
+	    <p>Nombre: {{nombre}}</p>
+	    <p><img src="subidas/{{id}}.jpg?t={{fecha_hora_actual}}" style="height: 200px;" /></p>
+	    <p>Descripción: {{descripcion}}</p>
+	    <p>Género: {{nombre_genero}}</p>
+	    <p>Plataformas: {{plataformas}}</p>
+	    <p>Fecha de Lanzamiento: {{fechaLanzamiento}}</p>
+	    <p>Desarrollador: {{desarrollador}}</p>
+	    <p>Puntuación: {{puntuacion}}</p>
+	    <p>Precio: {{precio}}</p>
+	    <div class="item-enlaces">
+	        <a href="#" class="enlace_ver_detalles btn-primary" id-producto="{{id}}">Ver detalles</a>
+	        <a href="#" class="enlace_comprar_listado_principal btn-primary" id-producto="{{id}}">Comprar</a>
+	    </div>
+</div>
+	{{/.}}
+
+</div>
