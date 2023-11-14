@@ -183,6 +183,18 @@ public class Pedido {
 	public void setTelefonoContacto(String telefonoContacto) {
 		this.telefonoContacto = telefonoContacto;
 	}
+
+	@Override
+	public String toString() {
+		return "Pedido [productosPedidos=" + productosPedidos + ", estado=" + estado + ", nombre=" + nombre
+				+ ", apellidos=" + apellidos + ", direccion=" + direccion + ", Ciudad=" + Ciudad + ", codigoPostal="
+				+ codigoPostal + ", provincia=" + provincia + ", titularTarjeta=" + titularTarjeta + ", numeroTarjeta="
+				+ numeroTarjeta + ", tipoTarjeta=" + tipoTarjeta + ", fechaCaducidad=" + fechaCaducidad + ", cvv=" + cvv
+				+ ", personaContacto=" + personaContacto + ", telefonoContacto=" + telefonoContacto + ", usuario="
+				+ usuario + ", id=" + id + "]";
+	}
+	
+	
 	
 	
 	

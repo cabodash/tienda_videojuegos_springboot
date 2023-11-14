@@ -42,14 +42,14 @@ public class ServicioWEB_Carrito {
 	}
 
 	@RequestMapping("obtenerProductosCarrito")
-	public List<Map<String, Object>> obtenerProductosCarrito(HttpServletRequest request){
+	public List<Map<String, Object>> obtenerProductosCarrito(HttpServletRequest request) throws Exception{
 		if(request.getSession().getAttribute("usuario_identificado") != null) {
 			
 			return servicioCarrito.obtenerProductosCarrito(
 							((Usuario)request.getSession().getAttribute("usuario_identificado")).getId()
 								);
 		}else {
-			return null;
+			throw new Exception("[-] -Usuario no identificado (ServicioWEB_Carrito/obtenerProtuctosCarrito)");
 		}
 	}
 	

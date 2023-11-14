@@ -37,6 +37,8 @@ $("#carrito").click(function() {
 				$("#realizar_pedido").click(checkout_paso_0);
 			}
 
+		}).fail(function (){
+			alert("Error, prueba a volver a identificarte");
 		});
 
 
@@ -51,7 +53,6 @@ $("#carrito").click(function() {
 
 //Funciones de los pasos del checkout//
 function checkout_paso_0() {
-	console.log("funcionando");
 	$("#contenedor").html(plantillaCheckout_1);
 	$("#aceptar_paso_1").click(checkout_paso_1_aceptar);
 
@@ -123,9 +124,8 @@ function checkout_paso_3_aceptar() {
 			telefonoContacto: telefono_contacto
 
 		}).done(function(res) {
-			//Hacer JSON para ver en la vista resumen
-			let resumen_pedido = JSON.parse(res);
-			let html = Mustache.render(plantillaCheckout_4, resumen_pedido);
+			//con springboot nos llega en JSON ya parseado
+			let html = Mustache.render(plantillaCheckout_4, res);
 			$("#contenedor").html(html);
 			$("#btn_confirmar_pedido").click(function() {
 				$.ajax("servicioWebPedidos/paso4", {

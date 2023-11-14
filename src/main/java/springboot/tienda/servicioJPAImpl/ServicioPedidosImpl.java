@@ -85,6 +85,8 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		Pedido p = obtenerPedidoActual(idUsuario);
 		p.setPersonaContacto(personaContacto);
 		p.setTelefonoContacto(telefonoContacto);
+		
+		System.out.println("[i] -Pedido a procesar: \n" +p.toString());
 		entityManager.merge(p);
 		
 	}
