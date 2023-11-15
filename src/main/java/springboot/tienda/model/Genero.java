@@ -16,7 +16,7 @@ public class Genero {
 	//Una vez realizada la asiciacion en la clase libro aqui debemos indicar la asociacion inversa
 	//Cascade indica como se puede propagar una operacion desde el dato actual
 	//CascadeType.ALL indica que una operacion aplicada  a una categoria pueda ser propagada a los libros
-	@OneToMany //(cascade = CascadeType.ALL, mappedBy = "categoria", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "genero") //(cascade = CascadeType.ALL, mappedBy = "categoria", fetch = FetchType.LAZY)
 	private List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 	
 	@Id

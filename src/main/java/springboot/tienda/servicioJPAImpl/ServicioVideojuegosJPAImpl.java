@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.stereotype.Service;
@@ -87,8 +88,11 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 
 	@Override
 	public Map<String, Object> obtenerDetallesVideojuego(int idVideojuego) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_DETALLES_VIDEOJUEGO);
+		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
+		nativeQuery.setParameter("id", idVideojuego);
+		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		return (Map<String, Object>) nativeQuery.getResultList().get(0);
 	}
 	
 	

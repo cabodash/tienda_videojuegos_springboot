@@ -32,12 +32,7 @@ public class ServicioUsuariosJPAImpl implements ServicioUsuarios{
 
 	@Override
 	public void registrarUsuario(Usuario u) {
-		try {
-			u.setImagenPerfil(u.getFotoSubida().getBytes());
-			entityManager.persist(u);
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
+		entityManager.persist(u);
 		
 	}
 

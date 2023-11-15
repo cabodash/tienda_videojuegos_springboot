@@ -1,5 +1,6 @@
 package springboot.tienda.webservices;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.google.gson.Gson;
@@ -31,19 +33,22 @@ public class ServicioWEB_Usuarios {
 	@RequestMapping("registrarUsuario")
 	public String registrarUsuario(
 			@RequestParam Map<String, Object> formData,
-			@RequestParam("avatar") CommonsMultipartFile foto, HttpServletRequest request ){
+			MultipartHttpServletRequest request){
 		
 		System.out.println("recibido formData: " + formData);
-		System.out.println("recibido foto: " + foto);
+		System.out.println("recibido foto: " + request.getFile("avatar"));
 		
 		//obtener un objeto de Usuario a partir de un form data
 		Gson gson = new Gson();
 		JsonElement json = gson.toJsonTree(formData);
 		Usuario u = gson.fromJson(json, Usuario.class);
-		
+		try {
+			u.setImagenPerfil(request.getFile("avatar").getBytes());
+		} catch (IOException e) {
+			System.out.println("[-] -No se pudo asignar la foto de perfil para el usuario registrado con id: " + u.getId());
+			e.printStackTrace();
+		}
 		servicioUsuarios.registrarUsuario(u);
-		
-		String rutaRealDelProyecto = request.getServletContext().getRealPath("");
 		
 		//GestorArchivos.guardarAvatarUsuario(u, rutaRealDelProyecto, foto);		
 		

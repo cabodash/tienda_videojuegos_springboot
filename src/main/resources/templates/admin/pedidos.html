@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/admin.css">
+<style>
+.contenedor-pedidos{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	
+	
+}
+</style>
+</head>
+<body>
+
+	<jsp:include page="menu.jsp"></jsp:include>
+
+	<div>Gestión de Pedidos</div>
+
+	<div>
+		<a href="registrarPedido">Registrar un Pedido</a>
+
+
+	</div>
+	<div class="contenedor-pedidos">
+		Listado de Pedidos <br>
+		<div th:each="pedido :${pedidos}">
+			<div class="item-pedido"
+				style="margin: 10px; background-color: lightblue; width: fit-content; padding: 0.5em; border-radius: 10px;">
+				<p>
+					Nombre: <span th:text="${pedido.nombre}"></span>
+				</p>
+				<p>
+					Direccion: <span th:text="${pedido.direccion}"></span>
+				</p>
+				<p>
+					Estado: <span th:text="${pedido.direccion}"></span>
+				</p>
+				<a th:href="@{${ 'verDetallesPedido?id=' + pedido.id }}">Ver Detalles</a>
+				<a th:href="@{${ 'editarPedido?id=' + pedido.id }}">Editar</a>
+				<a th:href="@{${ 'borrarPedido?id=' + pedido.id }}" onclick="return confirm('Estás Seguro?')">Borrar</a>
+
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+</body>
+</html>

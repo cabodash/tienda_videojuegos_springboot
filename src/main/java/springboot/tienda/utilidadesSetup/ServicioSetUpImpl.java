@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.model.Genero;
+import springboot.tienda.model.Pedido;
+import springboot.tienda.model.ProductoPedido;
 import springboot.tienda.model.Usuario;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.model.setup.SetUp;
@@ -75,15 +77,65 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			
 			
 			
-			Usuario u = new Usuario("Alex", "alex@gmail.com", "1234");
-			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/1.jpg"));
-			entityManager.persist(u);
-			u = new Usuario("pepe", "pepe@gmail.com", "4321");
+			Usuario u = new Usuario("pepe", "pepe@gmail.com", "4321");
 			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/2.jpg"));
 			entityManager.persist(u);
 			u = new Usuario("Javier", "javier@gmail.com", "1212");
 			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/3.jpg"));
 			entityManager.persist(u);
+			u = new Usuario("Alex", "alex@gmail.com", "1234");
+			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/1.jpg"));
+			entityManager.persist(u);
+			
+			
+			
+			//Pedido preparado para hacer pruebas
+			Pedido p = new Pedido();
+			p.setNombre("Alex");
+			p.setApellidos("Cabo Guisado");
+			p.setCiudad("Collado Villalba");
+			p.setCodigoPostal("28400");
+			p.setDireccion("Calle isla de la toja");
+			p.setProvincia("Madrid");
+			p.setTitularTarjeta("Alejandro Cabo");
+			p.setNumeroTarjeta("1234123412341234");
+			p.setTipoTarjeta("VISA");
+			p.setFechaCaducidad("12/28");
+			p.setCvv("333");
+			p.setPersonaContacto("Persona de contacto");
+			p.setTelefonoContacto("+34 633 633 633");
+			p.setUsuario(u);
+			entityManager.persist(p);
+			ProductoPedido pp = new ProductoPedido();
+			pp.setPedido(p);
+			pp.setVideojuego(v);
+			pp.setCantidad(2);
+			entityManager.persist(pp);
+			
+			
+			//Pedido preparado para hacer pruebas
+			p = new Pedido();
+			p.setNombre("Alex 2");
+			p.setApellidos("Cabo Guisado 2");
+			p.setCiudad("Collado Villalba 2");
+			p.setCodigoPostal("28400");
+			p.setDireccion("Calle isla de la toja 2");
+			p.setProvincia("Madrid 2");
+			p.setTitularTarjeta("Alejandro Cabo 2");
+			p.setNumeroTarjeta("1234123412341234");
+			p.setTipoTarjeta("VISA");
+			p.setFechaCaducidad("12/28");
+			p.setCvv("333");
+			p.setPersonaContacto("Persona de contacto 2");
+			p.setTelefonoContacto("+34 633 633 633");
+			p.setUsuario(u);
+			entityManager.persist(p);
+			pp = new ProductoPedido();
+			pp.setPedido(p);
+			pp.setVideojuego(v);
+			pp.setCantidad(5);
+			entityManager.persist(pp);
+			
 			
 			
 			SetUp registroSetUp = new SetUp();

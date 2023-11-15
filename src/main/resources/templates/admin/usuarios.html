@@ -6,13 +6,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-Bienvenido a la parte de adminsitracion de la tienda <br>
-
-<a href="registrarUsuario">registrar un nuevo Usuario</a><br>
-<a href="obtenerVideojuegos">Administrar Videojuegos</a><br>
-<a href="obtenerGeneros">Administrar Generos</a><br>
+<div th:insert="fragments/general.html :: menu"></div>
 <br>
+
 listado de Usuarios:
 <div class="listado">
 	<div class="item-listado" th:each="usuario : ${usuarios}">

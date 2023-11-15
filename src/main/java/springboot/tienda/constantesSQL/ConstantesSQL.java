@@ -18,7 +18,7 @@ public class ConstantesSQL {
 			+ "ORDER BY pc.id ASC";
 
 	public static final String SQL_OBTENER_DETALLES_VIDEOJUEGO = 
-			"SELECT v.id, v.nombre, v.descripcion, v.plataformas, v.fecha_anzamiento, v.desarrollador, v.puntuacion, v.precio, g.nombre as nombre_genero "
+			"SELECT v.id, v.nombre, v.descripcion, v.plataformas, v.fecha_lanzamiento, v.desarrollador, v.puntuacion, v.precio, g.nombre as nombre_genero "
 			+ "FROM videojuego as v, genero as g "
 			+ "WHERE v.genero_id = g.id "
 			+ "AND v.id = :id ";
