@@ -47,7 +47,9 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 
 	@Override
 	public void actualizarEstadoPedido(int idPedido, String estado) {
-		// TODO Auto-generated method stub
+		Pedido p = entityManager.find(Pedido.class, idPedido);
+		p.setEstado(estado);
+		entityManager.merge(p);
 		
 	}
 

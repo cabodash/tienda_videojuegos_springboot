@@ -2,15 +2,15 @@
 	<h2>Carrito de la compra</h2>
 	<div class="contenedor-articulos">
 		{{#.}}
-			<div class="item-carrito">
+			<div class="item-carrito" id="div-producto-{{videojuego_id}}">
 				<p>Nombre: <span>{{nombre}}</span></p>
 				<img src="mostrar_imagen_videojuego?id={{videojuego_id}}" />
 				<p>Precio: <span>{{precio}}</span> &euro;</p>
 				<div class="item-cantidad">
 					<p>Cantidad: </p>
-					<input type="number" value="{{cantidad}}"/>
+					<input id-videojuego="{{videojuego_id}}" class="cantidad_producto_carrito" type="number" value="{{cantidad}}"/>
 				</div>
-				<a class="btn-primary" href="#">Borrar producto</a>
+				<a id-videojuego="{{videojuego_id}}" class="borrrar_producto_carrito btn-primary" href="#">Borrar producto</a>
 			</div>
 		
 		{{/.}}

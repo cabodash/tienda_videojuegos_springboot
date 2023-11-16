@@ -19,18 +19,13 @@ import springboot.tienda.model.Usuario;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.servicios.ServicioCarrito;
 
-
-
 @Service
 @Transactional
 public class ServicioCarritoImpl implements ServicioCarrito {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	
-	
-	
 	@Override
 	public void agregarProducto(int idUsuario, int idProducto, int cantidad) {
 		Usuario uBaseDatos = (Usuario) entityManager.find(Usuario.class, idUsuario);
@@ -69,23 +64,32 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	}
 
 	@Override
-	public void borrarCarrito(int idUsuario, int idProducto) {	
-		
+	public void borrarCarrito(int idUsuario, int idProducto) {
+		Usuario u = (Usuario) entityManager.find(Usuario.class, idUsuario);
+		Carrito c = u.getCarrito();
+		if (c != null) {
+			Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_BORRAR_PRODUCTO_CARRITO);
+			query.setParameter("carrito_id", c.getId());
+			query.setParameter("videojuego_id", idProducto);
+			NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
+			nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+			query.executeUpdate();
+		}
+
 	}
 
 	@Override
 	public List<Map<String, Object>> obtenerProductosCarrito(int idUsuario) {
-		Usuario u = (Usuario)entityManager.find(Usuario.class, idUsuario);
+		Usuario u = (Usuario) entityManager.find(Usuario.class, idUsuario);
 		Carrito c = u.getCarrito();
 		List<Map<String, Object>> res = null;
-		if(c != null ) {
-			Query query = entityManager.createNativeQuery(
-					ConstantesSQL.SQL_OBTENER_PRODUCTOS_CARRITO);
+		if (c != null) {
+			Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_PRODUCTOS_CARRITO);
 			query.setParameter("carrito_id", c.getId());
 			NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
 			nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-			res = nativeQuery.getResultList(); 
-		}	
+			res = nativeQuery.getResultList();
+		}
 		return res;
 	}
 

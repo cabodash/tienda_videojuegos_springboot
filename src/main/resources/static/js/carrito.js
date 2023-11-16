@@ -32,6 +32,20 @@ $("#carrito").click(function() {
 			} else {
 				let html = Mustache.render(plantillaCarrito, res);
 				$("#contenedor").html(html);
+				$(".borrrar_producto_carrito").click(function (e){
+					e.preventDefault();
+					let id_videojuego = $(this).attr("id-videojuego");
+					$.post("servicioWebCarrito/borrarProducto",
+					{
+						id: id_videojuego
+					}).done(function (res){
+						if(res == "ok"){
+							$("#div-producto-" + id_videojuego).hide();
+						}else{
+							alert(res);
+						}
+					});
+				});
 
 				//hacemos click en realizar pedido
 				$("#realizar_pedido").click(checkout_paso_0);
