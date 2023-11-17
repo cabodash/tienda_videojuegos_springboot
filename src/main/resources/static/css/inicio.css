@@ -133,6 +133,10 @@ body {
   padding: 20px;
 }
 
+.contenedor-identificar-usuario {
+  width: 100%;
+}
+
 /* Registro */
 .div-registro #formUsuario {
   margin: 20px auto;
@@ -289,6 +293,10 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.carrito .contenedor-boton-realizar-pedido .boton-realizar-pedido {
+  /*Hacer algo */
+}
+
 /* checkout */
 .producto-item {
   margin: 5px;

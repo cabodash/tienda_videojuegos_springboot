@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import springboot.tienda.servicios.ServicioUsuarios;
-import springboot.tienda.servicios.ServicioVideojuegos;
 
 @Controller
 public class MostrarImagenUsuario {

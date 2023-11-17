@@ -37,7 +37,7 @@
 					Direccion: <span th:text="${pedido.direccion}"></span>
 				</p>
 				<p>
-					Estado: <span th:text="${pedido.direccion}"></span>
+					Estado: <span th:text="${pedido.estado}"></span>
 				</p>
 				<a th:href="@{${ 'verDetallesPedido?id=' + pedido.id }}">Ver Detalles</a>
 				<a th:href="@{${ 'editarPedido?id=' + pedido.id }}">Editar</a>

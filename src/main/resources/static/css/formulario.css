@@ -3,7 +3,7 @@
   width: 50%;
   min-width: 200px;
   max-width: 400px;
-  border: 2px solid #c9c9c9;
+  background-color: white;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,6 +20,12 @@
       -ms-flex-align: center;
           align-items: center;
   gap: 2rem;
+  -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.11);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.11);
+}
+.formulario .title {
+  font-size: 1.2rem;
+  color: darkgrey;
 }
 .formulario .input-box, .formulario .textarea-box {
   position: relative;
@@ -39,7 +45,7 @@
 }
 .formulario .input-box input, .formulario .input-box textarea, .formulario .textarea-box input, .formulario .textarea-box textarea {
   width: 100%;
-  height: 56px;
+  height: 40px;
   font-size: 18px;
   padding: 5px 16px;
   border: none;
@@ -82,15 +88,18 @@
   font-size: 12px;
   background-color: white;
 }
+.formulario .checkbox {
+  color: #c9c9c9;
+}
 .formulario .btn-enviar {
   color: white;
   background-color: #007a91;
-  width: 64%;
-  padding: 20px 0;
+  width: 66.5%;
+  padding: 10px 5px;
   outline: none;
   border: none;
-  border-radius: 10px;
-  font-size: 1.2em;
+  border-radius: 5px;
+  font-size: 1.1em;
 }
 .formulario .btn-enviar:hover {
   background-color: #005263;

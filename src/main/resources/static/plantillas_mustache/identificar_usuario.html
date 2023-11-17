@@ -1,19 +1,19 @@
 <div class="contenedor-identificar-usuario">
-	Introduce tus datos para Identificarte: 
 	<form id="form_login" class="formulario">
+		<p class="title">Introduce tus datos de inicio de sesión</p>
 		
 		<div class="input-box">
-		    <input type="email" id="email" name="email"  th:field="*{email}">
-		    <label for="nombre">Email</label>
+		    <input type="text" id="email" name="email">
+		    <label for="email">Email</label>
 		    <p class="suggestion"></p>
 		</div>
 		
 		<div class="input-box">
-		    <input type="password" id="pass" name="pass"  th:field="*{pass}">
-		    <label for="nombre">Contraseña</label>
+		    <input type="password" id="pass" name="pass">
+		    <label for="pass">Contraseña</label>
 		    <p class="suggestion"></p>
 		</div>
-		<div><input type="checkbox" id="recordarDatos" checked/>Recordar mis datos (por hacer)</div>
+		<div><input class="checkbox" type="checkbox" id="recordarDatos" checked/> Recordar mis datos</div>
 		<input class="btn-enviar" type="submit" value="Identificarme"/>
 	</form>
 </div>
