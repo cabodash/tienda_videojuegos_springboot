@@ -5,6 +5,7 @@ public class ConstantesSQL {
 			"SELECT v.id, v.nombre, v.descripcion, v.plataformas, v.fecha_lanzamiento, v.desarrollador, v.puntuacion, v.precio, g.nombre as nombre_genero "
 			+ "FROM videojuego as v, genero as g "
 			+ "WHERE v.genero_id = g.id "
+			+ "AND v.alta = 1 "
 			+ "ORDER BY v.id DESC";
 	
 	public static final String SQL_OBTENER_CATEGORIAS_PARA_DESPLEGABLES = 

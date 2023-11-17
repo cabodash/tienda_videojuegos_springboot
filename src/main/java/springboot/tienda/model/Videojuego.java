@@ -1,14 +1,12 @@
 package springboot.tienda.model;
 
 import java.sql.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +25,8 @@ public class Videojuego {
     private double puntuacion;
     private double precio;
     
+    private boolean alta = true;
+    
     @Lob  // Campo tipo clob / blob. Tipo de dato que almacena un array de bytes
     @Column(name = "imagen_portada")
     private byte[] imagenPortada;
@@ -38,7 +38,15 @@ public class Videojuego {
     //@ManyToMany
     //private List<Plataforma> plataformas;
     
-    //Asociacion entre la clase Videojuego y la clase Categoria
+    public boolean isAlta() {
+		return alta;
+	}
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
+	}
+
+	//Asociacion entre la clase Videojuego y la clase Categoria
     @ManyToOne //(cascade = CascadeType.MERGE, targetEntity = Genero.class,optional = false, fetch = FetchType.LAZY)
     private Genero genero;
     

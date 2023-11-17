@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.stereotype.Service;
@@ -43,12 +42,17 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	public List<Videojuego> obtenerVideojuegos() {
 		// JPQL -> lenguaje de consultas de jpa, es muy similar a sql
 		// ventaja: devuelve objetos
-		return entityManager.createQuery("select v from Videojuego v order by v.id desc").getResultList();
+		return entityManager.createQuery("select v from Videojuego v where v.alta = true order by v.id desc").getResultList();
 	}
 
 	@Override
 	public void borrarVideojuego(int id) {
-		entityManager.remove(entityManager.find(Videojuego.class, id));
+		//Ya no borraoms productos sino que los damos de baja
+		//entityManager.remove(entityManager.find(Videojuego.class, id));
+		Videojuego v = entityManager.find(Videojuego.class, id);
+		v.setAlta(false);
+		entityManager.merge(v);
+		
 	}
 
 	@Override
@@ -60,6 +64,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	public void guardarCambiosVideojuego(Videojuego v) {
 		Genero g = entityManager.find(Genero.class, v.getIdGenero());
 		v.setGenero(g);
+		v.setAlta(true);
 		if(v.getFotoSubida().getSize() == 0) {
 			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual");
 			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());

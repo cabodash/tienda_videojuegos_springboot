@@ -2,10 +2,7 @@ package springboot.tienda.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 
 //@Entity
 public class Plataforma {
@@ -14,7 +11,7 @@ public class Plataforma {
 	private String descripcion;
 	
 	//@ManyToMany
-	private List<Videojuego> videojueos;
+	private List<Videojuego> videojuegos;
 	
 	//@Id
 	//@GeneratedValue
@@ -26,11 +23,11 @@ public class Plataforma {
 	}
 
 
-	public Plataforma(String nombre, String descripcion, List<Videojuego> videojueos, int id) {
+	public Plataforma(String nombre, String descripcion, List<Videojuego> videojuegos, int id) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.videojueos = videojueos;
+		this.videojuegos = videojuegos;
 		this.id = id;
 	}
 
@@ -61,6 +58,16 @@ public class Plataforma {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public List<Videojuego> getVideojuegos() {
+		return videojuegos;
+	}
+
+
+	public void setVideojuegos(List<Videojuego> videojuegos) {
+		this.videojuegos = videojuegos;
 	}
 	
 	
