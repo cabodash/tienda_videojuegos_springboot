@@ -161,38 +161,6 @@ body {
 }
 
 
-/* Listado videojuegos */
-.listado-videojuegos {
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
-	flex-wrap: wrap;
-	justify-content: center;
-
-	.item-listado {
-		margin: 5px;
-		background-color: lightblue;
-		padding: 15px;
-		border-radius: 10px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		color: black;
-		gap: 10px;
-
-		.item-enlaces {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-around;
-			width: 100%;
-			position: relative;
-			
-			
-			
-		}
-	}
-}
-
 
 
 /* Carrito de la compra */

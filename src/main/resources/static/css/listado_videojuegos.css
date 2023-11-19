@@ -1,0 +1,103 @@
+.listado-videojuegos {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  place-items: center;
+  gap: 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.listado-videojuegos .item-listado {
+  position: relative;
+  width: 380px;
+  height: 258px;
+  border-radius: 10px;
+}
+.listado-videojuegos .item-listado .reproductor {
+  position: relative;
+  width: 380px;
+  height: 218px;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  -webkit-transition: -webkit-transform 0.2s ease, -webkit-box-shadow;
+  transition: -webkit-transform 0.2s ease, -webkit-box-shadow;
+  transition: transform 0.2s ease, box-shadow;
+  transition: transform 0.2s ease, box-shadow, -webkit-transform 0.2s ease, -webkit-box-shadow;
+}
+.listado-videojuegos .item-listado .reproductor .imagen-item,
+.listado-videojuegos .item-listado .reproductor .video-item {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.listado-videojuegos .item-listado .reproductor .imagen-item {
+  z-index: 1;
+}
+.listado-videojuegos .item-listado .reproductor .video-item {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.listado-videojuegos .item-listado .reproductor:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+.listado-videojuegos .item-listado .reproductor:hover .imagen-item {
+  opacity: 0;
+  visibility: hidden;
+}
+.listado-videojuegos .item-listado .reproductor:hover .video-item {
+  opacity: 1;
+  visibility: visible;
+}
+.listado-videojuegos .item-listado .item-enlaces {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+}
+.listado-videojuegos .item-listado .item-enlaces .nombre-juego {
+  font-size: 1.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 4px;
+}
+.listado-videojuegos .item-listado .item-enlaces .precio {
+  font-size: 1.6rem;
+}
+
+@media only screen and (min-width: 852px) {
+  .listado-videojuegos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width: 1270px) {
+  .listado-videojuegos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

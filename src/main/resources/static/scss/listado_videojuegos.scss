@@ -1,0 +1,96 @@
+.listado-videojuegos {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    gap: 2rem;
+    width: fit-content;
+    height: fit-content;
+
+
+    .item-listado {
+        position: relative;
+        width: 380px;
+        height: 258px;
+        border-radius: 10px;
+
+        .reproductor {
+            position: relative;
+            width: 380px;
+            height: 218px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, box-shadow;
+
+            .imagen-item,
+            .video-item {
+                position: absolute;
+                border-radius: 10px;
+                overflow: hidden;
+                transition: opacity 0.2s ease, visibility 0.2s ease; // Agregar transición a opacity y visibility
+            }
+
+            .imagen-item {
+                z-index: 1;
+            }
+
+            .video-item {
+                top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+                .imagen-item {
+                    opacity: 0; // Ocultar la imagen al hacer hover
+                    visibility: hidden; // Ocultar la imagen al hacer hover
+                }
+
+                .video-item {
+                    opacity: 1; // Mostrar el video al hacer hover
+                    visibility: visible; // Mostrar el video al hacer hover
+                }
+            }
+        }
+
+
+        .item-enlaces {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            color: #fff;
+
+            .nombre-juego {
+                font-size: 1.3rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-top: 4px;
+            }
+
+            .precio {
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 852px) {
+    .listado-videojuegos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1270px) {
+    .listado-videojuegos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
