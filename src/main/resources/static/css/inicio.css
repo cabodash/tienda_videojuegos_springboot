@@ -8,7 +8,7 @@
 /* Inicio */
 body {
   width: 100vw;
-  background-color: #F2F2F2;
+  background-color: #272727;
 }
 
 .btn-primary {
@@ -53,7 +53,7 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 1em;
-  background-color: lightsteelblue;
+  background-color: #003087;
   border-radius: 25px;
   padding: 10px;
 }
@@ -128,9 +128,18 @@ body {
   position: relative;
 }
 
-.contenedor {
+#contenedor {
   width: 100vw;
-  padding: 20px;
+  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .contenedor-identificar-usuario {
@@ -246,6 +255,7 @@ body {
           justify-content: center;
 }
 .carrito .contenedor-boton-realizar-pedido .boton-realizar-pedido {
+  color: inherit;
   /*Hacer algo */
 }
 

@@ -3,19 +3,17 @@
 
 	{{#.}}
 	<div class="item-listado">
-	    <p>Nombre: {{nombre}}</p>
-	    <p><img src="mostrar_imagen_videojuego?id={{id}}" style="height: 200px;" /></p>
-	    <p>Descripción: {{descripcion}}</p>
-	    <p>Género: {{nombre_genero}}</p>
-	    <p>Plataformas: {{plataformas}}</p>
-	    <p>Fecha de Lanzamiento: {{fecha_lanzamiento}}</p>
-	    <p>Desarrollador: {{desarrollador}}</p>
-	    <p>Puntuación: {{puntuacion}}</p>
-	    <p>Precio: {{precio}}</p>
-	    <div class="item-enlaces">
-	        <a href="#" class="enlace_ver_detalles btn-primary" id-producto="{{id}}">Ver detalles</a>
-	        <a href="#" class="enlace_comprar_listado_principal btn-primary" id-producto="{{id}}">Comprar</a>
-	    </div>
+		<div class="reproductor">
+			<img class="imagen-item" src="mostrar_imagen_videojuego?id={{id}}" loading="lazy">
+			<video class="video-item" id="videoItem" width="100%" height="100%">
+				<source src="mostrar_video_videojuego?id={{id}}" type="video/webm">
+				Tu navegador no soporta el tag de video.
+			</video>
+		</div>
+		<div class="item-enlaces">
+			<p class="nombre-juego">{{nombre}}</p>
+			<p class="precio"><span>{{precio}}</span> &euro;</p>
+		</div>
 	</div>
 	{{/.}}
 

@@ -30,6 +30,10 @@ public class Videojuego {
     @Lob  // Campo tipo clob / blob. Tipo de dato que almacena un array de bytes
     @Column(name = "imagen_portada")
     private byte[] imagenPortada;
+
+	@Lob
+    @Column(name = "video_portada")
+    private byte[] videoPortada;
     
     
     @OneToOne
@@ -102,6 +106,15 @@ public class Videojuego {
 
 	public void setImagenPortada(byte[] imagenPortada) {
 		this.imagenPortada = imagenPortada;
+	}
+
+	public byte[] getVideoPortada() {
+		return videoPortada;
+	}
+
+
+	public void setVideoPortada(byte[] videoPortada) {
+		this.videoPortada = videoPortada;
 	}
 
 	public String getNombre() {
@@ -218,6 +231,9 @@ public class Videojuego {
 	public void setIdGenero(int idGenero) {
 		this.idGenero = idGenero;
 	}
+
+
+	
     
 	
     

@@ -56,35 +56,40 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			
 			//Preparo unos libros para la tienda
 			Videojuego v = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", genero2, "PS4", Date.valueOf("2023-09-23"),"EA", 3.3, 60);
-			v.setImagenPortada(copiarImagenBase("http://localhost:8080/imagenes_base/1.jpg"));
+			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
+			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
 			entityManager.persist(v);
 			
 			v = new Videojuego("Elden Ring", "descripcion de Elden Ring", genero, "Xbox series X", Date.valueOf("2022-02-25"),"From Software", 6.3, 40);
-			v.setImagenPortada(copiarImagenBase("http://localhost:8080/imagenes_base/2.jpg"));
+			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
+			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
 			entityManager.persist(v);
 			
 			v = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", genero, "PS4", Date.valueOf("2018-10-26"),"EA", 9.3, 70);
-			v.setImagenPortada(copiarImagenBase("http://localhost:8080/imagenes_base/3.jpg"));
+			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
+			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
 			entityManager.persist(v);
 			
 			v = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", genero, "PC", Date.valueOf("2020-12-10"),"CD Projekt Red", 9.5, 55);
-			v.setImagenPortada(copiarImagenBase("http://localhost:8080/imagenes_base/4.jpg"));
+			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
+			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
 			entityManager.persist(v);
 			
 			v = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 3", genero2, "PS5", Date.valueOf("2023-10-20"),"Insomniac Games", 9.7, 75.99);
-			v.setImagenPortada(copiarImagenBase("http://localhost:8080/imagenes_base/5.jpg"));
+			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
+			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
 			entityManager.persist(v);
 			
 			
 			
 			Usuario u = new Usuario("pepe", "pepe@gmail.com", "4321");
-			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/2.jpg"));
+			u.setImagenPerfil(copiarArchivoBase("http://localhost:8080/recursos_setup/images/usuarios/2.jpg"));
 			entityManager.persist(u);
 			u = new Usuario("Javier", "javier@gmail.com", "1212");
-			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/3.jpg"));
+			u.setImagenPerfil(copiarArchivoBase("http://localhost:8080/recursos_setup/images/usuarios/3.jpg"));
 			entityManager.persist(u);
 			u = new Usuario("Alex", "alex@gmail.com", "1234");
-			u.setImagenPerfil(copiarImagenBase("http://localhost:8080/imagenes_base_usuario/1.jpg"));
+			u.setImagenPerfil(copiarArchivoBase("http://localhost:8080/recursos_setup/images/usuarios/1.jpg"));
 			entityManager.persist(u);
 			
 			
@@ -143,7 +148,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(registroSetUp);
 		}
 	}
-	private byte[] copiarImagenBase(String ruta_origen) {
+	private byte[] copiarArchivoBase(String ruta_origen) {
 		byte[] info = null;
 		try {
 			URL url = new URL(ruta_origen);

@@ -5,7 +5,7 @@
 	padding: 0;
 }
 
-$background-color_1: #F2F2F2;
+$background-color-page: #272727;
 $background-color_2: lightblue;
 
 $ps-darkblue: #003087;
@@ -20,7 +20,7 @@ $sw_blue: #1E90FF;
 /* Inicio */
 body {
 	width: 100vw;
-	background-color: $background-color_1;
+	background-color: $background-color-page;
 }
 //enlaces-botones de la web
 .btn-primary {
@@ -53,7 +53,7 @@ body {
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 1em;
-	background-color:lightsteelblue;
+	background-color:$ps-darkblue;
 	border-radius: 25px;
 	padding: 10px;
 	
@@ -119,17 +119,19 @@ body {
 
 
 
-.contenedor{
+#contenedor{
 	width: 100vw;
-	padding: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 .contenedor-identificar-usuario{
 	width: 100%;
 	
 }
-
-
-
 
 
 /* Registro */
@@ -221,6 +223,7 @@ body {
 		
 		
 		.boton-realizar-pedido {
+			color: inherit;
 			/*Hacer algo */
 		}
 	}
