@@ -1,4 +1,6 @@
 @charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap');
+
 *, *::before, *::after{
 	box-sizing: border-box;
 	margin: 0;
@@ -21,6 +23,8 @@ $sw_blue: #1E90FF;
 body {
 	width: 100vw;
 	background-color: $background-color-page;
+	color: #FFF;
+	font-family: 'Roboto', sans-serif;
 }
 //enlaces-botones de la web
 .btn-primary {
@@ -45,19 +49,26 @@ body {
 
 //barra de navegacion de la parte cliente
 .navbar {
-	width: fit-content;
-	max-width: 80%;
-	margin: 5px auto;
+	width: 100vw;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 1em;
 	background-color:$ps-darkblue;
-	border-radius: 25px;
 	padding: 10px;
+
+	.enlaces-cliente{
+		display: flex;
+		flex-direction: row;
+		gap: 1em;
+	}
 	
 }
+.acceso-admin{
+	justify-self: flex-end;
+}
+
 
 //maquetacion y diseño basico de listados
 .listado {

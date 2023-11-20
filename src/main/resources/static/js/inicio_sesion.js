@@ -7,6 +7,7 @@ $.get("plantillas_mustache/identificar_usuario.html", function(data) {
 
 //Identificarse
 $("#identificar").click(function() {
+	$('#estilo-actual').attr('href', 'css/inicio_sesion.css');
 	$("#contenedor").html(plantillaIdentificarUsuario);
 	
 	//ver si el usuario guardo sus datos de inicio de sesion en una cookie y en tal caso ponerlos en los input correspondientes

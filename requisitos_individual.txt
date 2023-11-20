@@ -1,0 +1,7 @@
+- Añadir el dato de como conseguir/canjear el juego (en pc decir en que tienda se canjea y como, en consola los pasos para ir al apartado de canje y canjearlo)
+
+- cambiar videojuego.plataformas para que en vez de ser introducido como texto sea una entidad diferente (como los generos)
+ -> posibilidad de elegir mas de una plataforma
+
+-añadir un buscador simple y un filtrado por generos y plataformas
+

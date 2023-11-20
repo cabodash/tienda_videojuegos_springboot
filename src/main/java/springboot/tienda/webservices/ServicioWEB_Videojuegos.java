@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import springboot.tienda.servicios.ServicioVideojuegos;
 
 
@@ -17,6 +15,15 @@ import springboot.tienda.servicios.ServicioVideojuegos;
 @RestController
 @RequestMapping("servicioWebVideojuegos/")
 public class ServicioWEB_Videojuegos {
+
+	//Pedir bean de spring cuyo nombre se clase se usa en varios paquetes
+	//webservices.admin.ServicioWEB_Pedidos
+	//usando @Qualifiyer
+
+	// @Autowired
+	// @Qualifier("servicioWebPedidosAdmin")
+	// private ServicioWEB_Pedidos servicioWEBPedidos;
+
 	
 	@Autowired
 	private ServicioVideojuegos servicioVideojuegos;

@@ -23,7 +23,7 @@ public class MostrarImagenProducto {
 		if (info == null) {
 			return;
 		}
-		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		response.setContentType("image/jpeg, image/jpg, image/png, image/gif, image/webp, image/avif");
 		response.getOutputStream().write(info);
 		response.getOutputStream().close();
 	}

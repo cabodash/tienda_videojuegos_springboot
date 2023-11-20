@@ -45,40 +45,41 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			se prepara una serie de ragistros para poder testear la tienda */
 			
 			//preparo categorias para los videojuegos
-			Genero genero = new Genero("Mundo Abierto", "Descripcion para mundo abierto");
-			entityManager.persist(genero);
-			genero = new Genero("RPG", "Descripcion para rpg");
-			entityManager.persist(genero);
-			genero = new Genero("Shooter", "Descripcion para shooter");
-			entityManager.persist(genero);
-			Genero genero2 = new Genero("Deportes", "Descripcion para Deportes");
-			entityManager.persist(genero2);
+			Genero mundo_abierto = new Genero("Mundo Abierto", "Descripcion para mundo abierto");
+			entityManager.persist(mundo_abierto);
+			Genero rpg = new Genero("RPG", "Descripcion para rpg");
+			entityManager.persist(rpg);
+			Genero shooter = new Genero("Shooter", "Descripcion para shooter");
+			entityManager.persist(shooter);
+			Genero deportes = new Genero("Deportes", "Descripcion para Deportes");
+			entityManager.persist(deportes);
 			
-			//Preparo unos libros para la tienda
-			Videojuego v = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", genero2, "PS4", Date.valueOf("2023-09-23"),"EA", 3.3, 60);
-			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
-			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
-			entityManager.persist(v);
+			//Preparo unos videojuegos para la tienda
+			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", deportes, "PS4", Date.valueOf("2023-09-23"),"EA", 3.3, 60);
+			fifa24.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
+			fifa24.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
+			entityManager.persist(fifa24);
 			
-			v = new Videojuego("Elden Ring", "descripcion de Elden Ring", genero, "Xbox series X", Date.valueOf("2022-02-25"),"From Software", 6.3, 40);
-			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
-			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
-			entityManager.persist(v);
+			 Videojuego elden_ring = new Videojuego("Elden Ring", "descripcion de Elden Ring", mundo_abierto, "Xbox series X", Date.valueOf("2022-02-25"),"From Software", 6.3, 40);
+			elden_ring.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
+			elden_ring.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
+			entityManager.persist(elden_ring);
 			
-			v = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", genero, "PS4", Date.valueOf("2018-10-26"),"EA", 9.3, 70);
-			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
-			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
-			entityManager.persist(v);
+			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", mundo_abierto, "PS4", Date.valueOf("2018-10-26"),"EA", 9.3, 70);
+			rdr2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
+			rdr2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
+			entityManager.persist(rdr2);
 			
-			v = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", genero, "PC", Date.valueOf("2020-12-10"),"CD Projekt Red", 9.5, 55);
-			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
-			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
-			entityManager.persist(v);
+			Videojuego cyberpunk = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", rpg, "PC", Date.valueOf("2020-12-10"),"CD Projekt Red", 9.5, 55);
+			cyberpunk.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
+			cyberpunk.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
+			entityManager.persist(cyberpunk);
 			
-			v = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 3", genero2, "PS5", Date.valueOf("2023-10-20"),"Insomniac Games", 9.7, 75.99);
-			v.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
-			v.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
-			entityManager.persist(v);
+
+			Videojuego spiderman2 = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 2", rpg, "PS5", Date.valueOf("2023-10-20"),"Insomniac Games", 9.7, 75.99);
+			spiderman2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
+			spiderman2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
+			entityManager.persist(spiderman2);
 			
 			
 			
@@ -113,7 +114,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(p);
 			ProductoPedido pp = new ProductoPedido();
 			pp.setPedido(p);
-			pp.setVideojuego(v);
+			pp.setVideojuego(spiderman2);
 			pp.setCantidad(2);
 			entityManager.persist(pp);
 			
@@ -137,7 +138,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(p);
 			pp = new ProductoPedido();
 			pp.setPedido(p);
-			pp.setVideojuego(v);
+			pp.setVideojuego(spiderman2);
 			pp.setCantidad(5);
 			entityManager.persist(pp);
 			

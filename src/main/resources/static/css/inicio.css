@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap");
 *, *::before, *::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -9,6 +10,8 @@
 body {
   width: 100vw;
   background-color: #272727;
+  color: #FFF;
+  font-family: "Roboto", sans-serif;
 }
 
 .btn-primary {
@@ -35,11 +38,7 @@ body {
 }
 
 .navbar {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: 80%;
-  margin: 5px auto;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,15 +46,28 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 1em;
   background-color: #003087;
-  border-radius: 25px;
   padding: 10px;
+}
+.navbar .enlaces-cliente {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1em;
+}
+
+.acceso-admin {
+  justify-self: flex-end;
 }
 
 .listado {
