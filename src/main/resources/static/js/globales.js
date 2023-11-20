@@ -55,6 +55,8 @@ function mostrar_videojuegos(){
 	
 }
 
+
+//cargar la funcionalidad de los reproductores de video de los listados
 function cargar_reproductores(){
 	//Funcionamiento videos
 	let reproductores = document.querySelectorAll(".reproductor");
@@ -69,18 +71,15 @@ function cargar_reproductores(){
 
 			// Reproducir el video al hacer hover
 			item.addEventListener("mouseenter", function() {
-				console.log("hover");
 				video.play();
 			});
 
 			// Pausar el video al quitar el hover
 			item.addEventListener("mouseleave", function() {
-				console.log("no-hover");
 				video.pause();
 			});
 
 			video.addEventListener("ended", function() {
-				console.log("reset");
 				video.currentTime = 0; 
 				video.play();
 			});
