@@ -5,3 +5,5 @@
 
 -añadir un buscador simple y un filtrado por generos y plataformas
 
+-buscador en cliente que lance la query (el servicioVideojuegos/obtenerPorXcosa?cosa=valor) por keyup, y muestre los resultados en un contenedor como busqueda rapida, y que al darle al enter cargue esa busqueda en el contenedor de cliente
+

@@ -83,11 +83,12 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	}
 
 	@Override
-	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON() {
+	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String nombre) {
 		Query query = entityManager.createNativeQuery(
 				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_PARA_JSON);
 		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
 		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		nativeQuery.setParameter("nombre","%" + nombre + "%");
 		return nativeQuery.getResultList();
 	}
 
@@ -98,6 +99,13 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		nativeQuery.setParameter("id", idVideojuego);
 		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
 		return (Map<String, Object>) nativeQuery.getResultList().get(0);
+	}
+
+	@Override
+	public List<Videojuego> obtenerVideojuegosPorNombre(String nombre) {
+		return entityManager.createQuery("select v from Videojuego v where v.alta = true and v.nombre like :nombre order by v.id desc")
+		.setParameter("nombre", "%" + nombre + "%")
+		.getResultList();
 	}
 	
 	

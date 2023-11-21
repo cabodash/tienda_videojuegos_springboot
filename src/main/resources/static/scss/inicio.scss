@@ -121,8 +121,6 @@ body {
 			gap: 2em;
 			position: relative;
 			
-			
-			
 		}
 	}
 }
@@ -134,8 +132,10 @@ body {
 	width: 100vw;
     padding: 30px;
     display: flex;
+	flex-direction: column;
     justify-content: center;
     align-items: center;
+	gap: 1rem;
 }
 
 

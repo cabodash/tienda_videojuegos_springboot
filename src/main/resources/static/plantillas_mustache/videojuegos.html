@@ -1,20 +1,26 @@
-<div class="listado-videojuegos">
-
-
-	{{#.}}
-	<div class="item-listado">
-		<div class="reproductor">
-			<img class="imagen-item" src="mostrar_imagen_videojuego?id={{id}}" loading="lazy">
-			<video class="video-item" id="videoItem" width="100%" height="100%">
-				<source src="mostrar_video_videojuego?id={{id}}" type="video/webm">
-				Tu navegador no soporta el tag de video.
-			</video>
-		</div>
-		<div class="item-enlaces">
-			<p class="nombre-juego">{{nombre}}</p>
-			<p class="precio"><span>{{precio}}</span> &euro;</p>
-		</div>
+<div class="contenedor-listado">
+	<div class="contenedor-buscador">
+		<img class="lupa" src="images/lupa.png">
+		<input type="text" id="buscador" placeholder="Buscar" autocomplete="off">
+		<object id="imagen-borrar" class="borrar-busqueda" type="image/svg+xml" data="images/x.svg"></object>
 	</div>
-	{{/.}}
+	<div class="listado-videojuegos">
 
+		{{#.}}
+		<div class="item-listado">
+			<div class="reproductor">
+				<img class="imagen-item" src="mostrar_imagen_videojuego?id={{id}}" loading="lazy">
+				<video class="video-item" id="videoItem" width="100%" height="100%">
+					<source src="mostrar_video_videojuego?id={{id}}" type="video/webm">
+					Tu navegador no soporta el tag de video.
+				</video>
+			</div>
+			<div class="item-enlaces">
+				<p class="nombre-juego">{{nombre}}</p>
+				<p class="precio"><span>{{precio}}</span> &euro;</p>
+			</div>
+		</div>
+		{{/.}}
+
+	</div>
 </div>

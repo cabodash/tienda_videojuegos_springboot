@@ -10,6 +10,11 @@
 	
 <div th:insert="fragments/general.html :: menu"></div>
 <br>
+<form action="obtenerVideojuegos" class="form-buscador">
+	<input type="text" name="buscador" th:value="${nombre}">
+	<input class="btn-buscar" type="submit" value="Buscar">
+</form>
+
 listado de videojuegos:
 
 <div class="listado">

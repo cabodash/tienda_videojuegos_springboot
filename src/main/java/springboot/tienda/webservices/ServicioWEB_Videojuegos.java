@@ -29,8 +29,8 @@ public class ServicioWEB_Videojuegos {
 	private ServicioVideojuegos servicioVideojuegos;
 	
 	@RequestMapping("obtenerVideojuegos")
-	public List<Map<String, Object>> obtenerVideojuegos(){
-		return servicioVideojuegos.obtenerVideojuegosParaFormarJSON();
+	public List<Map<String, Object>> obtenerVideojuegos(@RequestParam(name = "nombre", defaultValue = "") String nombre){
+		return servicioVideojuegos.obtenerVideojuegosParaFormarJSON(nombre);
 	}
 	
 	@RequestMapping("obtenerVideojuegoDetalles")

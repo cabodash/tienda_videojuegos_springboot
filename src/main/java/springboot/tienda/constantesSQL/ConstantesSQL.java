@@ -6,6 +6,7 @@ public class ConstantesSQL {
 			+ "FROM videojuego as v, genero as g "
 			+ "WHERE v.genero_id = g.id "
 			+ "AND v.alta = 1 "
+			+ "AND v.nombre like :nombre "
 			+ "ORDER BY v.id DESC";
 
 	public static final String SQL_OBTENER_DETALLES_VIDEOJUEGO = 

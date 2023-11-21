@@ -11,6 +11,8 @@ public interface ServicioVideojuegos {
 	void registrarVideojuego(Videojuego v);
 	
 	List<Videojuego> obtenerVideojuegos();	
+
+	List<Videojuego> obtenerVideojuegosPorNombre(String nombre);	
 	
 	void borrarVideojuego(int id);
 	
@@ -19,7 +21,7 @@ public interface ServicioVideojuegos {
 	void guardarCambiosVideojuego(Videojuego v);
 	
 	//metodos para la comunicacion por ajax
-	List<Map<String, Object>> obtenerVideojuegosParaFormarJSON();
+	List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String nombre);
 
 	Map<String, Object> obtenerDetallesVideojuego(int idVideojuego);
 	

@@ -1,4 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap');.listado-videojuegos {
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap');
+
+$background-color-page: #272727;
+$background-color_2: lightblue;
+
+$ps-darkblue: #003087;
+$ps-lightblue: #36A9E1;
+$ps-darkgrey: #1B1D1F;
+
+$xb-darkgreen: #107C10;
+$xb-lightgreen: #52D726;
+$sw-red: #E60012;
+$sw_blue: #1E90FF;
+
+.contenedor-listado{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.contenedor-buscador{
+    width: 50%;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 10px 15px;
+    border-radius: 30px;
+    background-color: #303134;
+    display: flex;
+    gap: 1rem;
+
+    .lupa, .borrar-busqueda{
+        height: 20px;
+        width: 20px;
+        transition: all 0.2s ease;
+    }
+    .borrar-busqueda{
+
+        &:hover{
+            transform: scale(1.1);
+            fill: red;
+        }
+    }
+
+    input{
+        width: 100%;
+        border: none;
+        outline: none;
+        background: none;
+        color: white;
+
+
+        &:focus-visible{
+            border: none;
+            outline: none;
+        }
+
+    }
+
+    &:hover{
+        box-shadow: 0 4px 12px rgba(23,23,23,0.7);
+
+    }
+
+
+}
+
+.listado-videojuegos {
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;

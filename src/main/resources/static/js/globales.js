@@ -1,7 +1,9 @@
+//mostrar videojuegos en cliente
+let nombre_a_buscar = "";
 function mostrar_videojuegos(){
 	// cargar css del listado
 	$('#estilo-actual').attr('href', 'css/listado_videojuegos.css');
-	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos", res => {
+	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos",{nombre : nombre_a_buscar}).done(function (res) {
 		let texto_html = "";
 		//antes de mostrar el resultado usando la plantilla podemos prepararlo un poco
 		for (i in res) {
@@ -11,11 +13,26 @@ function mostrar_videojuegos(){
 		}
 		texto_html = Mustache.render(plantillaVideojuegos, res);
 		$("#contenedor").html(texto_html);
+		$("#buscador").val(nombre_a_buscar);
+		$("#buscador").focus();
+
+		//Buscador
+		$("#buscador").keyup(function (e) {
+			nombre_a_buscar = $(this).val();
+			mostrar_videojuegos();
+			
+		});
+
+		//borrar texto del buscador
+		$("#imagen-borrar").click(function (e) { 
+			console.log("borrar datos busqueda");
+			$("#buscador").val("");
+			
+		});
+
+
+
 		//Indicamos que hace el enlace comprar
-
-		
-
-
 		$(".enlace_comprar_listado_principal").click(function(res) {
 			if (nombre_login != "") {
 				let id_producto = $(this).attr("id-producto");

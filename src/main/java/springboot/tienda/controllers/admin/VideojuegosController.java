@@ -23,8 +23,9 @@ public class VideojuegosController {
 	private ServicioGeneros servicioGeneros;
 
 	@RequestMapping("obtenerVideojuegos")
-	public String obtenerVideojuegos(Model model) {
-		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegos());
+	public String obtenerVideojuegos(@RequestParam(name = "buscador", defaultValue = "") String nombre, Model model) {
+		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegosPorNombre(nombre));
+		model.addAttribute("nombre", nombre);
 		return "admin/videojuegos";
 	}
 
@@ -51,7 +52,7 @@ public class VideojuegosController {
 	@RequestMapping("borrarVideojuego")
 	public String borrarVideojuego(@RequestParam("id") Integer id, Model model) {
 		servicioVideojuegos.borrarVideojuego(id);
-		return obtenerVideojuegos(model);
+		return obtenerVideojuegos("", model);
 	}
 	
 	@RequestMapping("editarVideojuego")
@@ -67,7 +68,7 @@ public class VideojuegosController {
 	public String guardarCambiosVideojuego(Videojuego videojuegoEditar, Model model) {
 		
 		servicioVideojuegos.guardarCambiosVideojuego(videojuegoEditar);
-		return obtenerVideojuegos(model);
+		return obtenerVideojuegos("", model);
 	}
 
 }
