@@ -24,6 +24,7 @@ listado de videojuegos:
 		<p>descripcion: <span th:text="${videojuego.descripcion}"></span></p><br>
 		<p>precio: <span th:text="${videojuego.precio}"></span></p> <br>
 		<p>genero: <span th:text="${videojuego.genero.nombre}"></span></p> <br>
+		<p>plataformas: <span th:text="${videojuego.plataformas.nombre}"></span></p> <br>	
 		
 		<div class="item-enlaces">
 			<a th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}">Editar</a>

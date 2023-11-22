@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;;
 public class Videojuego {
 	private String nombre;
 	private String descripcion;
-	private String plataformas;
     private Date fechaLanzamiento;
     private String desarrollador;
     private double puntuacion;
@@ -38,9 +38,7 @@ public class Videojuego {
     
     @OneToOne
     private ProductoCarrito productoCarrito;
-    
-    //@ManyToMany
-    //private List<Plataforma> plataformas;
+
     
     public boolean isAlta() {
 		return alta;
@@ -53,9 +51,15 @@ public class Videojuego {
 	//Asociacion entre la clase Videojuego y la clase Categoria
     @ManyToOne //(cascade = CascadeType.MERGE, targetEntity = Genero.class,optional = false, fetch = FetchType.LAZY)
     private Genero genero;
+
+	@ManyToOne
+	private Plataforma plataformas;
     
     @Transient
     private int idGenero;
+
+	@Transient
+	private int idPlataforma;
     
     
     @Transient //Con esto decimos a hibernate que no considere este campo
@@ -70,7 +74,7 @@ public class Videojuego {
 		// TODO Auto-generated constructor stub
 	}
     
-    public Videojuego(String nombre, String descripcion, Genero genero, String plataformas,
+    public Videojuego(String nombre, String descripcion, Genero genero, Plataforma plataformas,
 			Date fechaLanzamiento, String desarrollador, double puntuacion, double precio) {
 		super();
 		this.nombre = nombre;
@@ -85,7 +89,7 @@ public class Videojuego {
 	}
 
 
-	public Videojuego(int id, String nombre, String descripcion, Genero genero, String plataformas,
+	public Videojuego(int id, String nombre, String descripcion, Genero genero, Plataforma plataformas,
 			Date fechaLanzamiento, String desarrollador, double puntuacion, double precio) {
 		super();
 		this.id = id;
@@ -147,12 +151,12 @@ public class Videojuego {
 	}
 
 
-	public String getPlataformas() {
+	public Plataforma getPlataformas() {
 		return plataformas;
 	}
 
 
-	public void setPlataformas(String plataformas) {
+	public void setPlataformas(Plataforma plataformas) {
 		this.plataformas = plataformas;
 	}
 
@@ -230,6 +234,14 @@ public class Videojuego {
 
 	public void setIdGenero(int idGenero) {
 		this.idGenero = idGenero;
+	}
+
+	public int getIdPlataforma() {
+		return idPlataforma;
+	}
+
+	public void setIdPlataforma(int idPlataforma) {
+		this.idPlataforma = idPlataforma;
 	}
 
 

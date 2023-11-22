@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.servicios.ServicioGeneros;
+import springboot.tienda.servicios.ServicioPlataformas;
 import springboot.tienda.servicios.ServicioVideojuegos;
 
 @Controller
@@ -21,6 +22,9 @@ public class VideojuegosController {
 	
 	@Autowired
 	private ServicioGeneros servicioGeneros;
+
+	@Autowired
+	private ServicioPlataformas servicioPlataformas;
 
 	@RequestMapping("obtenerVideojuegos")
 	public String obtenerVideojuegos(@RequestParam(name = "buscador", defaultValue = "") String nombre, Model model) {
@@ -35,6 +39,7 @@ public class VideojuegosController {
 		v.setPrecio(1);
 		model.addAttribute("nuevoVideojuego", v);
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
+		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
 		
 		
 		return "admin/videojuegos_registro";
@@ -59,8 +64,10 @@ public class VideojuegosController {
 	public String editarVideojuego(@RequestParam("id") Integer id, Model model) {
 		Videojuego videojuego = servicioVideojuegos.obtenerVideojuegoPorId(id);
 		videojuego.setIdGenero(videojuego.getGenero().getId());
+		videojuego.setIdPlataforma(videojuego.getPlataformas().getId());
 		model.addAttribute("videojuegoEditar", videojuego);
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
+		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
 		return "admin/videojuegos_editar";
 	}
 	

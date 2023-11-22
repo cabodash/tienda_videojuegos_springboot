@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.constantesSQL.ConstantesSQL;
 import springboot.tienda.model.Genero;
+import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.servicios.ServicioVideojuegos;
 
@@ -29,6 +30,8 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	public void registrarVideojuego(Videojuego v) {
 		Genero g = entityManager.find(Genero.class, v.getIdGenero());
 		v.setGenero(g);
+		Plataforma p = entityManager.find(Plataforma.class, v.getIdPlataforma());
+		v.setPlataformas(p);
 		try {
 		v.setImagenPortada(v.getFotoSubida().getBytes());
 		entityManager.persist(v);
@@ -64,6 +67,8 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	public void guardarCambiosVideojuego(Videojuego v) {
 		Genero g = entityManager.find(Genero.class, v.getIdGenero());
 		v.setGenero(g);
+		Plataforma p = entityManager.find(Plataforma.class, v.getIdPlataforma());
+		v.setPlataformas(p);
 		v.setAlta(true);
 		if(v.getFotoSubida().getSize() == 0) {
 			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual");

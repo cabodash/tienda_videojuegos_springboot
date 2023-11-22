@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<form action="#" th:action="guardarCambiosPlataforma" th:object="${plataformaEditar}" method="post">
+		nombre: <input type="text" th:field="*{nombre}" /> <br>
+		descripcion:<br> <textarea rows="3" cols="20" th:field="*{descripcion}"></textarea><br>
+		<input type="hidden" th:field="*{id}"/>
+		<input type="submit" value="Guardar cambios"/>
+	</form>
+
+</body>
+</html>

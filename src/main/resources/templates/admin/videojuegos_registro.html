@@ -23,12 +23,11 @@ introduce los datos del nuevo videojuego:
             <label for="descripcion">Descripcion</label>
             <p class="suggestion"></p>
     </div>
-	
-	<div class="input-box">
-	    <input type="text" name="plataformas" th:field="*{plataformas}">
-	    <label for="plataformas">Plataformas</label>
-	    <p class="suggestion"></p>
-	</div>
+	Plataformas:
+	<select th:field="*{idPlataforma}">
+		<option th:each="p : ${plataformas}" th:text="${p.nombre}" th:value="${p.id}"/>		
+	</select>
+	<br>
 	
 	Fecha: <input type="date" step=".01" th:field="*{fechaLanzamiento}" /> <br>
 	Desarrollador: <input type="text" step=".01" th:field="*{desarrollador}" /> <br>

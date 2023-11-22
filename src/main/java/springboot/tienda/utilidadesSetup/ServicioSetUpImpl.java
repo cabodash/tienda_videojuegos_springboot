@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.model.Genero;
 import springboot.tienda.model.Pedido;
+import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.ProductoPedido;
 import springboot.tienda.model.Usuario;
 import springboot.tienda.model.Videojuego;
@@ -53,30 +54,49 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(shooter);
 			Genero deportes = new Genero("Deportes", "Descripcion para Deportes");
 			entityManager.persist(deportes);
-			
+
+			//Preparacion de plataformas
+			Plataforma ps3 = new Plataforma("PS3", "PlayStation 3");
+			entityManager.persist(ps3);
+			Plataforma ps4 = new Plataforma("PS4", "PlayStation 4");
+			entityManager.persist(ps4);
+			Plataforma ps5 = new Plataforma("PS5", "PlayStation 5");
+			entityManager.persist(ps5);
+			Plataforma xbox360 = new Plataforma("Xbox 360", "Xbox 360");
+			entityManager.persist(xbox360);
+			Plataforma xboxOne = new Plataforma("Xbox One", "Xbox One");
+			entityManager.persist(xboxOne);
+			Plataforma xboxSeriesX = new Plataforma("Xbox Series X", "Xbox Series X");
+			entityManager.persist(xboxSeriesX);
+			Plataforma nintendoSwitch = new Plataforma("Nintendo Switch", "Nintendo Switch");
+			entityManager.persist(nintendoSwitch);
+			Plataforma pc = new Plataforma("PC", "PC");
+			entityManager.persist(pc);
+
+
 			//Preparo unos videojuegos para la tienda
-			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", deportes, "PS4", Date.valueOf("2023-09-23"),"EA", 3.3, 60);
+			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", deportes, ps4, Date.valueOf("2023-09-23"),"EA", 3.3, 60);
 			fifa24.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
 			fifa24.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
 			entityManager.persist(fifa24);
 			
-			 Videojuego elden_ring = new Videojuego("Elden Ring", "descripcion de Elden Ring", mundo_abierto, "Xbox series X", Date.valueOf("2022-02-25"),"From Software", 6.3, 40);
+			Videojuego elden_ring = new Videojuego("Elden Ring", "descripcion de Elden Ring", mundo_abierto, xboxSeriesX, Date.valueOf("2022-02-25"),"From Software", 6.3, 40);
 			elden_ring.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
 			elden_ring.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
 			entityManager.persist(elden_ring);
 			
-			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", mundo_abierto, "PS4", Date.valueOf("2018-10-26"),"EA", 9.3, 70);
+			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", mundo_abierto, ps4, Date.valueOf("2018-10-26"),"EA", 9.3, 70);
 			rdr2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
 			rdr2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
 			entityManager.persist(rdr2);
 			
-			Videojuego cyberpunk = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", rpg, "PC", Date.valueOf("2020-12-10"),"CD Projekt Red", 9.5, 55);
+			Videojuego cyberpunk = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", rpg, pc, Date.valueOf("2020-12-10"),"CD Projekt Red", 9.5, 55);
 			cyberpunk.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
 			cyberpunk.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
 			entityManager.persist(cyberpunk);
 			
 
-			Videojuego spiderman2 = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 2", rpg, "PS5", Date.valueOf("2023-10-20"),"Insomniac Games", 9.7, 75.99);
+			Videojuego spiderman2 = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 2", rpg, ps5, Date.valueOf("2023-10-20"),"Insomniac Games", 9.7, 75.99);
 			spiderman2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
 			spiderman2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
 			entityManager.persist(spiderman2);

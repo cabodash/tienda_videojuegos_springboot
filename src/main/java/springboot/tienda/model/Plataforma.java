@@ -2,33 +2,35 @@ package springboot.tienda.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 
-//@Entity
+
+@Entity
 public class Plataforma {
 	
 	private String nombre;
 	private String descripcion;
 	
-	//@ManyToMany
+	@OneToMany(mappedBy = "plataformas")
 	private List<Videojuego> videojuegos;
 	
-	//@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue
 	private int id;
 	
 	
-	public Plataforma() {
-		// TODO Auto-generated constructor stub
-	}
+	public Plataforma() {}
 
 
-	public Plataforma(String nombre, String descripcion, List<Videojuego> videojuegos, int id) {
+	public Plataforma(String nombre, String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.videojuegos = videojuegos;
-		this.id = id;
 	}
 
 
