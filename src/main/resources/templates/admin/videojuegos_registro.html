@@ -15,13 +15,13 @@ introduce los datos del nuevo videojuego:
 	<div class="input-box">
 	    <input type="text" name="nombre" th:field="*{nombre}">
 	    <label for="nombre">Nombre</label>
-	    <p class="suggestion"></p>
+	    <p class="suggestion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
 	</div>
 	
 	<div class="textarea-box">
-            <textarea type="text" th:field="*{descripcion}" name="descripcion"></textarea>
-            <label for="descripcion">Descripcion</label>
-            <p class="suggestion"></p>
+		<textarea type="text" th:field="*{descripcion}" name="descripcion"></textarea>
+		<label for="descripcion">Descripcion</label>
+		<p class="suggestion"></p>
     </div>
 	Plataformas:
 	<select th:field="*{idPlataforma}">

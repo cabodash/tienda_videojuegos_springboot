@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import springboot.tienda.constantes.EstadosPedido;
+import springboot.tienda.constants.EstadosPedido;
 import springboot.tienda.model.Pedido;
-import springboot.tienda.servicios.ServicioPedidos;
+import springboot.tienda.services.ServicioPedidos;
 
 
 @Controller

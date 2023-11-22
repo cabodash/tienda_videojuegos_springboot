@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.tienda.datos.serviciosweb.ResumenPedido;
+import springboot.tienda.data.webservices.ResumenPedido;
 import springboot.tienda.model.Usuario;
-import springboot.tienda.servicios.ServicioPedidos;
+import springboot.tienda.services.ServicioPedidos;
 
 
 @Controller

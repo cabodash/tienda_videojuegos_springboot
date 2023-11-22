@@ -1,4 +1,4 @@
-package springboot.tienda.controllers.imagen;
+package springboot.tienda.controllers.image;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import springboot.tienda.servicios.ServicioVideojuegos;
+import springboot.tienda.services.ServicioVideojuegos;
 
 @Controller
 public class MostrarImagenProducto {

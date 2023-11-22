@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import springboot.tienda.model.Usuario;
-import springboot.tienda.servicios.ServicioUsuarios;
+import springboot.tienda.services.ServicioUsuarios;
 
 
 @Controller

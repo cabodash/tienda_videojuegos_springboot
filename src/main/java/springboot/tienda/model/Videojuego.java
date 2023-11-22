@@ -8,21 +8,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;;
 
 @Entity
 @Table(name = "videojuego")
 public class Videojuego {
+
+	@Size(min = 3, max = 10, message = "El nombre debe tener entre 3 y 10 caracteres")
+	@NotEmpty(message = "El nombre no puede estar vacío")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ]+/g", message = "Solo puede tener letras noumeros y espacios en blanco")
 	private String nombre;
 	private String descripcion;
     private Date fechaLanzamiento;
     private String desarrollador;
     private double puntuacion;
+
+	@NotNull(message = "Debes poner un precio")
+	@Min(value = 1L, message = "El precio minimo es un euro")
+	@Max(value = 1000, message = "El precio maximo es 1000 euros")
     private double precio;
     
     private boolean alta = true;

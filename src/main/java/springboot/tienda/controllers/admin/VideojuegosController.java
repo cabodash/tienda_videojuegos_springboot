@@ -1,17 +1,19 @@
 package springboot.tienda.controllers.admin;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import springboot.tienda.model.Videojuego;
-import springboot.tienda.servicios.ServicioGeneros;
-import springboot.tienda.servicios.ServicioPlataformas;
-import springboot.tienda.servicios.ServicioVideojuegos;
+import springboot.tienda.services.ServicioGeneros;
+import springboot.tienda.services.ServicioPlataformas;
+import springboot.tienda.services.ServicioVideojuegos;
 
 @Controller
 @RequestMapping("admin/")
@@ -46,11 +48,12 @@ public class VideojuegosController {
 	}
 
 	@RequestMapping("guardarVideojuego")
-	public String guardarVideojuego(Videojuego videojuegoNuevo, HttpServletRequest request) {
+	public String guardarVideojuego(@Valid Videojuego videojuegoNuevo, BindingResult resultadoValidacion) {
 		System.out.println("Id de categoria: " + videojuegoNuevo.getIdGenero());
+		if (resultadoValidacion.hasErrors()) {
+			return "libros_registro";	
+		}
 		servicioVideojuegos.registrarVideojuego(videojuegoNuevo);
-		
-		
 		return "admin/videojuegos_registro_ok";
 	}
 	

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.model.Plataforma;
-import springboot.tienda.servicios.ServicioPlataformas;
+import springboot.tienda.services.ServicioPlataformas;
 
 @Service
 @Transactional

@@ -13,16 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import springboot.tienda.constantes.EstadosPedido;
-import springboot.tienda.constantesSQL.ConstantesSQL;
-import springboot.tienda.datos.serviciosweb.ResumenPedido;
+import springboot.tienda.constants.EstadosPedido;
+import springboot.tienda.constants.SQL.ConstantesSQL;
+import springboot.tienda.data.webservices.ResumenPedido;
 import springboot.tienda.model.Pedido;
 import springboot.tienda.model.ProductoCarrito;
 import springboot.tienda.model.ProductoPedido;
 import springboot.tienda.model.Usuario;
-import springboot.tienda.servicios.ServicioCarrito;
-import springboot.tienda.servicios.ServicioPedidos;
+import springboot.tienda.services.ServicioCarrito;
+import springboot.tienda.services.ServicioPedidos;
 
 
 @Service

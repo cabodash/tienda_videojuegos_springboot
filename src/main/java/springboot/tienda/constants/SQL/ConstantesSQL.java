@@ -1,4 +1,4 @@
-package springboot.tienda.constantesSQL;
+package springboot.tienda.constants.SQL;
 
 public class ConstantesSQL {
 	public final static String SQL_OBTENER_VIDEOJUEGOS_PARA_JSON =

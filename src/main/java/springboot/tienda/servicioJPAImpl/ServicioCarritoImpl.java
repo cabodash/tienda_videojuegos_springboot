@@ -12,12 +12,12 @@ import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import springboot.tienda.constantesSQL.ConstantesSQL;
+import springboot.tienda.constants.SQL.ConstantesSQL;
 import springboot.tienda.model.Carrito;
 import springboot.tienda.model.ProductoCarrito;
 import springboot.tienda.model.Usuario;
 import springboot.tienda.model.Videojuego;
-import springboot.tienda.servicios.ServicioCarrito;
+import springboot.tienda.services.ServicioCarrito;
 
 @Service
 @Transactional

@@ -1,8 +1,8 @@
-package springboot.tienda.servicios;
+package springboot.tienda.services;
 
 import java.util.List;
 
-import springboot.tienda.datos.serviciosweb.ResumenPedido;
+import springboot.tienda.data.webservices.ResumenPedido;
 import springboot.tienda.model.Pedido;
 
 

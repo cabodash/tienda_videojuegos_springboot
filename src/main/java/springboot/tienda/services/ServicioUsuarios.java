@@ -1,4 +1,4 @@
-package springboot.tienda.servicios;
+package springboot.tienda.services;
 
 import java.util.List;
 

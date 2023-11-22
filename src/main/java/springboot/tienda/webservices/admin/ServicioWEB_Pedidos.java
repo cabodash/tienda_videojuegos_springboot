@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.tienda.servicios.ServicioPedidos;
+import springboot.tienda.services.ServicioPedidos;
 
 //Value indica el nombre del objeto que va a gestionar spring de esta clase
 //Si hay dos clases con el mismo nombre en cualquier anotacion de spring estamos

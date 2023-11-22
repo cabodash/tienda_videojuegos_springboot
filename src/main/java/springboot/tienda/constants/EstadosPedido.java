@@ -1,4 +1,4 @@
-package springboot.tienda.constantes;
+package springboot.tienda.constants;
 
 public class EstadosPedido {
 	//El user ha iniciado un proceso de formar pedido

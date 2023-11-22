@@ -7,8 +7,12 @@
 </head>
 <body>
 
-<div th:fragment="menu">
-		<h1>ADMINISTRACION DE LA TIENDA</h1>
+	<div th:fragment="menu">
+		<span th:text="#{titulo.bienvenida}"></span>
+		<div>
+			<a href="?idioma=es">Español</a>
+			<a href="?idioma=en">English</a>
+		</div>
 		<div class="menu">
 			<ul class="nav">
 			  <li><a href="../">Volver a la parte cliente</a></li>  
@@ -31,7 +35,7 @@
 			  <li><a href="../logoutAdmin">Cerrar Sesion</a></li>
 			</ul>			
 		</div>
-</div>
+	</div>
 
 
 </body>

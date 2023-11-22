@@ -1,4 +1,4 @@
-package springboot.tienda.interceptores;
+package springboot.tienda.interceptors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

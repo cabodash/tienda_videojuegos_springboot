@@ -13,11 +13,11 @@ import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import springboot.tienda.constantesSQL.ConstantesSQL;
+import springboot.tienda.constants.SQL.ConstantesSQL;
 import springboot.tienda.model.Genero;
 import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.Videojuego;
-import springboot.tienda.servicios.ServicioVideojuegos;
+import springboot.tienda.services.ServicioVideojuegos;
 
 @Service
 @Transactional

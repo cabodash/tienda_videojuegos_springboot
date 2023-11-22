@@ -1,4 +1,4 @@
-package springboot.tienda.datos.serviciosweb;
+package springboot.tienda.data.webservices;
 
 import java.util.List;
 import java.util.Map;

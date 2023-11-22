@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import springboot.tienda.model.Genero;
-import springboot.tienda.servicios.ServicioGeneros;
+import springboot.tienda.services.ServicioGeneros;
 
 @Controller
 @RequestMapping("admin/")
