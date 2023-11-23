@@ -1,6 +1,5 @@
 package springboot.tienda.controllers.admin;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +49,9 @@ public class VideojuegosController {
 	@RequestMapping("guardarVideojuego")
 	public String guardarVideojuego(@Valid Videojuego videojuegoNuevo, BindingResult resultadoValidacion) {
 		System.out.println("Id de categoria: " + videojuegoNuevo.getIdGenero());
-		if (resultadoValidacion.hasErrors()) {
-			return "libros_registro";	
-		}
+		// if (resultadoValidacion.hasErrors()) {
+		// 	return "admin/videojuegos_registro";	
+		// }
 		servicioVideojuegos.registrarVideojuego(videojuegoNuevo);
 		return "admin/videojuegos_registro_ok";
 	}
@@ -67,7 +66,6 @@ public class VideojuegosController {
 	public String editarVideojuego(@RequestParam("id") Integer id, Model model) {
 		Videojuego videojuego = servicioVideojuegos.obtenerVideojuegoPorId(id);
 		videojuego.setIdGenero(videojuego.getGenero().getId());
-		videojuego.setIdPlataforma(videojuego.getPlataformas().getId());
 		model.addAttribute("videojuegoEditar", videojuego);
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());

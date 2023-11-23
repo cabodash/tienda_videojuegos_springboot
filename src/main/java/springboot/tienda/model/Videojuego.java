@@ -1,12 +1,16 @@
 package springboot.tienda.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;;
 @Table(name = "videojuego")
 public class Videojuego {
 
-	@Size(min = 3, max = 10, message = "El nombre debe tener entre 3 y 10 caracteres")
+	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
 	@NotEmpty(message = "El nombre no puede estar vacío")
 	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ]+/g", message = "Solo puede tener letras noumeros y espacios en blanco")
 	private String nombre;
@@ -66,13 +70,15 @@ public class Videojuego {
     private Genero genero;
 
 	@ManyToOne
-	private Plataforma plataformas;
+	@JoinTable(name = "plataformas_videojuegos",
+    joinColumns = @JoinColumn(name = "videojuego_id"),
+    inverseJoinColumns = @JoinColumn(name = "plataforma_id"))
+	private List<Plataforma> plataformas;
     
     @Transient
     private int idGenero;
 
-	@Transient
-	private int idPlataforma;
+
     
     
     @Transient //Con esto decimos a hibernate que no considere este campo
@@ -87,7 +93,7 @@ public class Videojuego {
 		// TODO Auto-generated constructor stub
 	}
     
-    public Videojuego(String nombre, String descripcion, Genero genero, Plataforma plataformas,
+    public Videojuego(String nombre, String descripcion, Genero genero, List<Plataforma> plataformas,
 			Date fechaLanzamiento, String desarrollador, double puntuacion, double precio) {
 		super();
 		this.nombre = nombre;
@@ -102,7 +108,7 @@ public class Videojuego {
 	}
 
 
-	public Videojuego(int id, String nombre, String descripcion, Genero genero, Plataforma plataformas,
+	public Videojuego(int id, String nombre, String descripcion, Genero genero, List<Plataforma> plataformas,
 			Date fechaLanzamiento, String desarrollador, double puntuacion, double precio) {
 		super();
 		this.id = id;
@@ -164,12 +170,12 @@ public class Videojuego {
 	}
 
 
-	public Plataforma getPlataformas() {
+	public List<Plataforma> getPlataformas() {
 		return plataformas;
 	}
 
 
-	public void setPlataformas(Plataforma plataformas) {
+	public void setPlataformas(List<Plataforma> plataformas) {
 		this.plataformas = plataformas;
 	}
 
@@ -249,13 +255,6 @@ public class Videojuego {
 		this.idGenero = idGenero;
 	}
 
-	public int getIdPlataforma() {
-		return idPlataforma;
-	}
-
-	public void setIdPlataforma(int idPlataforma) {
-		this.idPlataforma = idPlataforma;
-	}
 
 
 	

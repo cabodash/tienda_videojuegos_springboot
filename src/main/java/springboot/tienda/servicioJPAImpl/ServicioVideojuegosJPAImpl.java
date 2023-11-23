@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.hibernate.query.internal.NativeQueryImpl;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import springboot.tienda.constants.SQL.ConstantesSQL;
 import springboot.tienda.model.Genero;
 import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.Videojuego;
+import springboot.tienda.services.ServicioPlataformas;
 import springboot.tienda.services.ServicioVideojuegos;
 
 @Service
@@ -26,12 +28,13 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@Autowired
+	private ServicioPlataformas servicioPlataformas;
+
 	@Override
 	public void registrarVideojuego(Videojuego v) {
 		Genero g = entityManager.find(Genero.class, v.getIdGenero());
 		v.setGenero(g);
-		Plataforma p = entityManager.find(Plataforma.class, v.getIdPlataforma());
-		v.setPlataformas(p);
 		try {
 		v.setImagenPortada(v.getFotoSubida().getBytes());
 		entityManager.persist(v);
@@ -67,8 +70,8 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	public void guardarCambiosVideojuego(Videojuego v) {
 		Genero g = entityManager.find(Genero.class, v.getIdGenero());
 		v.setGenero(g);
-		Plataforma p = entityManager.find(Plataforma.class, v.getIdPlataforma());
-		v.setPlataformas(p);
+		List<Plataforma> plataformasVideojuego = servicioPlataformas.obtenerPlataformasPorIdVideojuego(v.getId());
+		v.setPlataformas(plataformasVideojuego);
 		v.setAlta(true);
 		if(v.getFotoSubida().getSize() == 0) {
 			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual");

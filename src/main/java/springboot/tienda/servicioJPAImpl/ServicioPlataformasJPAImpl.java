@@ -3,6 +3,7 @@ package springboot.tienda.servicioJPAImpl;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -29,6 +30,13 @@ public class ServicioPlataformasJPAImpl implements ServicioPlataformas{
 	public List<Plataforma> obtenerPlataformas() {
 		return entityManager.createQuery("select p from Plataforma p").getResultList();
 	}
+
+	@Override
+    public List<Plataforma> obtenerPlataformasPorIdVideojuego(int idVideojuego) {
+        return entityManager.createQuery("SELECT p FROM Plataforma p JOIN p.videojuegos v WHERE v.id = :idVideojuego")
+        .setParameter("idVideojuego", idVideojuego)
+        .getResultList();
+    }
 
 	@Override
 	public void registrarPlataforma(Plataforma g) {

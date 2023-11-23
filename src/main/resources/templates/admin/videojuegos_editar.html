@@ -19,10 +19,12 @@
 				<label for="descripcion">Descripcion</label>
 				<p class="suggestion"></p>
 		</div>
-		Plataformas:
-		<select th:field="*{idPlataforma}">
-			<option th:each="p : ${plataformas}" th:text="${p.nombre}" th:value="${p.id}"/>		
-		</select>
+		<div>
+			Plataformas:
+			<div th:each="p : ${plataformas}">
+				<input type="checkbox" th:field="*{plataformas}" th:value="${p.id}" th:text="${p.nombre}" th:checked="${videojuegoEditar.plataformas.contains(p)}"/>
+			</div>
+		</div>
 		<br>
 		
 		Fecha: <input type="date" step=".01" th:field="*{fechaLanzamiento}" /> <br>
@@ -39,6 +41,8 @@
 		<input type="hidden" th:field="*{id}"/>
 		<input type="submit" value="Registrar Videojuego"/>
 	</form>
+
+	<script src="../js/formulario_inputs.js"></script>
 
 </body>
 </html>

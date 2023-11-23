@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../css/formulario.css">
-<link rel="stylesheet" href="../css/admin.css">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="../css/formulario.css">
+	<link rel="stylesheet" href="../css/admin.css">
+	<title>Insert title here</title>
 </head>
+
 <body>
 
 
-introduce los datos del nuevo videojuego:
+	introduce los datos del nuevo videojuego:
 
-<form class="formulario" action="#" th:action="guardarVideojuego" th:object="${nuevoVideojuego}" method="post" enctype="multipart/form-data" >
-	<div class="input-box">
-	    <input type="text" name="nombre" th:field="*{nombre}">
-	    <label for="nombre">Nombre</label>
-	    <p class="suggestion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
-	</div>
-	
-	<div class="textarea-box">
-		<textarea type="text" th:field="*{descripcion}" name="descripcion"></textarea>
-		<label for="descripcion">Descripcion</label>
-		<p class="suggestion"></p>
-    </div>
-	Plataformas:
-	<select th:field="*{idPlataforma}">
-		<option th:each="p : ${plataformas}" th:text="${p.nombre}" th:value="${p.id}"/>		
-	</select>
-	<br>
-	
-	Fecha: <input type="date" step=".01" th:field="*{fechaLanzamiento}" /> <br>
-	Desarrollador: <input type="text" step=".01" th:field="*{desarrollador}" /> <br>
-	Puntuacion: <input type="number" step=".01" th:field="*{puntuacion}" /> <br>
-	Precio: <input type="number" step=".01" th:field="*{precio}" /> <br>
-	Genero: 
-	<select th:field="*{idGenero}">
-		<option th:each="g : ${generos}" th:text="${g.nombre}" th:value="${g.id}"/>		
-	</select>
-	<br>
-	portada: <input type="file" th:field="*{fotoSubida}"/>
-	<br>	
-	<input type="submit" value="Registrar Videojuego"/>
-</form>
+	<form class="formulario" action="#" th:action="guardarVideojuego" th:object="${nuevoVideojuego}" method="post"
+		enctype="multipart/form-data">
+		<div class="input-box">
+			<input type="text" name="nombre" th:field="*{nombre}">
+			<label for="nombre">Nombre</label>
+			<p class="suggestion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+		</div>
 
-<script src="../js/formulario_inputs.js"></script>
+		<div class="textarea-box">
+			<textarea type="text" th:field="*{descripcion}" name="descripcion"></textarea>
+			<label for="descripcion">Descripcion</label>
+			<p class="suggestion"></p>
+		</div>
+		<div>
+			Plataformas:
+			<div th:each="p : ${plataformas}">
+				<input type="checkbox" th:field="*{plataformas}" th:value="${p.id}"/>
+				<label th:for="${'plataforma-' + p.id}" th:text="${p.nombre}" th:name="${plataformas}"></label><br>
+			</div>
+		</div>
+
+		Fecha: <input type="date" step=".01" th:field="*{fechaLanzamiento}" /> <br>
+		Desarrollador: <input type="text" step=".01" th:field="*{desarrollador}" /> <br>
+		Puntuacion: <input type="number" step=".01" th:field="*{puntuacion}" /> <br>
+		Precio: <input type="number" step=".01" th:field="*{precio}" /> <br>
+		Genero:
+		<select th:field="*{idGenero}">
+			<option th:each="g : ${generos}" th:text="${g.nombre}" th:value="${g.id}" />
+		</select>
+		<br>
+		portada: <input type="file" th:field="*{fotoSubida}" />
+		<br>
+		<input type="submit" value="Registrar Videojuego" />
+	</form>
+
+	<script src="../js/formulario_inputs.js"></script>
 
 </body>
+
 </html>
