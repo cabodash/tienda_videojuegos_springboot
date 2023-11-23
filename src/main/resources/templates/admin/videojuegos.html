@@ -10,10 +10,15 @@
 	
 <div th:insert="fragments/general.html :: menu"></div>
 <br>
-<form action="obtenerVideojuegos" class="form-buscador">
+<form th:action="obtenerVideojuegos" class="form-buscador">
 	<input type="text" name="buscador" th:value="${nombre}">
 	<input class="btn-buscar" type="submit" value="Buscar">
 </form>
+
+<div>
+	<a th:if= "${anterior >= 0}" th:href="@{${ 'obtenerVideojuegos?comienzo=' + anterior + '&nombre=' + nombre }}">Anterior</a>
+	<a th:if= "${siguiente < total}" th:href="@{${ 'obtenerVideojuegos?comienzo=' + siguiente + '&nombre=' + nombre }}">siguiente</a>
+</div>
 
 listado de videojuegos:
 

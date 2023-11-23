@@ -128,6 +128,21 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			spiderman2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
 			spiderman2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
 			entityManager.persist(spiderman2);
+
+			
+			for (int i = 1; i <= 50; i++) {
+			    Videojuego videojuego = new Videojuego(
+					"Nombre del videojuego " + i, 
+					"Descripción del videojuego " + i, 
+					multijugador,
+					plataformasFIFA,
+					Date.valueOf("2023-10-20"), 
+					"desarollador" + i, 
+					3.3, 
+					i);
+			    entityManager.persist(videojuego);
+			}
+			
 			
 			
 			
@@ -189,6 +204,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			pp.setVideojuego(spiderman2);
 			pp.setCantidad(5);
 			entityManager.persist(pp);
+			
 			
 			
 			

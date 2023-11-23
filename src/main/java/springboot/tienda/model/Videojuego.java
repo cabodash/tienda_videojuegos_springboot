@@ -69,10 +69,7 @@ public class Videojuego {
     @ManyToOne //(cascade = CascadeType.MERGE, targetEntity = Genero.class,optional = false, fetch = FetchType.LAZY)
     private Genero genero;
 
-	@ManyToOne
-	@JoinTable(name = "plataformas_videojuegos",
-    joinColumns = @JoinColumn(name = "videojuego_id"),
-    inverseJoinColumns = @JoinColumn(name = "plataforma_id"))
+	@ManyToMany(mappedBy = "videojuegos")
 	private List<Plataforma> plataformas;
     
     @Transient

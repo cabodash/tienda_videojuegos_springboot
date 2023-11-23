@@ -14,6 +14,10 @@ public interface ServicioVideojuegos {
 
 	List<Videojuego> obtenerVideojuegosPorNombre(String nombre);	
 	
+	List<Videojuego> obtenerVideojuegosPorNombreComienzoFin(String nombre, int comienzo, int resultadosPorPagina);
+
+	public int obtenerTotalVideojuegos (String nombre);
+	
 	void borrarVideojuego(int id);
 	
 	Videojuego obtenerVideojuegoPorId(int id);

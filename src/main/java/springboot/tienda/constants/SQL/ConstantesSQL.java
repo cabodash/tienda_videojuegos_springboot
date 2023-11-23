@@ -35,5 +35,12 @@ public class ConstantesSQL {
 			"DELETE FROM producto_carrito "
 			+ "WHERE carrito_id = :carrito_id "
 			+ "AND videojuego_id = :videojuego_id";
+		
+	public static final String SQL_OBTENER_TOTAL_VIDEOJUEGOS = 
+			"SELECT COUNT(id) "
+			+"FROM videojuego "
+			+"WHERE alta = '1' "
+			+"AND nombre like :nombre";
+
 	
 }

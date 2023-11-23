@@ -116,6 +116,25 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		.setParameter("nombre", "%" + nombre + "%")
 		.getResultList();
 	}
+
+	@Override
+	public List<Videojuego> obtenerVideojuegosPorNombreComienzoFin(String nombre, int comienzo,
+			int resultadosPorPagina) {
+		// TODO Auto-generated method stub
+		return entityManager.createQuery("select v from Videojuego v where v.alta = true and v.nombre like :nombre order by v.id desc")
+		.setParameter("nombre", "%" + nombre + "%")
+		.setFirstResult(comienzo)
+		.setMaxResults(resultadosPorPagina)
+		.getResultList();
+	}
+
+	@Override
+	public int obtenerTotalVideojuegos (String nombre) {
+		Query q = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_TOTAL_VIDEOJUEGOS)
+		.setParameter("nombre",  "%" + nombre + "%");
+		int totalVideojuegos = Integer.parseInt((q.getSingleResult().toString()));
+		return totalVideojuegos;
+	}
 	
 	
 	
