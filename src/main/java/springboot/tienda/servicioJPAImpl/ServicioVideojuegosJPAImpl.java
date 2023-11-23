@@ -73,6 +73,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		if(v.getFotoSubida().getSize() == 0) {
 			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual");
 			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());
+			System.out.println(vAnterior.getFotoSubida());
 			v.setImagenPortada(vAnterior.getImagenPortada());
 		}else {
 			System.out.println("[i] -Asignar una nueva foto");

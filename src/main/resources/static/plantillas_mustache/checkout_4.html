@@ -4,20 +4,20 @@
 		<h3>Paso 4</h3>
 		<p>Resumen del pedido</p>
 	</div>
-	
+
 	<div class="formulario-paso-4">
 		<div id="productos_pedido" class="contenedor-resumen-videojuegos">
 			{{#videojuegos}}
-				<div class="item-videojuego">
-				    <img src="mostrar_imagen_videojuego?id={{videojuego_id}}"/>
-				    <p>{{nombre}}</p>
-				    <p>Precio/Unidad: <span class="precio">{{precio}}€</span class="precio"></p>
-				    <p>cantidad: <span>{{cantidad}}</span></p>
-				    
-				</div>
+			<div class="item-videojuego">
+				<img src="mostrar_imagen_videojuego?id={{videojuego_id}}" />
+				<p>{{nombre}}</p>
+				<p>Precio/Unidad: <span class="precio">{{precio}}€</span class="precio"></p>
+				<p>cantidad: <span>{{cantidad}}</span></p>
+
+			</div>
 			{{/videojuegos}}
 		</div>
-		
+
 		<div class="datos-envio">
 			<h4>Datos de Envío</h4>
 			<p>Nombre: <span>{{nombre}}</span></p>
@@ -25,9 +25,9 @@
 			<p>Dirección: <span>{{direccion}}</span></p>
 			<p>Ciudad: <span>{{ciudad}}</span></p>
 			<p>Codigo Postal: <span>{{codigoPostal}}</span></p>
-			<p>Provincia: <span>{{provincia}}</span></p>	
+			<p>Provincia: <span>{{provincia}}</span></p>
 		</div>
-		
+
 		<div class="datos-pago">
 			<h4>Datos de Pago</h4>
 			<p>Tipo de Tarjeta: <span>{{tipoTarjeta}}</span></p>
@@ -36,14 +36,40 @@
 			<p>Fecha de Caducidad: <span>{{fechaCaducidad}}</span></p>
 			<p>Codigo de Seguridad (CVV): <span>{{cvv}}</span></p>
 		</div>
-		
+
 		<div class="datos-contacto">
 			<h4>Datos de Contacto</h4>
 			<p>Persona de contacto: <span>{{personaContacto}}</span></p>
 			<p>Telefono de contacto: <span>{{telefonoContacto}}</span></p>
 		</div>
-		
-		<input type="submit" class="btn-primary" id="btn_confirmar_pedido" value="Confirmar pedido"/>
+		<!-- Por hacer, contenedor carrito -->
+		<div class="cartpage-right">
+			<h2>Resumen</h2>
+			<div class="cart-summary">
+				<div class="summary-row">
+					<span>Precio oficial</span>
+					<span>149.98€</span>
+				</div>
+				<div class="summary-row">
+					<span>Descuento</span>
+					<span>-45.49€</span>
+				</div>
+				<div class="summary-row">
+					<span>Subtotal</span> <span>"Aqui el precio"€</span>
+				</div>
+				<a href="https://www.instant-gaming.com/es/pagos/" class="button gotopayment">
+					Proceder con el pago
+					<div class="icon-arrow icon-xxs"></div>
+				</a>
+				<span class="choice">o</span>
+				<a href="/" class="back">
+					<div class="icon-arrow icon-xxs"></div>
+					Continuar comprando
+				</a>
+			</div>
+		</div>
+
+		<input type="submit" class="btn-primary" id="btn_confirmar_pedido" value="Confirmar pedido" />
 	</div>
-	
+
 </div>
