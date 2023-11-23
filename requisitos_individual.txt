@@ -2,6 +2,7 @@
 
 - cambiar videojuego.plataformas para que en vez de ser introducido como texto sea una entidad diferente (como los generos)
  -> posibilidad de elegir mas de una plataforma
+    -Tienes que hacer un onetomany en cada dato (videojuego y plataforma) y luego una entidad para la tabla media plataformas-videojuegos (como carrito y videojuego con producto-carrito)
 
 -añadir un buscador simple y un filtrado por generos y plataformas
 
