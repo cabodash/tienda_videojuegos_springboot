@@ -2,6 +2,7 @@ package springboot.tienda.model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -58,18 +58,12 @@ public class Videojuego {
     @OneToOne
     private ProductoCarrito productoCarrito;
 
-    
-    public boolean isAlta() {
-		return alta;
-	}
-
-	public void setAlta(boolean alta) {
-		this.alta = alta;
-	}
-
 	//Asociacion entre la clase Videojuego y la clase Categoria
-    @ManyToOne //(cascade = CascadeType.MERGE, targetEntity = Genero.class,optional = false, fetch = FetchType.LAZY)
-    private Genero genero;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "generos_videojuegos",
+        joinColumns = @JoinColumn(name = "videojuego_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "genero_id", referencedColumnName = "id"))
+	private Set<Genero> generos;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "plataformas_videojuegos",
@@ -77,10 +71,6 @@ public class Videojuego {
         inverseJoinColumns = @JoinColumn(name = "plataforma_id", referencedColumnName = "id"))
 	private List<Plataforma> plataformas;
     
-    @Transient
-    private int idGenero;
-
-
     
     
     @Transient //Con esto decimos a hibernate que no considere este campo
@@ -89,18 +79,20 @@ public class Videojuego {
     @Id
     @GeneratedValue
     private int id;
+
+
     
     
     public Videojuego() {
 		// TODO Auto-generated constructor stub
 	}
     
-    public Videojuego(String nombre, String descripcion, Genero genero, List<Plataforma> plataformas,
+    public Videojuego(String nombre, String descripcion, Set<Genero> generos, List<Plataforma> plataformas,
 			Date fechaLanzamiento, String desarrollador, double puntuacion, double precio) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.genero = genero;
+		this.generos = generos;
 		this.plataformas = plataformas;
 		this.fechaLanzamiento = fechaLanzamiento;
 		this.desarrollador = desarrollador;
@@ -110,13 +102,13 @@ public class Videojuego {
 	}
 
 
-	public Videojuego(int id, String nombre, String descripcion, Genero genero, List<Plataforma> plataformas,
+	public Videojuego(int id, String nombre, String descripcion, Set<Genero> generos, List<Plataforma> plataformas,
 			Date fechaLanzamiento, String desarrollador, double puntuacion, double precio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.genero = genero;
+		this.generos = generos;
 		this.plataformas = plataformas;
 		this.fechaLanzamiento = fechaLanzamiento;
 		this.desarrollador = desarrollador;
@@ -124,6 +116,17 @@ public class Videojuego {
 		this.precio = precio;
 		
 	}
+
+	    
+    public boolean isAlta() {
+		return alta;
+	}
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
+	}
+
+	
 
 	public byte[] getImagenPortada() {
 		return imagenPortada;
@@ -162,13 +165,13 @@ public class Videojuego {
 	}
 
 
-	public Genero getGenero() {
-		return genero;
+	public Set<Genero> getGeneros() {
+		return generos;
 	}
 
 
-	public void setGenero(Genero genero) {
-		this.genero = genero;
+	public void setGeneros(Set<Genero> generos) {
+		this.generos = generos;
 	}
 
 
@@ -247,14 +250,6 @@ public class Videojuego {
 
 	public void setProductoCarrito(ProductoCarrito productoCarrito) {
 		this.productoCarrito = productoCarrito;
-	}
-
-	public int getIdGenero() {
-		return idGenero;
-	}
-
-	public void setIdGenero(int idGenero) {
-		this.idGenero = idGenero;
 	}
 
 

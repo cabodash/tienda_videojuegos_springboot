@@ -28,10 +28,12 @@ listado de videojuegos:
 		<p>nombre: <span th:text="${videojuego.nombre}" ></span></p><br>	
 		<p>descripcion: <span th:text="${videojuego.descripcion}"></span></p><br>
 		<p>precio: <span th:text="${videojuego.precio}"></span></p> <br>
-		<p>genero: <span th:text="${videojuego.genero.nombre}"></span></p> <br>
 		<p>plataformas: 
 		<span th:each="plataforma : ${videojuego.plataformas}" th:text="${plataforma.nombre} + ', '"></span>
 		</p> <br>
+		<p>Generos: 
+			<span th:each="genero : ${videojuego.generos}" th:text="${genero.nombre} + ', '"></span>
+			</p> <br>
 		
 		<div class="item-enlaces">
 			<a th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}">Editar</a>

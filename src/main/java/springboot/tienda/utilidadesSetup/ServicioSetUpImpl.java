@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -22,7 +24,6 @@ import springboot.tienda.model.Usuario;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.model.setup.SetUp;
 
-
 @Service
 @Transactional
 public class ServicioSetUpImpl implements ServicioSetUp {
@@ -32,22 +33,23 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 
 	@Override
 	public void prepareSetUp() {
-		
+
 		SetUp setUp = null;
-		
+
 		try {
-			setUp = (SetUp)entityManager.createQuery("select s from SetUp s").getSingleResult();
+			setUp = (SetUp) entityManager.createQuery("select s from SetUp s").getSingleResult();
 		} catch (NoResultException e) {
 			System.out.println("[i] -No se encontro ningun registro de setup, iniciando setup nuevo");
 		}
-		
-		
-		
+
 		if (setUp == null || !setUp.isCompletado()) {
-			/*si no hay nada en la tabla setup o el unico elemento esta en false (no completado)
-			se prepara una serie de ragistros para poder testear la tienda */
-			
-			//preparo categorias para los videojuegos
+			/*
+			 * si no hay nada en la tabla setup o el unico elemento esta en false (no
+			 * completado)
+			 * se prepara una serie de ragistros para poder testear la tienda
+			 */
+
+			// preparo categorias para los videojuegos
 			Genero mundo_abierto = new Genero("Mundo Abierto", "Descripcion para mundo abierto");
 			entityManager.persist(mundo_abierto);
 			Genero rpg = new Genero("RPG", "Descripcion para rpg");
@@ -73,7 +75,30 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			Genero conduccion = new Genero("Conduccion", "Descripcion para conduccion");
 			entityManager.persist(conduccion);
 
-			//Preparacion de plataformas
+			// Preparacion de List de generos
+
+			Set<Genero> generosSpiderman2 = new LinkedHashSet<>();
+			generosSpiderman2.add(mundo_abierto);
+			generosSpiderman2.add(rpg);
+
+			Set<Genero> generosRedDead2 = new LinkedHashSet<>();
+			generosRedDead2.add(mundo_abierto);
+			generosRedDead2.add(shooter);
+			generosRedDead2.add(rpg);
+
+			Set<Genero> generosCyberpunk2077 = new LinkedHashSet<>();
+			generosCyberpunk2077.add(mundo_abierto);
+			generosCyberpunk2077.add(rpg);
+
+			Set<Genero> generosEASports2024 = new LinkedHashSet<>();
+			generosEASports2024.add(deportes);
+			generosEASports2024.add(multijugador);
+
+			Set<Genero> generosEldenRing = new LinkedHashSet<>();
+			generosEldenRing.add(mundo_abierto);
+			generosEldenRing.add(rpg);
+
+			// Preparacion de plataformas
 			Plataforma ps3 = new Plataforma("PS3", "PlayStation 3");
 			entityManager.persist(ps3);
 			Plataforma ps4 = new Plataforma("PS4", "PlayStation 4");
@@ -101,51 +126,60 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			List<Plataforma> plataformasSpiderman = new ArrayList<Plataforma>();
 			plataformasSpiderman.add(ps5);
 
-
-			//Preparo unos videojuegos para la tienda
-			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", deportes, plataformasFIFA, Date.valueOf("2023-09-23"),"EA", 3.3, 60);
-			fifa24.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
-			fifa24.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
+			// Preparo unos videojuegos para la tienda
+			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", generosEASports2024,
+					plataformasFIFA, Date.valueOf("2023-09-23"), "EA", 3.3, 60);
+			fifa24.setImagenPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
+			fifa24.setVideoPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
 			entityManager.persist(fifa24);
-			
-			Videojuego elden_ring = new Videojuego("Elden Ring", "descripcion de Elden Ring", mundo_abierto, plataformasFIFA, Date.valueOf("2022-02-25"),"From Software", 6.3, 40);
-			elden_ring.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
-			elden_ring.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
-			entityManager.persist(elden_ring);
-			
-			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", mundo_abierto, plataformasFIFA, Date.valueOf("2018-10-26"),"EA", 9.3, 70);
-			rdr2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
-			rdr2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
-			entityManager.persist(rdr2);
-			
-			Videojuego cyberpunk = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", rpg, plataformasFIFA, Date.valueOf("2020-12-10"),"CD Projekt Red", 9.5, 55);
-			cyberpunk.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
-			cyberpunk.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
-			entityManager.persist(cyberpunk);
-			
 
-			Videojuego spiderman2 = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 2", rpg, plataformasSpiderman, Date.valueOf("2023-10-20"),"Insomniac Games", 9.7, 75.99);
-			spiderman2.setImagenPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
-			spiderman2.setVideoPortada(copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
+			Videojuego elden_ring = new Videojuego("Elden Ring", "descripcion de Elden Ring", generosEldenRing,
+					plataformasFIFA, Date.valueOf("2022-02-25"), "From Software", 6.3, 40);
+			elden_ring.setImagenPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
+			elden_ring.setVideoPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
+			entityManager.persist(elden_ring);
+
+			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", generosRedDead2,
+					plataformasFIFA, Date.valueOf("2018-10-26"), "EA", 9.3, 70);
+			rdr2.setImagenPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
+			rdr2.setVideoPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
+			entityManager.persist(rdr2);
+
+			Videojuego cyberpunk = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", generosCyberpunk2077,
+					plataformasFIFA, Date.valueOf("2020-12-10"), "CD Projekt Red", 9.5, 55);
+			cyberpunk.setImagenPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
+			cyberpunk.setVideoPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
+			entityManager.persist(cyberpunk);
+
+			Videojuego spiderman2 = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 2", generosSpiderman2,
+					plataformasSpiderman, Date.valueOf("2023-10-20"), "Insomniac Games", 9.7, 75.99);
+			spiderman2.setImagenPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
+			spiderman2.setVideoPortada(
+					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
 			entityManager.persist(spiderman2);
 
-			
 			for (int i = 1; i <= 50; i++) {
-			    Videojuego videojuego = new Videojuego(
-					"Nombre del videojuego " + i, 
-					"Descripción del videojuego " + i, 
-					multijugador,
-					plataformasFIFA,
-					Date.valueOf("2023-10-20"), 
-					"desarollador" + i, 
-					3.3, 
-					i);
-			    entityManager.persist(videojuego);
+				Videojuego videojuego = new Videojuego(
+						"Nombre del videojuego " + i,
+						"Descripción del videojuego " + i,
+						generosEldenRing,
+						plataformasFIFA,
+						Date.valueOf("2023-10-20"),
+						"desarollador" + i,
+						3.3,
+						i);
+				entityManager.persist(videojuego);
 			}
-			
-			
-			
-			
+
 			Usuario u = new Usuario("pepe", "pepe@gmail.com", "4321");
 			u.setImagenPerfil(copiarArchivoBase("http://localhost:8080/recursos_setup/images/usuarios/2.jpg"));
 			entityManager.persist(u);
@@ -155,10 +189,8 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			u = new Usuario("Alex", "alex@gmail.com", "1234");
 			u.setImagenPerfil(copiarArchivoBase("http://localhost:8080/recursos_setup/images/usuarios/1.jpg"));
 			entityManager.persist(u);
-			
-			
-			
-			//Pedido preparado para hacer pruebas
+
+			// Pedido preparado para hacer pruebas
 			Pedido p = new Pedido();
 			p.setNombre("Alex");
 			p.setApellidos("Cabo Guisado");
@@ -180,9 +212,8 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			pp.setVideojuego(spiderman2);
 			pp.setCantidad(2);
 			entityManager.persist(pp);
-			
-			
-			//Pedido preparado para hacer pruebas
+
+			// Pedido preparado para hacer pruebas
 			p = new Pedido();
 			p.setNombre("Alex 2");
 			p.setApellidos("Cabo Guisado 2");
@@ -204,15 +235,13 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			pp.setVideojuego(spiderman2);
 			pp.setCantidad(5);
 			entityManager.persist(pp);
-			
-			
-			
-			
+
 			SetUp registroSetUp = new SetUp();
 			registroSetUp.setCompletado(true);
 			entityManager.persist(registroSetUp);
 		}
 	}
+
 	private byte[] copiarArchivoBase(String ruta_origen) {
 		byte[] info = null;
 		try {

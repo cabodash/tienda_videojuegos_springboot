@@ -3,20 +3,24 @@ package springboot.tienda.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Genero {
 	private String nombre;
 	private String Descripcion;
 	
-	//Una vez realizada la asiciacion en la clase libro aqui debemos indicar la asociacion inversa
-	//Cascade indica como se puede propagar una operacion desde el dato actual
-	//CascadeType.ALL indica que una operacion aplicada  a una categoria pueda ser propagada a los videojuegos
-	@OneToMany(mappedBy = "genero") //(cascade = CascadeType.ALL, mappedBy = "categoria", fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "generos_videojuegos",
+        joinColumns = @JoinColumn(name = "genero_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "videojuego_id", referencedColumnName = "id"))
 	private List<Videojuego> videojuegos = new ArrayList<Videojuego>();
 	
 	@Id

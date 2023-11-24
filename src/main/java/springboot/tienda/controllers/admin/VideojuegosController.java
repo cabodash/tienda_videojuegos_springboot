@@ -52,7 +52,6 @@ public class VideojuegosController {
 
 	@RequestMapping("guardarVideojuego")
 	public String guardarVideojuego(@Valid Videojuego videojuegoNuevo, BindingResult resultadoValidacion) {
-		System.out.println("Id de categoria: " + videojuegoNuevo.getIdGenero());
 		// if (resultadoValidacion.hasErrors()) {
 		// 	return "admin/videojuegos_registro";	
 		// }
@@ -69,7 +68,6 @@ public class VideojuegosController {
 	@RequestMapping("editarVideojuego")
 	public String editarVideojuego(@RequestParam("id") Integer id, Model model) {
 		Videojuego videojuego = servicioVideojuegos.obtenerVideojuegoPorId(id);
-		videojuego.setIdGenero(videojuego.getGenero().getId());
 		model.addAttribute("videojuegoEditar", videojuego);
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());

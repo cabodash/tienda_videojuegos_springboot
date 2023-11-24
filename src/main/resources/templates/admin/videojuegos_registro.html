@@ -38,10 +38,11 @@
 		Desarrollador: <input type="text" step=".01" th:field="*{desarrollador}" /> <br>
 		Puntuacion: <input type="number" step=".01" th:field="*{puntuacion}" /> <br>
 		Precio: <input type="number" step=".01" th:field="*{precio}" /> <br>
-		Genero:
-		<select th:field="*{idGenero}">
-			<option th:each="g : ${generos}" th:text="${g.nombre}" th:value="${g.id}" />
-		</select>
+		Generos:
+		<div th:each="genero : ${generos}">
+			<input type="checkbox" th:field="*{generos}" th:value="${genero.id}" /> 
+			<span th:text="${genero.nombre}"></span><br/>
+		</div>
 		<br>
 		portada: <input type="file" th:field="*{fotoSubida}" />
 		<br>

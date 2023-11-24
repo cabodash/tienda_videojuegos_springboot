@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.constants.SQL.ConstantesSQL;
-import springboot.tienda.model.Genero;
 import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.services.ServicioPlataformas;
@@ -33,8 +32,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 
 	@Override
 	public void registrarVideojuego(Videojuego v) {
-		Genero g = entityManager.find(Genero.class, v.getIdGenero());
-		v.setGenero(g);
+		//settear los generos y plataformas seleccionados en videojuego_registro
 		try {
 		v.setImagenPortada(v.getFotoSubida().getBytes());
 		entityManager.persist(v);
@@ -68,8 +66,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 
 	@Override
 	public void guardarCambiosVideojuego(Videojuego v) {
-		Genero g = entityManager.find(Genero.class, v.getIdGenero());
-		v.setGenero(g);
+		//Implementar el traerse los generos y plataformas 
 		List<Plataforma> plataformasVideojuego = servicioPlataformas.obtenerPlataformasPorIdVideojuego(v.getId());
 		v.setPlataformas(plataformasVideojuego);
 		v.setAlta(true);
