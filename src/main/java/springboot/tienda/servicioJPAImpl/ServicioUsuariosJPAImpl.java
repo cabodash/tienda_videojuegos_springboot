@@ -12,9 +12,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import springboot.tienda.model.Genero;
 import springboot.tienda.model.Usuario;
-import springboot.tienda.model.Videojuego;
 import springboot.tienda.services.ServicioUsuarios;
 
 @Service

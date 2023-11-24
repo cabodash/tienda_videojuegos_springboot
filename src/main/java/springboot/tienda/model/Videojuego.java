@@ -32,7 +32,7 @@ public class Videojuego {
 
 	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
 	@NotEmpty(message = "El nombre no puede estar vacío")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ]+/g", message = "Solo puede tener letras noumeros y espacios en blanco")
+	//@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ]+/g", message = "Solo puede tener letras numeros y espacios en blanco")
 	private String nombre;
 	private String descripcion;
     private Date fechaLanzamiento;
@@ -41,7 +41,7 @@ public class Videojuego {
 
 	@NotNull(message = "Debes poner un precio")
 	@Min(value = 1L, message = "El precio minimo es un euro")
-	@Max(value = 1000, message = "El precio maximo es 1000 euros")
+	@Max(value = 1000L, message = "El precio maximo es 1000 euros")
     private double precio;
     
     private boolean alta = true;

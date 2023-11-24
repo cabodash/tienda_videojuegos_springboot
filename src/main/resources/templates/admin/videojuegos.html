@@ -33,7 +33,7 @@ listado de videojuegos:
 		</p> <br>
 		<p>Generos: 
 			<span th:each="genero : ${videojuego.generos}" th:text="${genero.nombre} + ', '"></span>
-			</p> <br>
+		</p> <br>
 		
 		<div class="item-enlaces">
 			<a th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}">Editar</a>

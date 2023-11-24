@@ -176,7 +176,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 						Date.valueOf("2023-10-20"),
 						"desarollador" + i,
 						3.3,
-						i);
+						3);
 				entityManager.persist(videojuego);
 			}
 

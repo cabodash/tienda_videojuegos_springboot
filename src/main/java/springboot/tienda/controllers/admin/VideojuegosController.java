@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -51,7 +52,7 @@ public class VideojuegosController {
 	}
 
 	@RequestMapping("guardarVideojuego")
-	public String guardarVideojuego(@Valid Videojuego videojuegoNuevo, BindingResult resultadoValidacion) {
+	public String guardarVideojuego(@ModelAttribute("videojuegoNuevo") Videojuego videojuegoNuevo, BindingResult resultadoValidacion) {
 		// if (resultadoValidacion.hasErrors()) {
 		// 	return "admin/videojuegos_registro";	
 		// }
