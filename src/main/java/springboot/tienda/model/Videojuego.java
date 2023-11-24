@@ -3,8 +3,10 @@ package springboot.tienda.model;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -69,7 +71,10 @@ public class Videojuego {
     @ManyToOne //(cascade = CascadeType.MERGE, targetEntity = Genero.class,optional = false, fetch = FetchType.LAZY)
     private Genero genero;
 
-	@ManyToMany(mappedBy = "videojuegos")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(name = "plataformas_videojuegos",
+        joinColumns = @JoinColumn(name = "videojuego_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "plataforma_id", referencedColumnName = "id"))
 	private List<Plataforma> plataformas;
     
     @Transient
