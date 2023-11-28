@@ -11,6 +11,7 @@ $.get("plantillas_mustache/registro.html", function(data) {
 
 
 $("#registro").click(function() {
+	$('#estilo-actual').attr('href', 'css/inicio_sesion.css');
 	$("#contenedor").html(plantillaRegistro);
 
 
@@ -26,59 +27,60 @@ $("#registro").click(function() {
 
 	//al pulsar el boton de registrarse
 	$("#formUsuario").submit(function(event) {
-		event.preventDefault();
-		if (comprobarDatos() == true) {
-			let formulario = document.forms[0];
-			let formData = new FormData(formulario);
-			$.ajax("servicioWEB_Usuarios/registrarUsuario", {
-				type: "POST",
-				data: formData,
-				cache: false,
-				contentType: false,
-				processData: false,
-				success: res => {
-					alert(res)
-				}
-
-			});
+		if(! validarNombre($("#nombre").val()) ||
+		   ! validarEmail($("#email").val()) ||
+		   ! validarContraseña($("#pass").val())) {
+			event.preventDefault();
+			return;
 		}
-		
+		let formulario = document.forms[0];
+		let formData = new FormData(formulario);
+		$.ajax("servicioWEB_Usuarios/registrarUsuario", {
+			type: "POST",
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: res => {
+				alert(res);
+			}
+
+		});
+		event.preventDefault();
 	});
+	inputs();
 
 }); // end registro
 
 
-function comprobarDatos() {
-	let nombre = document.querySelector("#nombre").value;
-	let email = document.querySelector("#email").value;
-	let pass = document.querySelector("#pass").value;
-	let errorNombre = document.querySelector("#errorNombre");
-	let errorEmail = document.querySelector("#errorEmail");
-	let errorPass = document.querySelector("#errorPass");
-	let valid = true;
+function inputs(){
+	let inputContainers = document.querySelectorAll('.input-box');
+	inputContainers.forEach(element => {
+		let input = element.querySelector("input");
 
-	if (nombre.trim() != '') {
-		errorNombre.classList.add("noErrorText");
-	} else {
-		errorNombre.classList.remove("noErrorText");
-		errorNombre.classList.add("errorText");
-		valid = false;
-	}
-	if (email.trim() != '') {
-		errorEmail.classList.add("noErrorText");
-	} else {
-		errorEmail.classList.remove("noErrorText");
-		errorEmail.classList.add("errorText");
-		valid = false;
-	}
+		isFilled(input, element);
+		input.addEventListener('focusout', function () {
+			isFilled(input, element);
+		});
 
-	if (pass.trim() != '') {
-		errorPass.classList.add("noErrorText");
-	} else {
-		errorPass.classList.remove("noErrorText");
-		errorPass.classList.add("errorText");
-		valid = false;
-	}
+	});
 
-	return valid;
+	let textareaContainers = document.querySelectorAll('.textarea-box');
+	textareaContainers.forEach(element => {
+		let textarea = element.querySelector("textarea");
+		isFilled(textarea, element);
+		textarea.addEventListener('focusout', function () {
+			isFilled(textarea, element);
+		});
+	});
+
+
+	function isFilled(field, element) {
+		if (field.value.trim() === '') {
+			element.classList.remove('is-filled');
+		} else {
+			element.classList.add('is-filled');
+		}
+	}
 }
+

@@ -13,9 +13,7 @@ public class SetUp {
 	@GeneratedValue
 	private int id;
 	
-	public SetUp() {
-		// TODO Auto-generated constructor stub
-	}
+	public SetUp() {}
 
 	public SetUp(boolean completado, int id) {
 		super();

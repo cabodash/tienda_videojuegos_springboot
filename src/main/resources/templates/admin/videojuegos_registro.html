@@ -26,22 +26,22 @@
 			<label for="descripcion">Descripcion</label>
 			<p class="suggestion"></p>
 		</div>
-		<div>
-			Plataformas:
-			<div th:each="p : ${plataformas}">
-				<input type="checkbox" th:field="*{plataformas}" th:value="${p.id}"/>
-				<label th:for="${'plataforma-' + p.id}" th:text="${p.nombre}" th:name="${plataformas}"></label><br>
-			</div>
-		</div>
-
 		Fecha: <input type="date" step=".01" th:field="*{fechaLanzamiento}" /> <br>
 		Desarrollador: <input type="text" step=".01" th:field="*{desarrollador}" /> <br>
 		Puntuacion: <input type="number" step=".01" th:field="*{puntuacion}" /> <br>
 		Precio: <input type="number" step=".01" th:field="*{precio}" /> <br>
 		Generos:
 		<div th:each="genero : ${generos}">
-			<input type="checkbox" th:field="*{generos}" th:value="${genero.id}" /> 
+			<input type="checkbox" th:value="${genero.id}" name="generosSeleccionados" /> 
 			<span th:text="${genero.nombre}"></span><br/>
+		</div>
+		<br>
+		<div>
+		Plataformas:
+		<div th:each="plataforma : ${plataformas}">
+			<input type="checkbox" th:value="${plataforma.id}" name="plataformasSeleccionadas"/>
+			<label th:text="${plataforma.nombre}"></label><br>
+		</div>
 		</div>
 		<br>
 		portada: <input type="file" th:field="*{fotoSubida}" />

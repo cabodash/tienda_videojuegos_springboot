@@ -1,6 +1,7 @@
 package springboot.tienda.servicioJPAImpl;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.constants.SQL.ConstantesSQL;
-import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.Videojuego;
+import springboot.tienda.services.ServicioGeneros;
 import springboot.tienda.services.ServicioPlataformas;
 import springboot.tienda.services.ServicioVideojuegos;
 
@@ -30,9 +31,11 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	@Autowired
 	private ServicioPlataformas servicioPlataformas;
 
+	@Autowired
+	private ServicioGeneros servicioGeneros;
+
 	@Override
 	public void registrarVideojuego(Videojuego v) {
-		//settear los generos y plataformas seleccionados en videojuego_registro
 		try {
 		v.setImagenPortada(v.getFotoSubida().getBytes());
 		entityManager.persist(v);
@@ -51,7 +54,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 
 	@Override
 	public void borrarVideojuego(int id) {
-		//Ya no borraoms productos sino que los damos de baja
+		//Ya no borramos productos sino que los damos de baja
 		//entityManager.remove(entityManager.find(Videojuego.class, id));
 		Videojuego v = entityManager.find(Videojuego.class, id);
 		v.setAlta(false);
@@ -65,15 +68,16 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	}
 
 	@Override
-	public void guardarCambiosVideojuego(Videojuego v) {
-		//Implementar el traerse los generos y plataformas 
-		List<Plataforma> plataformasVideojuego = servicioPlataformas.obtenerPlataformasPorIdVideojuego(v.getId());
-		v.setPlataformas(plataformasVideojuego);
+	public void guardarCambiosVideojuego(Videojuego v, List<Integer> generosSeleccionados, List<Integer> plataformasSeleccionadas) {
 		v.setAlta(true);
+		//Primero hay que borrar las relaciones entre el videojuego y las entidades para evitar un error de multiple merges in videojuego
+		servicioGeneros.borrarGenerosVideojuegoPorIdVideojuego(v.getId());
+		servicioPlataformas.borrarPlataformasVideojuegoPorIdVideojuego(v.getId());
+		v.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
+		v.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
 		if(v.getFotoSubida().getSize() == 0) {
 			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual");
 			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());
-			System.out.println(vAnterior.getFotoSubida());
 			v.setImagenPortada(vAnterior.getImagenPortada());
 		}else {
 			System.out.println("[i] -Asignar una nueva foto");
@@ -88,24 +92,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		 
 	}
 
-	@Override
-	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String nombre) {
-		Query query = entityManager.createNativeQuery(
-				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_PARA_JSON);
-		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
-		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-		nativeQuery.setParameter("nombre","%" + nombre + "%");
-		return nativeQuery.getResultList();
-	}
-
-	@Override
-	public Map<String, Object> obtenerDetallesVideojuego(int idVideojuego) {
-		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_DETALLES_VIDEOJUEGO);
-		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
-		nativeQuery.setParameter("id", idVideojuego);
-		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-		return (Map<String, Object>) nativeQuery.getResultList().get(0);
-	}
+	
 
 	@Override
 	public List<Videojuego> obtenerVideojuegosPorNombre(String nombre) {
@@ -117,7 +104,6 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	@Override
 	public List<Videojuego> obtenerVideojuegosPorNombreComienzoFin(String nombre, int comienzo,
 			int resultadosPorPagina) {
-		// TODO Auto-generated method stub
 		return entityManager.createQuery("select v from Videojuego v where v.alta = true and v.nombre like :nombre order by v.id desc")
 		.setParameter("nombre", "%" + nombre + "%")
 		.setFirstResult(comienzo)
@@ -134,7 +120,32 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	}
 	
 	
-	
-	
+	//Metodos para cliente
+	@Override
+	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String nombre, int comienzo) {
+		Query query = entityManager.createNativeQuery(
+				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_PARA_JSON);
+		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
+		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		nativeQuery.setParameter("nombre","%" + nombre + "%");
+		nativeQuery.setParameter("comienzo", comienzo);
+		List<Map<String, Object>> videojuegos = nativeQuery.getResultList();
+		return videojuegos;
+	}
+
+	@Override
+	public Map<String, Object> obtenerDetallesVideojuego(int idVideojuego) {
+		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_DETALLES_VIDEOJUEGO);
+		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
+		nativeQuery.setParameter("id", idVideojuego);
+		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		Map<String, Object> detallesVideojuego = (Map<String, Object>) nativeQuery.getResultList().get(0);
+		List<Map<String, Object>> plataformas = servicioPlataformas.obtenerPlataformasParaJSON(idVideojuego);
+		detallesVideojuego.put("plataformas", plataformas);
+		List<Map<String, Object>> generos = servicioGeneros.obtenerGenerosParaJSON(idVideojuego);
+		detallesVideojuego.put("generos", generos);
+		return detallesVideojuego;
+	}	
+
 	
 }

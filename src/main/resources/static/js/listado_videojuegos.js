@@ -3,8 +3,8 @@ let plantillaDetallesVideojuego = "";
 
 
 $.get("plantillas_mustache/videojuegos.html", function(data) {
-
 	plantillaVideojuegos = data;
+	setTimeout(mostrar_videojuegos, 500);
 });
 
 

@@ -22,7 +22,8 @@
   cursor: pointer;
 }
 .menu .nav > li:hover {
-  background: #ebebeb;
+  background: #303134;
+  border-radius: 10px;
 }
 .menu .drop {
   position: relative;
@@ -43,10 +44,12 @@
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  border-radius: 10px;
 }
 .menu .drop ul li {
   display: block;
   width: 100%;
+  border-radius: 10px;
 }
 .menu .drop ul li a {
   width: 100%;
@@ -55,9 +58,13 @@
   white-space: pre;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  border-radius: 10px;
+  -webkit-transition: color 0.2s linear, background 0.2s linear;
+  transition: color 0.2s linear, background 0.2s linear;
 }
 .menu .drop ul li a:hover {
-  background: #ebebeb;
+  background: #1f1f1f;
+  color: lightgrey;
 }
 .menu .drop:hover ul {
   -webkit-transform: scale(1);

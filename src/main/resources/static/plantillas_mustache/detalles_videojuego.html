@@ -2,20 +2,28 @@
 	
 	
 	<div class="item-detalles">
-
-		nombre: {{nombre}} <br>
-		<img src="mostrar_imagen_videojuego?id={{id}}" style="height: 200px;" /> <br>
-		descripcion: {{descripcion}} <br>
-		genero: {{nombre_genero}} <br>
-		plataformas: {{plataformas}} <br>
-		fechaLanzamiento: {{fecha_lanzamiento}} <br>
-		desarrollador: {{desarrollador}} <br>
-		puntuacion: {{puntuacion}} <br>
-		precio: {{precio}} <br>
+		<p>nombre: {{nombre}} </p>
+		<p><img src="mostrar_imagen_videojuego?id={{id}}" style="height: 200px;" /> </p>
+		<p>descripcion: {{descripcion}} </p>
+		<p>generos: 
+			{{#generos}}
+				<span>{{nombre}}, </span>
+			{{/generos}}
+		</p>
+		<p>plataformas: 
+			{{#plataformas}}
+				<span>{{nombre}}, </span>
+			{{/plataformas}}
+		</p>
+		<p>fechaLanzamiento: {{fecha_lanzamiento}} </p>
+		<p>desarrollador: {{desarrollador}} </p>
+		<p>puntuacion: {{puntuacion}} </p>
+		<p>precio: {{precio}} </p>
 		<div class="contenedor-cantidad">
 			
-			<a href="#" class="enlace_comprar_listado_principal" id-producto="{{id}}">Comprar</a>
+			<p><a href="#" class="enlace_comprar_listado_principal" id-producto="{{id}}">Comprar</a></p>
 		</div>
+	</div>
 	</div>
 	
 	

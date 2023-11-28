@@ -1,17 +1,22 @@
 //mostrar videojuegos en cliente
 let nombre_a_buscar = "";
+let comienzo_resultados = 0;
+const cantidad_paginacion = 6;
 function mostrar_videojuegos() {
 	// cargar css del listado
-	$('#estilo-actual').attr('href', 'css/listado_videojuegos.css');
-	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos", { nombre: nombre_a_buscar }).done(function (res) {
+	if ( $('#estilo-actual').attr("href") != "css/listado_videojuegos.css"){
+		$('#estilo-actual').attr('href', 'css/listado_videojuegos.css');
+	}
+	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos", { nombre: nombre_a_buscar, comienzo: comienzo_resultados }).done(function (res) {
 		let texto_html = "";
 		//antes de mostrar el resultado usando la plantilla podemos prepararlo un poco
-		for (i in res) {
-			res[i].fecha_hora_actual = new Date();
-			res[i].precio = res[i].precio.toString().replace(".", ",");
+		let videojuegos = res.videojuegos;
+		for (i in videojuegos) {
+			videojuegos[i].fecha_hora_actual = new Date();
+			videojuegos[i].precio = videojuegos[i].precio.toString().replace(".", ",");
 
 		}
-		texto_html = Mustache.render(plantillaVideojuegos, res);
+		texto_html = Mustache.render(plantillaVideojuegos, videojuegos);
 		$("#contenedor").html(texto_html);
 		$("#buscador").val(nombre_a_buscar);
 		$("#buscador").focus();
@@ -24,7 +29,7 @@ function mostrar_videojuegos() {
 					id: id_producto
 				}
 			).done(function (res) {
-				let html = Mustache.render(plantillaDetallesVideojuego, res);
+				let html = Mustache.render(plantillaDetallesVideojuego, videojuegos);
 				console.log(res);
 				$("#contenedor").html(html);
 
@@ -50,6 +55,7 @@ function mostrar_videojuegos() {
 		//Buscador
 		$("#buscador").keyup(function (e) {
 			nombre_a_buscar = $(this).val();
+			comienzo_resultados = 0;
 			mostrar_videojuegos();
 
 		});
@@ -59,6 +65,36 @@ function mostrar_videojuegos() {
 			console.log("borrar datos busqueda");
 			$("#buscador").val("");
 
+		});
+
+		if(comienzo_resultados <= 0){
+			$("#enlace_anterior").hide();
+		}else{
+			$("#enlace_anterior").show();
+		}
+		let totalVideojuegos = res.totalVideojuegos;
+		$("#comienzo_resultado").html(comienzo_resultados);
+		$("#total_resultados").html(totalVideojuegos);
+		if(comienzo_resultados > totalVideojuegos){
+			$("#enlace_siguiente").hide();
+		}else{
+			$("#enlace_siguiente").show();
+		}
+
+
+
+		//Paginacion anterior
+		$("#enlace_anterior").click(function (e) { 
+			e.preventDefault();
+			comienzo_resultados -= cantidad_paginacion;
+			mostrar_videojuegos();
+		});
+
+		//paginacion siguiente
+		$("#enlace_siguiente").click(function (e) { 
+			e.preventDefault();
+			comienzo_resultados += cantidad_paginacion;
+			mostrar_videojuegos();
 		});
 
 

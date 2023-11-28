@@ -100,6 +100,10 @@
 }
 .listado-videojuegos .item-listado .reproductor .imagen-item {
   z-index: 1;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .listado-videojuegos .item-listado .reproductor .video-item {
   top: 0;

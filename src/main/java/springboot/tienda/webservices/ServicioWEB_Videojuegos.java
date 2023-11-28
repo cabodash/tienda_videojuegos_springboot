@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import springboot.tienda.data.webservices.InfoVideojuegos;
 import springboot.tienda.services.ServicioVideojuegos;
 
 
@@ -30,8 +31,11 @@ public class ServicioWEB_Videojuegos {
 	private ServicioVideojuegos servicioVideojuegos;
 	
 	@RequestMapping("obtenerVideojuegos")
-	public List<Map<String, Object>> obtenerVideojuegos(@RequestParam(name = "nombre", defaultValue = "") String nombre){
-		return servicioVideojuegos.obtenerVideojuegosParaFormarJSON(nombre);
+	public InfoVideojuegos obtenerVideojuegos(@RequestParam(name = "nombre", defaultValue = "") String nombre, @RequestParam(name = "comienzo", defaultValue = "0") Integer comienzo){
+		InfoVideojuegos info = new InfoVideojuegos();
+		info.setVideojuegos(servicioVideojuegos.obtenerVideojuegosParaFormarJSON(nombre, comienzo));
+		info.setTotalVideojuegos(servicioVideojuegos.obtenerTotalVideojuegos(nombre));
+		return info;
 	}
 	
 	@RequestMapping("obtenerVideojuegoDetalles")

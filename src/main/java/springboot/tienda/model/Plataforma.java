@@ -23,7 +23,8 @@ public class Plataforma {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "plataformas_videojuegos",
     joinColumns = @JoinColumn(name = "plataforma_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "videojuego_id", referencedColumnName = "id"))
+	inverseJoinColumns = @JoinColumn(name ="videojuego_id", referencedColumnName = "id"))
+
 	private List<Videojuego> videojuegos;
 	
 	@Id

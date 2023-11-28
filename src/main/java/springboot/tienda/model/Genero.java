@@ -27,9 +27,7 @@ public class Genero {
 	@GeneratedValue
 	private int id;
 	
-	public Genero() {
-		// TODO Auto-generated constructor stub
-	}
+	public Genero() {}
 
 	public Genero(String nombre, String descripcion) {
 		super();

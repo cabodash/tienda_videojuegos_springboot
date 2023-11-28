@@ -2,18 +2,30 @@ package springboot.tienda.constants.SQL;
 
 public class ConstantesSQL {
 	public final static String SQL_OBTENER_VIDEOJUEGOS_PARA_JSON =
-			"SELECT v.id, v.nombre, v.descripcion, v.plataformas, v.fecha_lanzamiento, v.desarrollador, v.puntuacion, v.precio, g.nombre as nombre_genero "
-			+ "FROM videojuego as v, genero as g "
-			+ "WHERE v.genero_id = g.id "
-			+ "AND v.alta = 1 "
+			"SELECT v.id, v.nombre, v.descripcion, v.fecha_lanzamiento, v.desarrollador, v.puntuacion, v.precio "
+			+ "FROM videojuego as v "
+			+ "WHERE v.alta = 1 "
 			+ "AND v.nombre like :nombre "
-			+ "ORDER BY v.id DESC";
+			+ "ORDER BY v.id DESC "
+			+ "LIMIT :comienzo, 6";
 
 	public static final String SQL_OBTENER_DETALLES_VIDEOJUEGO = 
-	"SELECT v.id, v.nombre, v.descripcion, v.plataformas, v.fecha_lanzamiento, v.desarrollador, v.puntuacion, v.precio, g.nombre as nombre_genero "
-	+ "FROM videojuego as v, genero as g "
-	+ "WHERE v.genero_id = g.id "
-	+ "AND v.id = :id ";
+		"SELECT v.id, v.nombre, v.descripcion, v.fecha_lanzamiento, v.desarrollador, v.puntuacion, v.precio "
+		+ "FROM videojuego as v "
+		+ "WHERE v.id = :id ";
+
+	public static final String SQL_OBTENER_GENEROS_PARA_JSON = 
+		"SELECT g.nombre "
+		+"FROM genero as g, generos_videojuegos as gv "
+		+"WHERE g.id = gv.genero_id "
+		+"AND gv.videojuego_id = :videojuego_id";
+
+	public static final String SQL_OBTENER_PLATAFORMAS_PARA_JSON = 
+		"SELECT p.nombre "
+		+"FROM plataforma as p, plataformas_videojuegos as pv "
+		+"WHERE p.id = pv.plataforma_id "
+		+"AND pv.videojuego_id = :videojuego_id";
+
 	
 	public static final String SQL_OBTENER_CATEGORIAS_PARA_DESPLEGABLES = 
 			"SELECT id, nombre FROM genero ORDER BY id ASC";
@@ -41,6 +53,17 @@ public class ConstantesSQL {
 			+"FROM videojuego "
 			+"WHERE alta = '1' "
 			+"AND nombre like :nombre";
+	
+	public static final String SQL_BORRAR_GENEROS_VIDEOJUEGOSS_POR_ID_VIDEOJUEGO = 
+			"DELETE FROM generos_videojuegos "
+			+"WHERE videojuego_id = :videojuego_id";
+	
+	public static final String SQL_BORRAR_PLATAFORMAS_VIDEOJUEGOSS_POR_ID_VIDEOJUEGO = 
+			"DELETE FROM plataformas_videojuegos "
+			+"WHERE videojuego_id = :videojuego_id";
+
+
+   
 
 	
 }

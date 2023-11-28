@@ -6,13 +6,16 @@ import java.util.Map;
 import springboot.tienda.model.Genero;
 
 public interface ServicioGeneros {
-	Map<String, String> obtenerGenerosParaDesplegable();
 	List<Genero> obtenerGeneros();
 	
 	
 	void registrarGenero(Genero g);	
 	void borrarGenero(int id);
+	void borrarGenerosVideojuegoPorIdVideojuego(int idVideojuego);
 	Genero obtenerGeneroPorId(int id);
+	List<Genero> obtenerGenerosPorIds(List<Integer> ids);
+	List <Genero> obtenerGenerosPorIdVideojuego(int idVideojuego);
+	List<Map<String, Object>> obtenerGenerosParaJSON(int idVideojuego);
 	void guardarCambiosGenero(Genero g);
 	
 	

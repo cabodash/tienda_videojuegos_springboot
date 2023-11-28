@@ -12,8 +12,11 @@ public interface ServicioPlataformas {
 	
 	void registrarPlataforma(Plataforma g);	
 	void borrarPlataforma(int id);
+	void borrarPlataformasVideojuegoPorIdVideojuego(int idVideojuego);
 	Plataforma obtenerPlataformaPorId(int id);
+	List<Plataforma> obtenerPlataformasPorIds(List<Integer> ids);
 	List <Plataforma> obtenerPlataformasPorIdVideojuego(int idVideojuego);
+	List<Map<String, Object>> obtenerPlataformasParaJSON(int idVideojuego);
 	void guardarCambiosPlataforma(Plataforma g);
 	
 	

@@ -34,9 +34,7 @@ public class Usuario {
 	private int id;
 	
 	
-	public Usuario() {
-		// TODO Auto-generated constructor stub
-	}
+	public Usuario() {}
 	public Usuario(String nombre, String email, String password) {
 		super();
 		this.nombre = nombre;

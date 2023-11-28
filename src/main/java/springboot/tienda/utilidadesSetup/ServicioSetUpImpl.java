@@ -126,59 +126,45 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			List<Plataforma> plataformasSpiderman = new ArrayList<Plataforma>();
 			plataformasSpiderman.add(ps5);
 
+			for (int i = 0; i < 20; i++) {
+				Videojuego videojuego = new Videojuego("Nombre por defecto" + i, "Descripción por defecto"  + i, generosEASports2024, plataformasFIFA, Date.valueOf("2023-10-10"), "Desarrollador por defecto" + i, 5.5, 33.3);
+				entityManager.persist(videojuego);
+			}
+
+			Videojuego prueba = new Videojuego();
 			// Preparo unos videojuegos para la tienda
-			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", generosEASports2024,
-					plataformasFIFA, Date.valueOf("2023-09-23"), "EA", 3.3, 60);
-			fifa24.setImagenPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
-			fifa24.setVideoPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
+			Videojuego fifa24 = new Videojuego("EA Sports FC 24", "descripcion de EA Sports FC 24", generosEASports2024, 
+			plataformasFIFA, Date.valueOf("2023-09-23"), "EA", 3.3, 60);
+			fifa24.setImagenPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/fifa24.jpg"));
+			fifa24.setVideoPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/fifa24.webm"));
 			entityManager.persist(fifa24);
-
+			
+			prueba = fifa24;
+			
 			Videojuego elden_ring = new Videojuego("Elden Ring", "descripcion de Elden Ring", generosEldenRing,
-					plataformasFIFA, Date.valueOf("2022-02-25"), "From Software", 6.3, 40);
-			elden_ring.setImagenPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
-			elden_ring.setVideoPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
+			plataformasFIFA, Date.valueOf("2022-02-25"), "From Software", 6.3, 40);
+			elden_ring.setImagenPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/elden_ring.jpg"));
+			elden_ring.setVideoPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/elden_ring.webm"));
 			entityManager.persist(elden_ring);
-
+			
 			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", generosRedDead2,
-					plataformasFIFA, Date.valueOf("2018-10-26"), "EA", 9.3, 70);
-			rdr2.setImagenPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
-			rdr2.setVideoPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
+			plataformasFIFA, Date.valueOf("2018-10-26"), "EA", 9.3, 70);
+			rdr2.setImagenPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
+			rdr2.setVideoPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
 			entityManager.persist(rdr2);
 
 			Videojuego cyberpunk = new Videojuego("Cyberpunk 2077", "descripcion de Cyberpunk 2077", generosCyberpunk2077,
-					plataformasFIFA, Date.valueOf("2020-12-10"), "CD Projekt Red", 9.5, 55);
-			cyberpunk.setImagenPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
-			cyberpunk.setVideoPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
+			plataformasFIFA, Date.valueOf("2020-12-10"), "CD Projekt Red", 9.5, 55);
+			cyberpunk.setImagenPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/cyberpunk.jpg"));
+			cyberpunk.setVideoPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/cyberpunk.webm"));
 			entityManager.persist(cyberpunk);
 
 			Videojuego spiderman2 = new Videojuego("Marvel's Spider-Man 2", "descripcion de Marvel's Spider-Man 2", generosSpiderman2,
-					plataformasSpiderman, Date.valueOf("2023-10-20"), "Insomniac Games", 9.7, 75.99);
-			spiderman2.setImagenPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
-			spiderman2.setVideoPortada(
-					copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
+			plataformasSpiderman, Date.valueOf("2023-10-20"), "Insomniac Games", 9.7, 75.99);
+			spiderman2.setImagenPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/spiderman2.jpg"));
+			spiderman2.setVideoPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/spiderman2.webm"));
 			entityManager.persist(spiderman2);
-
-			for (int i = 1; i <= 50; i++) {
-				Videojuego videojuego = new Videojuego(
-						"Nombre del videojuego " + i,
-						"Descripción del videojuego " + i,
-						generosEldenRing,
-						plataformasFIFA,
-						Date.valueOf("2023-10-20"),
-						"desarollador" + i,
-						3.3,
-						3);
-				entityManager.persist(videojuego);
-			}
+			
 
 			Usuario u = new Usuario("pepe", "pepe@gmail.com", "4321");
 			u.setImagenPerfil(copiarArchivoBase("http://localhost:8080/recursos_setup/images/usuarios/2.jpg"));
@@ -209,7 +195,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(p);
 			ProductoPedido pp = new ProductoPedido();
 			pp.setPedido(p);
-			pp.setVideojuego(spiderman2);
+			pp.setVideojuego(prueba);
 			pp.setCantidad(2);
 			entityManager.persist(pp);
 
@@ -232,7 +218,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(p);
 			pp = new ProductoPedido();
 			pp.setPedido(p);
-			pp.setVideojuego(spiderman2);
+			pp.setVideojuego(prueba);
 			pp.setCantidad(5);
 			entityManager.persist(pp);
 
@@ -248,7 +234,6 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			URL url = new URL(ruta_origen);
 			info = IOUtils.toByteArray(url);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.err.println("[-] No se pudo copiar imagen base");
 			e.printStackTrace();
 		}
