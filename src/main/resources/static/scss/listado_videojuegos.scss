@@ -44,6 +44,9 @@ $sw_blue: #1E90FF;
             fill: red;
         }
     }
+    &:focus-within {
+        box-shadow: 0 4px 12px rgba(23,23,23,0.7);
+    }
 
     input{
         width: 100%;

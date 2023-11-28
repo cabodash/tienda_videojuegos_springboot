@@ -31,7 +31,7 @@ import org.springframework.web.multipart.MultipartFile;;
 public class Videojuego {
 
 	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "El nombre no puede estar vacío")
+	@NotEmpty(message = "{videojuego.nombre.notempty}")
 	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ]+/g", message = "Solo puede tener letras noumeros y espacios en blanco")
 	private String nombre;
 	private String descripcion;

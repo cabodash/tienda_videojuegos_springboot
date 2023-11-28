@@ -1,0 +1,15 @@
+{{#.}}
+    <div class="item-listado">
+        <div class="reproductor" id-producto="{{id}}">
+            <img class="imagen-item" src="mostrar_imagen_videojuego?id={{id}}" loading="lazy">
+            <video class="video-item" id="videoItem" width="100%" height="100%">
+                <source src="mostrar_video_videojuego?id={{id}}" type="video/webm">
+                Tu navegador no soporta el tag de video.
+            </video>
+        </div>
+        <div class="item-enlaces">
+            <p class="nombre-juego">{{nombre}}</p>
+            <p class="precio"><span>{{precio}}</span> &euro;</p>
+        </div>
+    </div>
+{{/.}}
