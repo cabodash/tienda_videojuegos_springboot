@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,10 +57,17 @@ public class VideojuegosController {
 	}
 
 	@RequestMapping("guardarVideojuego")
-	public String guardarVideojuego(@Valid Videojuego videojuegoNuevo, @RequestParam List<Integer> generosSeleccionados, @RequestParam List<Integer> plataformasSeleccionadas, BindingResult resultadoValidacion) {
-		// if (resultadoValidacion.hasErrors()) {
-		// 	return "admin/videojuegos_registro";	
-		// }
+	public String guardarVideojuego(@ModelAttribute("videojuegoNuevo") @Valid Videojuego videojuegoNuevo, 
+									@RequestParam(required = false) List<Integer> generosSeleccionados, 
+									@RequestParam(required = false) List<Integer> plataformasSeleccionadas, 
+									BindingResult resultadoValidacion, 
+									Model model) {
+										
+		if (resultadoValidacion.hasErrors()) {
+			model.addAttribute("generos", servicioGeneros.obtenerGeneros());
+			model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
+			return "admin/videojuegos_registro";	
+		}
 		videojuegoNuevo.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
 		videojuegoNuevo.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
 		servicioVideojuegos.registrarVideojuego(videojuegoNuevo);

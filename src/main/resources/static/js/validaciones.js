@@ -5,24 +5,30 @@ let regexp_contraseña = /^[a-z0-9áéíóúñ]{3,20}$/i;
 
 function validarNombre(id, nombre){
     if(regexp_nombre.test(nombre)){
+        $(`#${id}`).removeClass("error");
         return true;
     }  else{
+        $(`#${id}`).addClass("error");
         alert("El nombre solo debe contener letras y espacios, y ser de entre 2 y 10 caracteres");
     }  
 }
 
 function validarEmail(id, email){
     if(regexp_email.test(email)){
+        $(`#${id}`).removeClass("error");
         return true;
     }  else{
+        $(`#${id}`).addClass("error");
         alert("El email debe ser valido")
     }  
 }
 
 function validarContraseña(id, pass){
     if(regexp_contraseña.test(pass)){
+        $(`#${id}`).removeClass("error");
         return true;
     }  else{
+        $(`#${id}`).addClass("error");
         alert("La contraseña debe contener solo letras, numeros y debe ser de entre 3 y 20 caracteres");
     }  
 }

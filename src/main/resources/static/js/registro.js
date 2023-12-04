@@ -5,18 +5,18 @@ const requisitos = document.querySelector("#requisitos");
 let plantillaRegistro = "";
 
 
-$.get("plantillas_mustache/registro.html", function(data) {
+$.get("plantillas_mustache/registro.html", function (data) {
 	plantillaRegistro = data;
 });
 
 
-$("#registro").click(function() {
+$("#registro").click(function () {
 	$('#estilo-actual').attr('href', 'css/inicio_sesion.css');
 	$("#contenedor").html(plantillaRegistro);
 
 
 	//js para cargar la imagen de usuario seleccionada
-	$("#avatar").change(function(event) {
+	$("#avatar").change(function (event) {
 		if (event.target.files.length > 0) {
 			let src = URL.createObjectURL(event.target.files[0]);
 			let preview = document.getElementById("preview-img");
@@ -24,15 +24,25 @@ $("#registro").click(function() {
 			preview.style.display = "block";
 		}
 	});
+	
 
 	//al pulsar el boton de registrarse
-	$("#formUsuario").submit(function(event) {
-		if(! validarNombre($("#nombre").val()) ||
-		   ! validarEmail($("#email").val()) ||
-		   ! validarContraseña($("#pass").val())) {
+	$("#formUsuario").submit(function (event) {
+		let valid = true;
+		if (!validarNombre("contenedor-nombre", $("#nombre").val())) {
+			valid = false;
+		}
+		if (!validarEmail("contenedor-email", $("#email").val())) {
+			valid = false;
+		}
+		if (!validarContraseña("contenedor-pass", $("#pass").val())) {
+			valid = false;
+		}
+		if(!valid){
 			event.preventDefault();
 			return;
 		}
+
 		let formulario = document.forms[0];
 		let formData = new FormData(formulario);
 		$.ajax("servicioWEB_Usuarios/registrarUsuario", {
@@ -53,7 +63,7 @@ $("#registro").click(function() {
 }); // end registro
 
 
-function inputs(){
+function inputs() {
 	let inputContainers = document.querySelectorAll('.input-box');
 	inputContainers.forEach(element => {
 		let input = element.querySelector("input");

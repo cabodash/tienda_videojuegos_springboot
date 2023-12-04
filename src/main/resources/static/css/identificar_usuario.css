@@ -3,7 +3,7 @@
   width: 50%;
   min-width: 200px;
   max-width: 400px;
-  background-color: white;
+  background-color: #303134;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -39,6 +39,7 @@
           transform: translateY(-50%);
   font-size: 18px;
   color: #C9C9C9;
+  background-color: #303134;
   pointer-events: none;
   -webkit-transition: top 0.1s linear, font-size 0.1s linear;
   transition: top 0.1s linear, font-size 0.1s linear;
@@ -50,7 +51,8 @@
   padding: 5px 16px;
   border: none;
   border-radius: 4px;
-  color: #C9C9C9;
+  color: white;
+  background-color: #303134;
   outline: 1px solid #c9c9c9;
 }
 .formulario .input-box input:hover, .formulario .input-box textarea:hover, .formulario .textarea-box input:hover, .formulario .textarea-box textarea:hover {
@@ -68,7 +70,7 @@
   color: #007a91;
   top: 0;
   font-size: 12px;
-  background-color: white;
+  background-color: #303134;
 }
 .formulario .input-box .suggestion, .formulario .textarea-box .suggestion {
   position: absolute;
@@ -77,16 +79,23 @@
   font-size: 12px;
   color: #C9C9C9;
 }
-.formulario .input-box .error label, .formulario .textarea-box .error label {
-  color: #b3261e;
+.formulario .input-box.error input, .formulario .input-box.error textarea, .formulario .textarea-box.error input, .formulario .textarea-box.error textarea {
+  outline: 2px solid red;
+  color: red;
+}
+.formulario .input-box.error label, .formulario .textarea-box.error label {
+  color: red;
+}
+.formulario .input-box.error .suggestion, .formulario .textarea-box.error .suggestion {
+  color: red;
 }
 .formulario .input-box.is-filled input, .formulario .input-box.is-filled textarea, .formulario .textarea-box.is-filled input, .formulario .textarea-box.is-filled textarea {
-  color: black;
+  color: white;
 }
 .formulario .input-box.is-filled label, .formulario .textarea-box.is-filled label {
   top: 0;
   font-size: 12px;
-  background-color: white;
+  background-color: 303134;
 }
 .formulario .checkbox {
   color: #c9c9c9;

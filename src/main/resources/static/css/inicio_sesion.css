@@ -23,6 +23,12 @@
   -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.11);
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.11);
 }
+.formulario .preview {
+  width: 40%;
+  height: 40%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .formulario .title {
   font-size: 1.2rem;
   color: darkgrey;
@@ -89,20 +95,36 @@
 .formulario .input-box.error .suggestion, .formulario .textarea-box.error .suggestion {
   color: red;
 }
+.formulario .input-box.error:hover, .formulario .textarea-box.error:hover {
+  color: red;
+}
+.formulario .input-box.error:focus, .formulario .textarea-box.error:focus {
+  outline: 2px solid red;
+  color: red;
+}
+.formulario .input-box.error:hover + label, .formulario .textarea-box.error:hover + label {
+  color: red;
+}
+.formulario .input-box.error:focus + label, .formulario .textarea-box.error:focus + label {
+  color: red;
+  top: 0;
+  font-size: 12px;
+  background-color: #303134;
+}
 .formulario .input-box.is-filled input, .formulario .input-box.is-filled textarea, .formulario .textarea-box.is-filled input, .formulario .textarea-box.is-filled textarea {
   color: white;
 }
 .formulario .input-box.is-filled label, .formulario .textarea-box.is-filled label {
   top: 0;
   font-size: 12px;
-  background-color: 303134;
+  background-color: #303134;
 }
 .formulario .checkbox {
   color: #c9c9c9;
 }
 .formulario .btn-enviar {
   color: white;
-  background-color: #007a91;
+  background-color: #003087;
   width: 66.5%;
   padding: 10px 5px;
   outline: none;
@@ -111,5 +133,6 @@
   font-size: 1.1em;
 }
 .formulario .btn-enviar:hover {
-  background-color: #005263;
+  background-color: rgb(0, 50, 100);
+  color: #9dbcff;
 }

@@ -13,6 +13,12 @@
 	gap: 2rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.11);
 
+  .preview{
+    width: 40%;
+    height: 40%;
+    object-fit: contain;
+  }
+
   .title{
     font-size: 1.2rem;
     color: darkgrey;
@@ -84,6 +90,23 @@
         color: red;
       }
 
+      &:hover {
+        color: red;
+      }
+      &:focus {
+        outline: 2px solid red;
+        color: red;
+      }
+      &:hover + label {
+        color: red;
+      }
+      &:focus + label {
+        color: red;
+        top: 0;
+        font-size: 12px;
+        background-color: #303134;
+      }
+
     }
 
     &.is-filled {
@@ -94,7 +117,7 @@
       label {
         top: 0;
         font-size: 12px;
-        background-color: 303134;
+        background-color: #303134;
       }
     }
   }
@@ -106,7 +129,7 @@
 
   .btn-enviar{
     color: white;
-    background-color: #007a91;
+    background-color: #003087;
     width: 66.5%;
     padding: 10px 5px;
     outline: none;
@@ -115,7 +138,8 @@
     font-size: 1.1em;
 
     &:hover{
-      background-color: #005263;
+      background-color: rgb(0, 50, 100);
+		  color: #9dbcff;
     }
   }
   
