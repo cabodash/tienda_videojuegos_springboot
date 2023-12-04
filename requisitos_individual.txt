@@ -1,8 +1,45 @@
-- Añadir el dato de como conseguir/canjear el juego (en pc decir en que tienda se canjea y como, en consola los pasos para ir al apartado de canje y canjearlo)
-
-- cambiar videojuego.plataformas para que en vez de ser introducido como texto sea una entidad diferente (como los generos)
- -> posibilidad de elegir mas de una plataforma
     
 -añadir un buscador simple y un filtrado por generos y plataformas
 
--buscador en cliente que lance la query (el servicioVideojuegos/obtenerPorXcosa?cosa=valor) por keyup, y muestre los resultados en un contenedor como busqueda rapida, y que al darle al enter cargue esa busqueda en el contenedor de cliente
+-Permitir buscar tambien por genero, plataforma, desarrollador, (rangos de precio y puntuacion si se hacen los anteriores)
+-buscador en cliente que lance la query (el servicioVideojuegos/obtenerPorXcosa?cosa=valor) por keyup,
+ y muestre los resultados en un contenedor como busqueda rapida, y que al darle al enter cargue esa busqueda en el contenedor de cliente
+
+ -Dar estilo al contenedor de imagen de registro en cliente
+
+ -Dar estilo a detalles videojuego en cliente
+
+ -ocultar y mostrar las opciones de registro, cerrar sesion... dependiendo de si el usuario esta identificado o no (  $(#cosa).hide y esas cosas  )
+ -Añadir opcion de elegir cantidad de juegos a añadir en detalles videojuego
+
+ -Mejorar diseño carrito
+ -Añadir posibilidad de cambiar cantidad de juegos en carrito (diseño como el de amazon en movil)
+
+ -Mejorar diseño pasos checkout
+
+ -Al confirmar el pedido cambiar de vista a la de videojuegos o si esta implementada,a la de mis pedidos
+
+ -Implementar la parte de mis datos y poder editar los datos de usuario en cliente
+
+ -mejorar diseño login administracion (en el boton de aceptar pone aceptat)
+
+ -Mejorar diseño de listado de generos y plataformas (mismo que los demas)
+
+ -Mejorar diseño de crear nueva entidad 
+
+ -Añadir traducciones en toda la administracion (Por lo menos para ingles)
+
+ -Arreglar validaciones en servidor y añadir las faltantes en servidor y cliente
+
+ -añadir opcion de si no dispones de video en cliente se quede la foto, y de no haber foto cargar una por defecto
+
+ -Quitar la creacion de los productos vacios esos y meter 20 o 30 de verdad
+
+ -
+
+
+https://codepen.io/Ali-Majed/pen/BaRoyrG
+
+
+
+

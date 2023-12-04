@@ -13,44 +13,28 @@ function cargar_plantilla_listado(){
 	}
 
 	//Cargar Plantilla del buscador
-	let html_videojuegos = "";
-	html_videojuegos = Mustache.render(plantillaVideojuegos, videojuegos);
-	$("#contenedor").html(html_videojuegos);
+	$("#contenedor").html(plantillaVideojuegos);
 	$("#buscador").val(nombre_a_buscar);
 
-	//cargar plantilla_videojuegos
-	mostrar_videojuegos();
-
+	
 	//Buscador
 	$("#buscador").keyup(function (e) {
 		nombre_a_buscar = $(this).val();
 		comienzo_resultados = 0;
 		mostrar_videojuegos();
-
+		
 	});
-
+	
 	//borrar texto del buscador
 	$("#imagen-borrar").click(function (e) {
 		console.log("borrar datos busqueda");
 		$("#buscador").val("");
-
+		
 	});
 
-	if(comienzo_resultados <= 0){
-		$("#enlace_anterior").hide();
-	}else{
-		$("#enlace_anterior").show();
-	}
-	let totalVideojuegos = "";
-	$("#comienzo_resultado").html(comienzo_resultados);
-	$("#total_resultados").html(totalVideojuegos);
-	if(comienzo_resultados > totalVideojuegos){
-		$("#enlace_siguiente").hide();
-	}else{
-		$("#enlace_siguiente").show();
-	}
 
-
+	//cargar plantilla_videojuegos
+	mostrar_videojuegos();
 
 	//Paginacion anterior
 	$("#enlace_anterior").click(function (e) { 
@@ -65,6 +49,7 @@ function cargar_plantilla_listado(){
 		comienzo_resultados += cantidad_paginacion;
 		mostrar_videojuegos();
 	});
+	
 
 
 
@@ -79,11 +64,29 @@ function mostrar_videojuegos() {
 			videojuegos[i].fecha_hora_actual = new Date();
 			videojuegos[i].precio = videojuegos[i].precio.toString().replace(".", ",");
 		}
+		let totalVideojuegos = "";
 		totalVideojuegos = res.totalVideojuegos;
 
 		//Carga del html del listado
-		let html_listado = "";
-		html_listado = Mustache.render(plantillaListado, videojuegos);
+		let html_listado = Mustache.render(plantillaListado, videojuegos);
+		$(".listado-videojuegos").html(html_listado);
+
+		//esconder y mostrar paginacion
+		if(comienzo_resultados <= 0){
+			$("#enlace_anterior").hide();
+		}else{
+			$("#enlace_anterior").show();
+		}
+		
+		$("#comienzo_resultado").html(comienzo_resultados);
+		$("#total_resultados").html(totalVideojuegos);
+		if(comienzo_resultados > totalVideojuegos){
+			$("#enlace_siguiente").hide();
+		}else{
+			$("#enlace_siguiente").show();
+		}
+
+
 		//Entrar en detalles de pedido
 		$(".reproductor").click(function (e) {
 			let id_producto = $(this).attr("id-producto");
@@ -116,8 +119,6 @@ function mostrar_videojuegos() {
 		});
 
 	}).done(cargar_reproductores);
-
-
 }
 
 
