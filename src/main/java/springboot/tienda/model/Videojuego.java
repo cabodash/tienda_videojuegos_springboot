@@ -34,14 +34,28 @@ public class Videojuego {
 	@NotEmpty(message = "{videojuego.nombre.notempty}")
 	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
 	private String nombre;
+
+	@Size(min = 3, max = 200, message = "La descripcion debe tener entre 3 y 200 caracteres")
+	@NotEmpty(message = "{videojuego.description.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
 	private String descripcion;
+
+
     private Date fechaLanzamiento;
+
+	@Size(min = 3, max = 40, message = "El desarollador debe tener entre 3 y 40 caracteres")
+	@NotEmpty(message = "{videojuego.desarrollador.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
     private String desarrollador;
+
+	@NotNull(message = "Debes poner una puntuacion")
+	@Min(value = 0L, message = "La puntuacion minima es 0")
+	@Max(value = 10L, message = "La puntuacion maxima es 10")
     private double puntuacion;
 
 	@NotNull(message = "Debes poner un precio")
 	@Min(value = 1L, message = "El precio minimo es un euro")
-	@Max(value = 1000, message = "El precio maximo es 1000 euros")
+	@Max(value = 1000, message = "El precio maximo es de 1000 euros")
     private double precio;
     
     private boolean alta = true;
@@ -249,13 +263,5 @@ public class Videojuego {
 	public void setProductoCarrito(ProductoCarrito productoCarrito) {
 		this.productoCarrito = productoCarrito;
 	}
-
-
-
-	
-    
-	
-    
-	
 
 }

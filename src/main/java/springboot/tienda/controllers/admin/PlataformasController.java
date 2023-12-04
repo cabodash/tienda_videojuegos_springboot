@@ -1,10 +1,13 @@
 package springboot.tienda.controllers.admin;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,7 +34,11 @@ public class PlataformasController {
 	}
 
 	@RequestMapping("guardarPlataforma")
-	public String guardarPlataforma(Plataforma PlataformaNuevo, HttpServletRequest request) {
+	public String guardarPlataforma(@ModelAttribute("nuevaPlataforma") @Valid Plataforma PlataformaNuevo, BindingResult resultadoValidacion, Model model) {
+		if (resultadoValidacion.hasErrors()) {
+			model.addAttribute("nuevaPlataforma", PlataformaNuevo);
+			return "admin/plataformas_registro";
+		}
 		servicioPlataformas.registrarPlataforma(PlataformaNuevo);
 		return "admin/plataformas_registro_ok";
 	}
@@ -50,8 +57,11 @@ public class PlataformasController {
 	}
 	
 	@RequestMapping("guardarCambiosPlataforma")
-	public String guardarCambiosPlataforma(Plataforma PlataformaEditar, Model model) {
-		
+	public String guardarCambiosPlataforma(@ModelAttribute("plataformaEditar") @Valid Plataforma PlataformaEditar, BindingResult resultadoValidacion, Model model) {
+		if (resultadoValidacion.hasErrors()) {
+			model.addAttribute("nuevaPlataforma", PlataformaEditar);
+			return "admin/plataformas_registro";
+		}
 		servicioPlataformas.guardarCambiosPlataforma(PlataformaEditar);
 		return obtenerPlataformas(model);
 	}

@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ProductoPedido {
@@ -18,7 +21,9 @@ public class ProductoPedido {
 	@JoinColumn(referencedColumnName = "id")
 	private Videojuego videojuego;
 	
-	
+	@NotNull(message = "Debes poner una cantidad")
+	@Min(value = 1L, message = "La cantidad minima es 1")
+	@Max(value = 10L, message = "La cantidad maxima es 10")
 	private int cantidad;
 	
 	@Id

@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ProductoCarrito {
@@ -16,6 +19,9 @@ public class ProductoCarrito {
 	@JoinColumn(name = "carrito_id")
 	private Carrito carrito;
 	
+	@NotNull(message = "Debes poner una cantidad")
+	@Min(value = 1L, message = "La cantidad minima es 1")
+	@Max(value = 10L, message = "La cantidad maxima es 10")
 	private int cantidad;
 	
 	@Id

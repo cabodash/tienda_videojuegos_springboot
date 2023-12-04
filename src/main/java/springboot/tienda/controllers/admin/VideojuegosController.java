@@ -58,12 +58,13 @@ public class VideojuegosController {
 
 	@RequestMapping("guardarVideojuego")
 	public String guardarVideojuego(@ModelAttribute("videojuegoNuevo") @Valid Videojuego videojuegoNuevo, 
+									BindingResult resultadoValidacion, 
 									@RequestParam(required = false) List<Integer> generosSeleccionados, 
 									@RequestParam(required = false) List<Integer> plataformasSeleccionadas, 
-									BindingResult resultadoValidacion, 
 									Model model) {
 										
 		if (resultadoValidacion.hasErrors()) {
+			model.addAttribute("nuevoVideojuego", videojuegoNuevo);
 			model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 			model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
 			return "admin/videojuegos_registro";	
@@ -83,20 +84,6 @@ public class VideojuegosController {
 	@RequestMapping("editarVideojuego")
 	public String editarVideojuego(@RequestParam("id") Integer id, Model model) {
 		Videojuego videojuego = servicioVideojuegos.obtenerVideojuegoPorId(id);
-		if (videojuego.getPlataformas() == null || videojuego.getPlataformas().isEmpty()) {
-			System.out.println("1vacio");
-		}else{
-			for (Plataforma plataforma : videojuego.getPlataformas()) {
-				System.out.println(plataforma.getNombre());
-			}
-		}
-		if (videojuego.getGeneros() == null || videojuego.getGeneros().isEmpty()) {
-			System.out.println("2vacio");
-		}else{
-			for (Genero genero : videojuego.getGeneros()) {
-				System.out.println(genero.getNombre());
-			}
-		}
 		model.addAttribute("videojuegoEditar", videojuego);
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
@@ -104,7 +91,18 @@ public class VideojuegosController {
 	}
 	
 	@RequestMapping("guardarCambiosVideojuego")
-	public String guardarCambiosVideojuego(Videojuego videojuegoEditar, @RequestParam List<Integer> generosSeleccionados, @RequestParam List<Integer> plataformasSeleccionadas, Model model) {
+	public String guardarCambiosVideojuego(@ModelAttribute("videojuegoEditar") @Valid Videojuego videojuegoEditar, 
+									BindingResult resultadoValidacion, 
+									@RequestParam(required = false) List<Integer> generosSeleccionados, 
+									@RequestParam(required = false) List<Integer> plataformasSeleccionadas, 
+									Model model) {
+
+		if (resultadoValidacion.hasErrors()) {
+			model.addAttribute("videojuegoEditar", videojuegoEditar);
+			model.addAttribute("generos", servicioGeneros.obtenerGeneros());
+			model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
+			return "admin/videojuegos_editar";	
+		}
 		servicioVideojuegos.guardarCambiosVideojuego(videojuegoEditar, generosSeleccionados, plataformasSeleccionadas);
 		return obtenerVideojuegos("",0, model);
 	}

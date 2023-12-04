@@ -1,5 +1,5 @@
     
--añadir un buscador simple y un filtrado por generos y plataformas
+-añadir filtrado por generos y plataformas
 
 -Permitir buscar tambien por genero, plataforma, desarrollador, (rangos de precio y puntuacion si se hacen los anteriores)
 -buscador en cliente que lance la query (el servicioVideojuegos/obtenerPorXcosa?cosa=valor) por keyup,
@@ -35,8 +35,11 @@
 
  -Quitar la creacion de los productos vacios esos y meter 20 o 30 de verdad
 
- -
+ -Permitir dar de alta y de baja entidades (videojuegos, generos, plataformas, usuarios...)
 
+ -Poner un input file para el video de los videojuegos 
+
+ -añadir timeout al buscador 
 
 https://codepen.io/Ali-Majed/pen/BaRoyrG
 

@@ -1,10 +1,13 @@
 package springboot.tienda.controllers.admin;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,7 +34,11 @@ public class GenerosController {
 	}
 
 	@RequestMapping("guardarGenero")
-	public String guardarGenero(Genero generoNuevo, HttpServletRequest request) {
+	public String guardarGenero(@ModelAttribute("nuevoGenero") @Valid Genero generoNuevo, BindingResult resultadoValidacion, Model model) {
+		if (resultadoValidacion.hasErrors()){
+			model.addAttribute("nuevoGenero", generoNuevo);		
+		return "admin/generos_registro";
+		}
 		servicioGeneros.registrarGenero(generoNuevo);
 		return "admin/generos_registro_ok";
 	}
@@ -50,8 +57,11 @@ public class GenerosController {
 	}
 	
 	@RequestMapping("guardarCambiosGenero")
-	public String guardarCambiosGenero(Genero generoEditar, Model model) {
-		
+	public String guardarCambiosGenero(@ModelAttribute("generoEditar") @Valid Genero generoEditar,  BindingResult resultadoValidacion, Model model) {
+		if (resultadoValidacion.hasErrors()){
+			model.addAttribute("nuevoGenero", generoEditar);		
+		return "admin/generos_editar";
+		}
 		servicioGeneros.guardarCambiosGenero(generoEditar);
 		return obtenerGeneros(model);
 	}
