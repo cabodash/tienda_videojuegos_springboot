@@ -1,8 +1,17 @@
-.contenedor-identificar-usuario,
-.div-registro {
-  width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap');
 
-  .formulario {
+*, *::before, *::after{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body{
+    background-color: #272727;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.formulario {
     margin: 30px auto;
     width: 50%;
     min-width: 200px;
@@ -20,8 +29,11 @@
     .preview {
       width: 40%;
       height: 40%;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 100%;
+    }
+    .videojuego-img{
+      border-radius: 20px;
     }
 
     .title {
@@ -48,6 +60,9 @@
       input,
       textarea {
         width: 100%;
+        overflow: scroll-y;
+        resize: none;
+        text-wrap: wrap;
         height: fit-content;
         font-size: 18px;
         padding: 5px 16px;
@@ -155,6 +170,9 @@
       input,
       textarea {
         width: 100%;
+        overflow: scroll-y;
+        text-wrap: wrap;
+        resize: none;
         height: fit-content;
         font-size: 18px;
         padding: 5px 16px;
@@ -266,4 +284,3 @@
     }
 
   }
-}

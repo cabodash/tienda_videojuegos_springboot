@@ -57,28 +57,35 @@ public class VideojuegosController {
 	}
 
 	@RequestMapping("guardarVideojuego")
-	public String guardarVideojuego(@ModelAttribute("videojuegoNuevo") @Valid Videojuego videojuegoNuevo, 
+	public String guardarVideojuego(@ModelAttribute("nuevoVideojuego") @Valid Videojuego nuevoVideojuego, 
 									BindingResult resultadoValidacion, 
 									@RequestParam(required = false) List<Integer> generosSeleccionados, 
 									@RequestParam(required = false) List<Integer> plataformasSeleccionadas, 
 									Model model) {
 										
 		if (resultadoValidacion.hasErrors()) {
-			model.addAttribute("nuevoVideojuego", videojuegoNuevo);
+			//Comprobacion de que no mande un null directo
+			if(generosSeleccionados != null && !generosSeleccionados.isEmpty()){
+				nuevoVideojuego.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
+			}
+			if(plataformasSeleccionadas != null && !plataformasSeleccionadas.isEmpty()){
+				nuevoVideojuego.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
+			}
+			model.addAttribute("nuevoVideojuego", nuevoVideojuego);
 			model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 			model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
 			return "admin/videojuegos_registro";	
 		}
-		videojuegoNuevo.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
-		videojuegoNuevo.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
-		servicioVideojuegos.registrarVideojuego(videojuegoNuevo);
+		nuevoVideojuego.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
+		nuevoVideojuego.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
+		servicioVideojuegos.registrarVideojuego(nuevoVideojuego);
 		return "admin/videojuegos_registro_ok";
 	}
 	
 	@RequestMapping("borrarVideojuego")
 	public String borrarVideojuego(@RequestParam("id") Integer id, Model model) {
 		servicioVideojuegos.borrarVideojuego(id);
-		return obtenerVideojuegos("",0, model);
+		return "redirect:obtenerVideojuegos";
 	}
 	
 	@RequestMapping("editarVideojuego")
@@ -98,13 +105,17 @@ public class VideojuegosController {
 									Model model) {
 
 		if (resultadoValidacion.hasErrors()) {
+			videojuegoEditar.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
+			videojuegoEditar.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
 			model.addAttribute("videojuegoEditar", videojuegoEditar);
 			model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 			model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
+			model.addAttribute("generosSeleccionados", generosSeleccionados);
+			model.addAttribute("plataformasSeleccionadas", plataformasSeleccionadas);
 			return "admin/videojuegos_editar";	
 		}
 		servicioVideojuegos.guardarCambiosVideojuego(videojuegoEditar, generosSeleccionados, plataformasSeleccionadas);
-		return obtenerVideojuegos("",0, model);
+		return "redirect:obtenerVideojuegos";
 	}
 
 }

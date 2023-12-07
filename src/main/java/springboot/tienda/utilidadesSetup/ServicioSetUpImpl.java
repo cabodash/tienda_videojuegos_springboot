@@ -113,7 +113,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(xboxSeriesX);
 			Plataforma nintendoSwitch = new Plataforma("Nintendo Switch", "Nintendo Switch");
 			entityManager.persist(nintendoSwitch);
-			Plataforma pc = new Plataforma("PC", "PC");
+			Plataforma pc = new Plataforma("PC", "descripcion para PC");
 			entityManager.persist(pc);
 
 			List<Plataforma> plataformasFIFA = new ArrayList<>();

@@ -30,32 +30,32 @@ import org.springframework.web.multipart.MultipartFile;;
 @Table(name = "videojuego")
 public class Videojuego {
 
-	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{videojuego.nombre.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 3, max = 40, message = "{val.videojuego.nombre.size}")
+	@NotEmpty(message = "{val.videojuego.nombre.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.videojuego.nombre.pattern}")
 	private String nombre;
 
-	@Size(min = 3, max = 200, message = "La descripcion debe tener entre 3 y 200 caracteres")
-	@NotEmpty(message = "{videojuego.description.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 3, max = 200, message = "{val.videojuego.descripcion.size}")
+	@NotEmpty(message = "{val.videojuego.descripcion.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.videojuego.descripcion.pattern}")
 	private String descripcion;
 
 
     private Date fechaLanzamiento;
 
-	@Size(min = 3, max = 40, message = "El desarollador debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{videojuego.desarrollador.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 2, max = 40, message = "{val.videojuego.desarrollador.size}")
+	@NotEmpty(message = "{val.videojuego.desarrollador.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.videojuego.desarrollador.pattern}")
     private String desarrollador;
 
-	@NotNull(message = "Debes poner una puntuacion")
-	@Min(value = 0L, message = "La puntuacion minima es 0")
-	@Max(value = 10L, message = "La puntuacion maxima es 10")
+	@NotNull(message = "{val.videojuego.puntuacion.notnull}")
+	@Min(value = 0L, message = "{val.videojuego.puntuacion.min}")
+	@Max(value = 10L, message = "{val.videojuego.puntuacion.max}")
     private double puntuacion;
 
-	@NotNull(message = "Debes poner un precio")
-	@Min(value = 1L, message = "El precio minimo es un euro")
-	@Max(value = 1000, message = "El precio maximo es de 1000 euros")
+	@NotNull(message = "{val.videojuego.precio.notnull}")
+	@Min(value = 1L, message = "{val.videojuego.precio.min}")
+	@Max(value = 1000, message = "{val.videojuego.precio.max}")
     private double precio;
     
     private boolean alta = true;

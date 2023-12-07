@@ -1,5 +1,8 @@
 .menu h1, .menu a, .menu li {
   font-family: Roboto, sans-serif;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .menu h1 {
   font-size: 26px;
@@ -15,6 +18,10 @@
 .menu .nav {
   -webkit-margin-start: 10px;
           margin-inline-start: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 10px auto;
 }
 .menu .nav > li {
   display: inline-block;

@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Plataforma {
 	
-	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
+	@Size(min = 2, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
 	@NotEmpty(message = "{plataforma.nombre.notempty}")
 	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
 	private String nombre;

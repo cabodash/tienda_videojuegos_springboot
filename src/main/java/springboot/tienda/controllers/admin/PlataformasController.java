@@ -46,7 +46,7 @@ public class PlataformasController {
 	@RequestMapping("borrarPlataforma")
 	public String borrarPlataforma(@RequestParam("id") Integer id, Model model) {
 		servicioPlataformas.borrarPlataforma(id);
-		return obtenerPlataformas(model);
+		return "redirect:obtenerPlataformas";
 	}
 	
 	@RequestMapping("editarPlataforma")
@@ -60,10 +60,10 @@ public class PlataformasController {
 	public String guardarCambiosPlataforma(@ModelAttribute("plataformaEditar") @Valid Plataforma PlataformaEditar, BindingResult resultadoValidacion, Model model) {
 		if (resultadoValidacion.hasErrors()) {
 			model.addAttribute("nuevaPlataforma", PlataformaEditar);
-			return "admin/plataformas_registro";
+			return "admin/plataformas_editar";
 		}
 		servicioPlataformas.guardarCambiosPlataforma(PlataformaEditar);
-		return obtenerPlataformas(model);
+		return "redirect:obtenerPlataformas";
 	}
 
 }

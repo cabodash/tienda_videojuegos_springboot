@@ -1,24 +1,24 @@
 <div class="div-registro">
 	<form id="formUsuario" class="formulario">
 		<h2>Registrate</h2>
-		<img class="preview" id="preview-img" src="img-resources/1.jpg" alt="Imagen por defecto">
+		<img class="preview" id="preview-img" src="images/default_profile.jpg" alt="Imagen por defecto">
 		
-		<div class="input-box" id="contenedor-nombre">
+		<div class="input-box no-error" id="contenedor-nombre">
 		    <input type="text" id="nombre" name="nombre">
 		    <label for="nombre">Nombre</label>
-		    <p class="suggestion">El nombre debe comprender entre 3-10 caractereees y ser solo letras, numeros y espacios en blanco</p>
+		    <p class="suggestion"  texto-error="El nombre debe comprender entre 3-10 caracteres y ser solo letras, numeros y espacios en blanco">El nombre debe comprender entre 3-10 caracterees y ser solo letras, numeros y espacios en blanco</p>
 		</div>
-		<div class="input-box" id="contenedor-email">
+		<div class="input-box no-error" id="contenedor-email">
 		    <input type="text" id="email" name="email">
 		    <label for="email">Email</label>
-		    <p class="suggestion">El email debe ser un email valido</p>
+		    <p class="suggestion" texto-error="El email debe ser un email valido">El email debe ser un email valido</p>
 		</div>
-		<div class="input-box" id="contenedor-pass">
+		<div class="input-box no-error" id="contenedor-pass">
 		    <input type="password" id="pass" name="pass">
 		    <label for="pass">Contraseña</label>
-		    <p class="suggestion">La contraseña solo puede contener letras, numeros y debe ser de entre 3-20 caracteres</p>
+		    <p class="suggestion" texto-error="La contraseña solo puede contener letras, numeros y debe ser de entre 3-20 caracteres">La contraseña solo puede contener letras, numeros y debe ser de entre 3-20 caracteres</p>
 		</div>
-		<div class="input-box">
+		<div class=" no-error">
 		    <input type="file" name="avatar" id="avatar"/>
 		    <label for="avatar">Foto de perfi</label>
 		    <p class="suggestion"></p>

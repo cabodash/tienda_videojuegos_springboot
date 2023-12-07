@@ -16,12 +16,16 @@ function cargar_plantilla_listado(){
 	$("#contenedor").html(plantillaVideojuegos);
 	$("#buscador").val(nombre_a_buscar);
 
-	
+	typingTimer = null;
 	//Buscador
 	$("#buscador").keyup(function (e) {
-		nombre_a_buscar = $(this).val();
-		comienzo_resultados = 0;
-		mostrar_videojuegos();
+		clearTimeout(typingTimer);
+		typingTimer = setTimeout(function(){
+			nombre_a_buscar = $("#buscador").val();
+			comienzo_resultados = 0;
+			mostrar_videojuegos();
+		}, 500);
+		
 		
 	});
 	

@@ -26,6 +26,6 @@ public class LoginAdminController {
         //Consulta del idioma de usuario
 		String idiomaActual = mensajes.getMessage("idioma", null, LocaleContextHolder.getLocale());
 		System.out.println("Idioma actual:" + idiomaActual);
-		return "inicio_" + idiomaActual;
+		return "redirect:inicio_" + idiomaActual;
     }
 }

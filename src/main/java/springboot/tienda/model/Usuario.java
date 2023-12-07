@@ -30,7 +30,7 @@ public class Usuario {
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Debe ser un email válido")
 	private String email;
 
-	@Size(min = 5, max = 40, message = "La contraseña debe tener entre 5 y 40 caracteres")
+	@Size(min = 3, max = 40, message = "La contraseña debe tener entre 3 y 40 caracteres")
 	@NotEmpty(message = "{usuario.pass.notempty}")
 	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ]+", message = "Solo puede tener letras y números")
 	private String pass;

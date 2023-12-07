@@ -40,6 +40,7 @@ $("#registro").click(function () {
 		}
 		if(!valid){
 			event.preventDefault();
+			alert("Hay errores en el formulario");
 			return;
 		}
 
@@ -72,6 +73,8 @@ function inputs() {
 		input.addEventListener('focusout', function () {
 			isFilled(input, element);
 		});
+
+		
 
 	});
 

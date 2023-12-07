@@ -7,32 +7,33 @@
 </head>
 <body>
 
+
 	<div th:fragment="menu">
 		<span th:text="#{titulo.bienvenida}"></span>
 		<div>
-			<a href="?idioma=es">Español</a>
-			<a href="?idioma=en">English</a>
+			<a href="obtenerVideojuegos?idioma=es" th:text="#{admin.navbar.idiomaEspañol}"></a>
+			<a href="obtenerVideojuegos?idioma=en" th:text="#{admin.navbar.idiomaIngles}"></a>
 		</div>
 		<div class="menu">
 			<ul class="nav">
-			  <li><a href="../">Volver a la parte cliente</a></li>  
-			  <li class="drop">Gestionar
+			  <li><a href="../" th:text="#{admin.navbar.volver}"></a></li>  
+			  <li class="drop"><span th:text="#{admin.navbar.gestionar}"></span>
 			    <ul>
-			      <li><a href="obtenerVideojuegos">Videojuegos</a></li>
-			      <li><a href="obtenerUsuarios">Usuarios</a></li>
-			      <li><a href="obtenerGeneros">Generos</a></li>
-				  <li><a href="obtenerPlataformas">Plataformas</a></li>
+			      <li><a href="obtenerVideojuegos" th:text="#{admin.navbar.videojuegos}"></a></li>
+			      <li><a href="obtenerUsuarios" th:text="#{admin.navbar.usuarios}"></a></li>
+			      <li><a href="obtenerGeneros" th:text="#{admin.navbar.generos}"></a></li>
+				  <li><a href="obtenerPlataformas" th:text="#{admin.navbar.plataformas}"></a></li>
 			    </ul>
 			  </li>
-			  <li class="drop">Nuevo
+			  <li class="drop"><span th:text="#{admin.navbar.nuevo}"></span>
 			    <ul>
-			      <li><a href="registrarVideojuego">Videojuego</a></li>
-			      <li><a href="registrarUsuario">Usuario</a></li>
-			      <li><a href="registrarGenero">Genero</a></li>
-				  <li><a href="registrarPlataforma">Plataforma</a></li>
+			      <li><a href="registrarVideojuego" th:text="#{admin.navbar.registrarVideojuego}"></a></li>
+			      <li><a href="registrarUsuario" th:text="#{admin.navbar.registrarUsuario}"></a></li>
+			      <li><a href="registrarGenero" th:text="#{admin.navbar.registrarGenero}"></a></li>
+				  <li><a href="registrarPlataforma" th:text="#{admin.navbar.registrarPlataforma}"></a></li>
 			    </ul>
 			  </li>
-			  <li><a href="../logoutAdmin">Cerrar Sesion</a></li>
+			  <li><a href="../logoutAdmin" th:text="#{admin.navbar.cerrarSesion}"></a></li>
 			</ul>			
 		</div>
 	</div>

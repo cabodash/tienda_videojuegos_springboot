@@ -76,8 +76,8 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		v.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
 		v.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
 		if(v.getFotoSubida().getSize() == 0) {
-			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual");
 			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());
+			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual: " + vAnterior.getImagenPortada());
 			v.setImagenPortada(vAnterior.getImagenPortada());
 		}else {
 			System.out.println("[i] -Asignar una nueva foto");

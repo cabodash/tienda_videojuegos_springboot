@@ -3,53 +3,76 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<link rel="stylesheet" href="../css/formulario.css">
-	<link rel="stylesheet" href="../css/admin.css">
-	<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/formularios_admin.css">
+	<link rel="stylesheet" href="../css/nav_admin.css">
+	<title th:text="#{admin.videojuego.registro.tituloPagina}"></title>
 </head>
 
 <body>
 
+	<div th:insert="fragments/general.html :: menu"></div>
 
-	introduce los datos del nuevo videojuego:
+
 
 	<form class="formulario" action="#" th:action="guardarVideojuego" th:object="${nuevoVideojuego}" method="post"
 		enctype="multipart/form-data">
-		<div class="input-box">
+		<h2 th:text="#{admin.videojuego.registro.tituloForm}"></h2>
+
+		<img class="preview videojuego-img" id="preview-img" src="../images/default_profile.jpg" alt="Imagen por defecto">
+		<input type="file" th:field="*{fotoSubida}" />
+
+		<div class="input-box no-error">
 			<input type="text" name="nombre" th:field="*{nombre}">
-			<label for="nombre">Nombre</label>
+			<label for="nombre" th:text="#{videojuego.nombre}"></label>
 			<p class="suggestion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
 		</div>
 
-		<div class="textarea-box">
-			<textarea type="text" th:field="*{descripcion}" name="descripcion"></textarea>
-			<label for="descripcion">Descripcion</label>
-			<p class="suggestion"></p>
+		<div class="textarea-box no-error">
+			<textarea th:field="*{descripcion}" maxlength="200" name="descripcion"></textarea>
+			<label for="descripcion" th:text="#{videojuego.descripcion}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></p>
 		</div>
-		Fecha: <input type="date" step=".01" th:field="*{fechaLanzamiento}" /> <br>
-		Desarrollador: <input type="text" step=".01" th:field="*{desarrollador}" /> <br>
-		Puntuacion: <input type="number" step=".01" th:field="*{puntuacion}" /> <br>
-		Precio: <input type="number" step=".01" th:field="*{precio}" /> <br>
-		Generos:
-		<div th:each="genero : ${generos}">
-			<input type="checkbox" th:value="${genero.id}" name="generosSeleccionados" /> 
-			<span th:text="${genero.nombre}"></span><br/>
+
+		<div class="input-box no-error">
+			<input type="number" step=".01" th:field="*{precio}" />
+			<label for="precio" th:text="#{videojuego.precio}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></p>
 		</div>
-		<br>
+
+		Fecha de Lanzamiento: <input type="date" th:field="*{fechaLanzamiento}" />
+
+		<div class="input-box no-error">
+			<input type="text" th:field="*{desarrollador}" />
+			<label for="desarrollador" th:text="#{videojuego.desarrollador}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('desarrollador')}" th:errors="*{desarrollador}"></p>
+		</div>
+
+		<div class="input-box no-error">
+			<input type="number" step=".01" th:field="*{puntuacion}" />
+			<label for="puntuacion" th:text="#{videojuego.puntuacion}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('puntuacion')}" th:errors="*{puntuacion}"></p>
+		</div>
+
 		<div>
-		Plataformas:
-		<div th:each="plataforma : ${plataformas}">
-			<input type="checkbox" th:value="${plataforma.id}" name="plataformasSeleccionadas"/>
-			<label th:text="${plataforma.nombre}"></label><br>
+			Generos:
+			<div th:each="genero : ${generos}">
+				<input type="checkbox" th:value="${genero.id}" name="generosSeleccionados" th:checked="${nuevoVideojuego.generos != null && nuevoVideojuego.generos.contains(genero)}"/> <!-- Si los generos no estan en null (si no peta) -->
+				<label th:text="${genero.nombre}"></label>
+			</div>
 		</div>
+
+		<div>
+			Plataformas:
+			<div th:each="plataforma : ${plataformas}">
+				<input type="checkbox" th:value="${plataforma.id}" name="plataformasSeleccionadas" th:checked="${nuevoVideojuego.plataformas != null && nuevoVideojuego.plataformas.contains(plataforma)}"/>
+				<label th:text="${plataforma.nombre}"></label>
+			</div>
 		</div>
-		<br>
-		portada: <input type="file" th:field="*{fotoSubida}" />
-		<br>
-		<input type="submit" value="Registrar Videojuego" />
+		<input class="btn-enviar" type="submit" th:value="#{admin.videojuego.registro.registrar}"/>
 	</form>
 
 	<script src="../js/formulario_inputs.js"></script>
+	<script src="../js/image_preview.js"></script>
 
 </body>
 

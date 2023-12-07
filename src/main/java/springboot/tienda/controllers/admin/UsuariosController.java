@@ -46,7 +46,7 @@ public class UsuariosController {
 	@RequestMapping("borrarUsuario")
 	public String borrarUsuario(@RequestParam("id") Integer id, Model model) {
 		servicioUsuarios.borrarUsuario(id);
-		return obtenerUsuarios(model);
+		return "redirect:obtenerUsuarios";
 	}
 	
 	@RequestMapping("editarUsuario")
@@ -60,10 +60,10 @@ public class UsuariosController {
 	public String guardarCambiosUsuario(@ModelAttribute("usuarioEditar") @Valid Usuario usuarioEditar, BindingResult resultadoValidacion,  Model model) {
 		if (resultadoValidacion.hasErrors()) {
 			model.addAttribute("usuarioEditar", usuarioEditar);
-			return "admin/usuarios_registro";	
+			return "admin/usuarios_editar";	
 		}
 		servicioUsuarios.guardarCambiosUsuario(usuarioEditar);
-		return obtenerUsuarios(model);
+		return "redirect:obtenerUsuarios";
 	}
 
 }

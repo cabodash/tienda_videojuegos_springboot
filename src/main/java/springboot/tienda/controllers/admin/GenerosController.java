@@ -46,7 +46,7 @@ public class GenerosController {
 	@RequestMapping("borrarGenero")
 	public String borrarGenero(@RequestParam("id") Integer id, Model model) {
 		servicioGeneros.borrarGenero(id);
-		return obtenerGeneros(model);
+		return "redirect:obtenerGeneros";
 	}
 	
 	@RequestMapping("editarGenero")
@@ -63,7 +63,7 @@ public class GenerosController {
 		return "admin/generos_editar";
 		}
 		servicioGeneros.guardarCambiosGenero(generoEditar);
-		return obtenerGeneros(model);
+		return "redirect:obtenerGeneros";
 	}
 
 }
