@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="../css/formularios_admin.css">
+	<link rel="stylesheet" href="../css/nav_admin.css">
+	<title th:text="#{admin.usuario.editar.tituloPagina}"></title>
 </head>
+
 <body>
-	
-	<form action="#" th:action="guardarCambiosUsuario" th:object="${usuarioEditar}"  method="post" enctype="multipart/form-data" >
-		<img height="80px" th:src="@{ '../mostrar_imagen_usuario?id=' + ${usuarioEditar.id} }" /><br>
-		nombre: <input type="text" th:field="*{nombre}" /> <br>
-		email:<input type="email" th:field="*{email}"/><br>
-		password:<input type="text" th:field="*{pass}"/><br>
-		foto de perfil:<input type="file" th:field="*{fotoSubida}"/><br>
-		<input type="hidden" th:field="*{id}"/>
-		<input type="submit" value="Guardar cambios"/>
+
+	<div th:insert="fragments/general.html :: menu"></div>
+
+	<form class="formulario" action="#" th:action="guardarCambiosUsuario" th:object="${usuarioEditar}" method="post"
+		enctype="multipart/form-data">
+
+		<h2 th:text="#{admin.usuario.editar.tituloForm}"></h2>
+
+		<img class="preview usuario-img" id="preview-img" th:src="@{ '../mostrar_imagen_usuario?id=' + ${usuarioEditar.id} }" alt="Imagen por defecto">
+		<input type="file" th:field="*{fotoSubida}" />
+
+		<div class="input-box no-error">
+			<input type="text" name="nombre" th:field="*{nombre}">
+			<label for="nombre" th:text="#{usuario.nombre}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+		</div>
+
+		<div class="input-box no-error">
+			<input type="text" name="email" th:field="*{email}">
+			<label for="email" th:text="#{usuario.email}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+		</div>
+
+		<div class="input-box no-error">
+			<input type="text" name="pass" th:field="*{pass}">
+			<label for="pass" th:text="#{usuario.pass}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></p>
+		</div>
+
+		<input type="hidden" th:field="*{id}" />
+		<input class="btn-enviar" type="submit" th:value="#{admin.editar.confirmar}" />
 	</form>
 
+	<script src="../js/formulario_inputs.js"></script>
+	<script src="../js/image_preview.js"></script>
+
 </body>
+
 </html>

@@ -11,7 +11,8 @@ public interface ServicioPlataformas {
 	
 	
 	void registrarPlataforma(Plataforma g);	
-	void borrarPlataforma(int id);
+	void bajaPlataforma(int id);
+	void altaPlataforma(int id);
 	void borrarPlataformasVideojuegoPorIdVideojuego(int idVideojuego);
 	Plataforma obtenerPlataformaPorId(int id);
 	List<Plataforma> obtenerPlataformasPorIds(List<Integer> ids);

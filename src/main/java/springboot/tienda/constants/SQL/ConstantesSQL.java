@@ -63,6 +63,26 @@ public class ConstantesSQL {
 			+"WHERE videojuego_id = :videojuego_id";
 
 
+	public static final String SQL_OBTENER_VIDEOJUEGOS_DATO_JSON = 
+			"SELECT DISTINCT v.*" + 
+			"FROM videojuego v " + 
+			"LEFT JOIN generos_videojuegos gv ON v.id = gv.videojuego_id " +
+			"LEFT JOIN genero g ON gv.genero_id = g.id " +
+			"LEFT JOIN plataformas_videojuegos pv ON v.id = pv.videojuego_id " +
+			"LEFT JOIN plataforma p ON pv.plataforma_id = p.id " + 
+			"WHERE v.alta = true " +
+			"AND (v.nombre LIKE :dato " + 
+			"OR v.desarrollador LIKE :dato " + 
+			"OR g.nombre LIKE :dato " + 
+			"OR p.nombre LIKE :dato) " + 
+			"ORDER BY v.id DESC " +
+			"LIMIT :comienzo, 6";
+
+    public static final String SQL_CAMBIAR_CANTIDAD_PRODUCTO_CARRITO = 
+			"UPDATE producto_carrito "
+			+ "SET cantidad = :cantidad "
+			+ "WHERE carrito_id = :carrito_id "
+			+ "AND videojuego_id = :videojuego_id";
    
 
 	

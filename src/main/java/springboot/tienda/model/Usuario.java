@@ -20,20 +20,22 @@ import org.springframework.web.multipart.MultipartFile;
 public class Usuario {
 
 
-	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{usuario.nombre.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 3, max = 40, message = "{val.usuario.nombre.size}")
+	@NotEmpty(message = "{val.usuario.nombre.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.usuario.nombre.pattern}")
 	private String nombre;
 
-	@Size(min = 3, max = 40, message = "El email debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{usuario.email.notempty}")
-	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Debe ser un email válido")
+	@Size(min = 3, max = 40, message = "{val.usuario.email.size}")
+	@NotEmpty(message = "{val.usuario.email.notempty}")
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "{val.usuario.email.pattern}")
 	private String email;
 
-	@Size(min = 3, max = 40, message = "La contraseña debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{usuario.pass.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ]+", message = "Solo puede tener letras y números")
+	@Size(min = 3, max = 40, message = "{val.usuario.pass.size}")
+	@NotEmpty(message = "{val.usuario.pass.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ]+", message = "{val.usuario.pass.pattern}")
 	private String pass;
+
+	private boolean alta = true;
 	
 	@Lob  // Campo tipo clob / blob. Tipo de dato que almacena un array de bytes
     @Column(name = "imagen_perfil")
@@ -100,6 +102,12 @@ public class Usuario {
 	}
 	public void setFotoSubida(MultipartFile fotoSubida) {
 		this.fotoSubida = fotoSubida;
+	}
+	public boolean isAlta() {
+		return alta;
+	}
+	public void setAlta(boolean alta) {
+		this.alta = alta;
 	}
 	
 

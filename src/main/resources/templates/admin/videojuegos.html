@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../css/nav_admin.css">
-<link rel="stylesheet" href="../css/listados_admin.css">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="../css/nav_admin.css">
+	<link rel="stylesheet" href="../css/listados_admin.css">
+	<title th:text="#{admin.videojuego.listado.tituloPagina}"></title>
 </head>
+
 <body>
-	
-<div th:insert="fragments/general.html :: menu"></div>
-<br>
-<form th:action="obtenerVideojuegos" class="form-buscador ">
-	<img class="lupa" src="/images/lupa.png">
-	<input type="text" name="buscador" th:value="${nombre}" placeholder="Buscar Videojuego" autocomplete="off">
-	<input class="btn-buscar" type="submit" value="Buscar">
-</form>
 
-<div>
-	<a th:if= "${anterior >= 0}" th:href="@{${ 'obtenerVideojuegos?comienzo=' + anterior + '&nombre=' + nombre }}">Anterior</a>
-	<a th:if= "${siguiente < total}" th:href="@{${ 'obtenerVideojuegos?comienzo=' + siguiente + '&nombre=' + nombre }}">siguiente</a>
-</div>
+	<div th:insert="fragments/general.html :: menu"></div>
+	<br>
+	<form th:action="obtenerVideojuegos" class="form-buscador ">
+		<img class="lupa" src="/images/lupa.png">
+		<input type="text" name="buscador" th:value="${nombre}"
+			th:placeholder="#{admin.videojuego.listado.buscador.placeholder}" autocomplete="off">
+		<input class="btn-buscar" type="submit" th:value="#{admin.listado.buscador.buscar}">
+	</form>
 
-listado de videojuegos:
-
-<div class="listado">
-	<div class="item-listado" th:each="videojuego : ${videojuegos}" style="margin: 10px;" >
-		<img class="img-videojuego" th:src="@{${ '../mostrar_imagen_videojuego?id=' + videojuego.id }}" />
-		<p>nombre: <span th:text="${videojuego.nombre}" ></span></p><br>	
-		<p>descripcion: <span th:text="${videojuego.descripcion}"></span></p><br>
-		<p>Fecha de lanzamiento: <span th:text="${videojuego.fechaLanzamiento}"></span></p> <br>
-		<p>Desarrollador: <span th:text="${videojuego.desarrollador}"></span></p> <br>
-		<p>precio: <span th:text="${videojuego.precio}"></span></p> <br>
-
-		<p>plataformas: 
-		<span th:each="plataforma : ${videojuego.plataformas}" th:text="${plataforma.nombre} + ', '"></span>
-		</p> <br>
-		<p>Generos: 
-			<span th:each="genero : ${videojuego.generos}" th:text="${genero.nombre} + ', '"></span>
-			</p> <br>
-		
-		<div class="item-enlaces">
-			<a class="btn-primary" th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}">Editar</a>
-			<a class="btn-primary" th:href="@{${ 'borrarVideojuego?id=' + videojuego.id }}" onclick="return confirm('Estás Seguro')">Dar de baja</a>
-		</div>
-		
+	<div>
+		<a th:if="${anterior >= 0}" th:href="@{${ 'obtenerVideojuegos?comienzo=' + anterior + '&nombre=' + nombre }}"
+			th:text="#{admin.listado.textoAnterior}"></a>
+		<a th:if="${siguiente < total}"
+			th:href="@{${ 'obtenerVideojuegos?comienzo=' + siguiente + '&nombre=' + nombre }}"
+			th:text="#{admin.listado.textoSiguiente}"></a>
 	</div>
-</div>
 
+	<div class="listado">
+		<div class="item-listado" th:each="videojuego : ${videojuegos}" style="margin: 10px;">
+			<img class="img-videojuego" th:src="@{${ '../mostrar_imagen_videojuego?id=' + videojuego.id }}" />
+			<p>nombre: <span th:text="${videojuego.nombre}"></span></p><br>
+			<p>descripcion: <span th:text="${videojuego.descripcion}"></span></p><br>
+			<p>Fecha de lanzamiento: <span th:text="${videojuego.fechaLanzamiento}"></span></p> <br>
+			<p>Desarrollador: <span th:text="${videojuego.desarrollador}"></span></p> <br>
+			<p>precio: <span th:text="${videojuego.precio}"></span> €</p> <br>
+
+
+			<p>plataformas:
+				<span th:each="plataforma : ${videojuego.plataformas}" th:text="${plataforma.nombre} + ', '"></span>
+			</p> <br>
+			<p>Generos:
+				<span th:each="genero : ${videojuego.generos}" th:text="${genero.nombre} + ', '"></span>
+			</p> <br>
+			<input class="alta" type="checkbox" th:checked="${videojuego.alta}" style="display: none;">
+
+			<div class="item-enlaces">
+				<a class="btn-primary" th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}"
+					th:text="#{admin.listado.item.editar}"></a>
+				<a class="btn-primary" th:if= "${videojuego.alta == false}"
+					th:href="@{${ 'altaVideojuego?id=' + videojuego.id }}" th:text="#{admin.listado.item.alta}"></a>
+				<a class="btn-primary" th:if= "${videojuego.alta == true}"
+					th:href="@{${ 'bajaVideojuego?id=' + videojuego.id }}" th:text="#{admin.listado.item.baja}"></a>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="../js/alta_admin.js"></script>
 
 </body>
+
 </html>

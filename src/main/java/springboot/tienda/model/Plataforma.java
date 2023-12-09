@@ -20,21 +20,25 @@ import javax.validation.constraints.Size;
 @Entity
 public class Plataforma {
 	
-	@Size(min = 2, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{plataforma.nombre.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 2, max = 40, message = "{val.plataforma.nombre.size}")
+	@NotEmpty(message = "{val.plataforma.nombre.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.plataforma.nombre.pattern}")
 	private String nombre;
 
-	@Size(min = 3, max = 200, message = "La descripcion debe tener entre 3 y 200 caracteres")
-	@NotEmpty(message = "{plataforma.descripcion.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 3, max = 200, message = "{val.plataforma.descripcion.size}")
+	@NotEmpty(message = "{val.plataforma.descripcion.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.plataforma.descripcion.pattern}")
 	private String descripcion;
+
+	private boolean alta = true;
 	
+	
+
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "plataformas_videojuegos",
     joinColumns = @JoinColumn(name = "plataforma_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name ="videojuego_id", referencedColumnName = "id"))
-
 	private List<Videojuego> videojuegos;
 	
 	@Id
@@ -89,7 +93,14 @@ public class Plataforma {
 	public void setVideojuegos(List<Videojuego> videojuegos) {
 		this.videojuegos = videojuegos;
 	}
-	
+	public boolean isAlta() {
+		return alta;
+	}
+
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
+	}
 	
 	
 }

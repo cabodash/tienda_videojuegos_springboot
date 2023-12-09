@@ -59,7 +59,7 @@ public class ServicioWEB_Usuarios {
 		Usuario u = (Usuario)servicioUsuarios.obtenerUsuarioPorEmailYpass(email, pass);
 		String respuesta = "";
 		if (u != null) {
-			request.getSession().setAttribute("usuario_identificado", u);;
+			request.getSession().setAttribute("usuario_identificado", u);
 			respuesta= "ok," + u.getNombre();
 		}else {
 			respuesta = "Usuario o contraseña incorrectas";

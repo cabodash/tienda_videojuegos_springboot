@@ -2,21 +2,28 @@
 	<h2>Carrito de la compra</h2>
 	<div class="contenedor-articulos">
 		{{#.}}
-			<div class="item-carrito" id="div-producto-{{videojuego_id}}">
-				<p>Nombre: <span>{{nombre}}</span></p>
-				<img src="mostrar_imagen_videojuego?id={{videojuego_id}}" />
-				<p>Precio: <span>{{precio}}</span> &euro;</p>
-				<div class="item-cantidad">
-					<p>Cantidad: </p>
-					<input id-videojuego="{{videojuego_id}}" class="cantidad_producto_carrito" type="number" value="{{cantidad}}"/>
-				</div>
-				<a id-videojuego="{{videojuego_id}}" class="borrrar_producto_carrito btn-primary" href="#">Borrar producto</a>
+		<div class="item-carrito" id="div-producto-{{videojuego_id}}">
+			<p>Nombre: <span>{{nombre}}</span></p>
+			<img src="mostrar_imagen_videojuego?id={{videojuego_id}}" />
+			<p>Precio/ud: <span class="precio">{{precio}}</span> &euro;</p>
+			<p>Precio por <span class="cantidad-juegos">{{cantidad}}</span> juegos: <span class="precio-cantidad"></span> &euro;</p>
+			<div class="quantity">
+				<button class="restar" id-videojuego="{{videojuego_id}}">
+					<img class="pequeña" src="images/menos.png" width="20px" height="20px">
+				</button>
+				<label class="cantidad">{{cantidad}}</label>
+				<button class="aumentar" id-videojuego="{{videojuego_id}}">
+					<img class="pequeña" src="images/anadir.png" width="20px" height="20px">
+				</button>
 			</div>
-		
+			<a id-videojuego="{{videojuego_id}}" class="borrrar_producto_carrito btn-primary" href="#">Borrar
+				producto</a>
+		</div>
+
 		{{/.}}
 	</div>
-	
+
 	<div class="contenedor-boton-realizar-pedido">
-		<a id="realizar_pedido" class="boton-realizar-pedido btn-primary" href="#" >Realizar Pedido</a>
+		<a id="realizar_pedido" class="boton-realizar-pedido btn-primary" href="#">Realizar Pedido</a>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 //mostrar videojuegos en cliente
-let nombre_a_buscar = "";
+let dato_a_buscar = "";
 let comienzo_resultados = 0;
 const cantidad_paginacion = 6;
 
@@ -14,14 +14,14 @@ function cargar_plantilla_listado(){
 
 	//Cargar Plantilla del buscador
 	$("#contenedor").html(plantillaVideojuegos);
-	$("#buscador").val(nombre_a_buscar);
+	$("#buscador").val(dato_a_buscar);
 
 	typingTimer = null;
 	//Buscador
 	$("#buscador").keyup(function (e) {
 		clearTimeout(typingTimer);
 		typingTimer = setTimeout(function(){
-			nombre_a_buscar = $("#buscador").val();
+			dato_a_buscar = $("#buscador").val();
 			comienzo_resultados = 0;
 			mostrar_videojuegos();
 		}, 500);
@@ -60,7 +60,7 @@ function cargar_plantilla_listado(){
 }
 function mostrar_videojuegos() {
 	//cargar JSON de videojuegos
-	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos", { nombre: nombre_a_buscar, comienzo: comienzo_resultados }).done(function (res) {
+	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos", { dato: dato_a_buscar, comienzo: comienzo_resultados }).done(function (res) {
 		
 		//antes de mostrar el resultado usando la plantilla podemos prepararlo un poco
 		let videojuegos = res.videojuegos;
@@ -155,4 +155,21 @@ function cargar_reproductores() {
 		});
 
 	});
+}
+
+
+function actualizarNavbar(){
+	if (nombre_login != "") {
+		$("#registro").hide();
+		$("#identificar").hide();
+		$("#carrito").show();
+		$("#misdatos").show();
+		$("#logout").show();
+	} else {
+		$("#registro").show();
+		$("#identificar").show();
+		$("#carrito").hide();
+		$("#misdatos").hide();
+		$("#logout").hide();
+	}
 }

@@ -18,15 +18,18 @@ import javax.validation.constraints.Size;
 @Entity
 public class Genero {
 	
-	@Size(min = 3, max = 40, message = "El nombre debe tener entre 3 y 40 caracteres")
-	@NotEmpty(message = "{genero.nombre.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 2, max = 40, message = "{val.genero.nombre.size}")
+	@NotEmpty(message = "{val.genero.nombre.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.genero.nombre.pattern}")
 	private String nombre;
 
-	@Size(min = 3, max = 200, message = "La descripcion debe tener entre 3 y 200 caracteres")
-	@NotEmpty(message = "{plataforma.descripcion.notempty}")
-	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "Solo puede tener letras, números, espacios en blanco, comillas simples y guiones")
+	@Size(min = 3, max = 200, message = "{val.genero.descripcion.size}")
+	@NotEmpty(message = "{val.genero.descripcion.notempty}")
+	@Pattern(regexp = "[A-Za-z0-9áéíóúÁÉÍÓÚñÑ ' -]+", message = "{val.genero.descripcion.pattern}")
 	private String Descripcion;
+
+	private boolean alta = true;
+
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "generos_videojuegos",
@@ -70,5 +73,14 @@ public class Genero {
 		this.id = id;
 	}
 
+	
+	public boolean isAlta() {
+		return alta;
+	}
+
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
+	}
 	
 }

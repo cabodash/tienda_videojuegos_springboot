@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../css/inicio.css">
-<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/nav_admin.css">
+<link rel="stylesheet" href="../css/listados_admin.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,14 +17,19 @@ listado de Usuarios:
 		<p>Nombre: <span th:text="${usuario.nombre}" ></span></p>
 		<p>Email: <span th:text="${usuario.email}"></span></p>
 		
+		<input class="alta" type="checkbox" th:checked="${usuario.alta}" style="display: none;">
 		<div class="item-enlaces">
-			<a class="btn-primary" th:href="@{${ 'editarUsuario?id=' + usuario.id }}">Editar</a>
-			<a class="btn-primary" th:href="@{${ 'borrarUsuario?id=' + usuario.id }}" onclick="return confirm('Estás Seguro')">Borrar</a>
+			<a class="btn-primary" th:href="@{${ 'editarUsuario?id=' + usuario.id }}" th:text="#{admin.listado.item.editar}">Editar</a>
+			<a class="btn-primary" th:if= "${usuario.alta == false}"
+					th:href="@{${ 'altaUsuario?id=' + usuario.id }}" th:text="#{admin.listado.item.alta}"></a>
+				<a class="btn-primary" th:if= "${usuario.alta == true}"
+					th:href="@{${ 'bajaUsuario?id=' + usuario.id }}" th:text="#{admin.listado.item.baja}"></a>
 		</div>
 		
 	</div>
 </div>
 
+<script src="../js/alta_admin.js"></script>
 
 </body>
 </html>

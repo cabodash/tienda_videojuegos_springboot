@@ -6,6 +6,7 @@ $("#logout").click(function(){
 				$("#contenedor").html("Hasta pronto " + nombre_login);
 				$("#mensaje_login").html("No estas identificado");
 				nombre_login = "";
+				actualizarNavbar();
 			}
 		}
 	});

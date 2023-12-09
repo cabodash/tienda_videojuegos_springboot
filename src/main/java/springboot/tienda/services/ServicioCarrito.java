@@ -7,6 +7,7 @@ public interface ServicioCarrito {
 	void agregarProducto(int idUsuario, int idProducto, int cantidad);
 	void actualizarProductoCarrito(int idUsuario, int idProducto, int cantidad);
 	void borrarCarrito(int idUsuario, int idProducto);
+	void cambiarCantidadProducto(int idUsuario, int idProducto, int cantidad);
 	
 	
 	

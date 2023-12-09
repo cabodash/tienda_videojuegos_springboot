@@ -10,7 +10,8 @@ public interface ServicioGeneros {
 	
 	
 	void registrarGenero(Genero g);	
-	void borrarGenero(int id);
+	void bajaGenero(int id);
+	void altaGenero(int id);
 	void borrarGenerosVideojuegoPorIdVideojuego(int idVideojuego);
 	Genero obtenerGeneroPorId(int id);
 	List<Genero> obtenerGenerosPorIds(List<Integer> ids);

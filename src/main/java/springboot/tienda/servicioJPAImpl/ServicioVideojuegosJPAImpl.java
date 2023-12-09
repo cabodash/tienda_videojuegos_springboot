@@ -49,18 +49,10 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	public List<Videojuego> obtenerVideojuegos() {
 		// JPQL -> lenguaje de consultas de jpa, es muy similar a sql
 		// ventaja: devuelve objetos
-		return entityManager.createQuery("select v from Videojuego v where v.alta = true order by v.id desc").getResultList();
+		return entityManager.createQuery("select v from Videojuego v order by v.id desc").getResultList();
 	}
 
-	@Override
-	public void borrarVideojuego(int id) {
-		//Ya no borramos productos sino que los damos de baja
-		//entityManager.remove(entityManager.find(Videojuego.class, id));
-		Videojuego v = entityManager.find(Videojuego.class, id);
-		v.setAlta(false);
-		entityManager.merge(v);
-		
-	}
+	
 
 	@Override
 	public Videojuego obtenerVideojuegoPorId(int id) {
@@ -96,7 +88,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 
 	@Override
 	public List<Videojuego> obtenerVideojuegosPorNombre(String nombre) {
-		return entityManager.createQuery("select v from Videojuego v where v.alta = true and v.nombre like :nombre order by v.id desc")
+		return entityManager.createQuery("select v from Videojuego v where v.nombre like :nombre order by v.id desc")
 		.setParameter("nombre", "%" + nombre + "%")
 		.getResultList();
 	}
@@ -104,7 +96,7 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	@Override
 	public List<Videojuego> obtenerVideojuegosPorNombreComienzoFin(String nombre, int comienzo,
 			int resultadosPorPagina) {
-		return entityManager.createQuery("select v from Videojuego v where v.alta = true and v.nombre like :nombre order by v.id desc")
+		return entityManager.createQuery("select v from Videojuego v where v.nombre like :nombre order by v.id desc")
 		.setParameter("nombre", "%" + nombre + "%")
 		.setFirstResult(comienzo)
 		.setMaxResults(resultadosPorPagina)
@@ -122,12 +114,12 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	
 	//Metodos para cliente
 	@Override
-	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String nombre, int comienzo) {
+	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String dato, int comienzo) {
 		Query query = entityManager.createNativeQuery(
-				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_PARA_JSON);
+				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_DATO_JSON);
 		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
 		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-		nativeQuery.setParameter("nombre","%" + nombre + "%");
+		nativeQuery.setParameter("dato","%" + dato + "%");
 		nativeQuery.setParameter("comienzo", comienzo);
 		List<Map<String, Object>> videojuegos = nativeQuery.getResultList();
 		return videojuegos;
@@ -145,6 +137,41 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		List<Map<String, Object>> generos = servicioGeneros.obtenerGenerosParaJSON(idVideojuego);
 		detallesVideojuego.put("generos", generos);
 		return detallesVideojuego;
+	}
+
+	@Override
+	public List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina) {
+		String qlString = 
+			"select distinct v from Videojuego v "
+			+ "left join v.generos g "
+			+ "left join v.plataformas p "
+			+ "where (v.nombre like :dato "
+			+ "or v.desarrollador like :dato "
+			+ "or g.nombre like :dato "
+			+ "or p.nombre like :dato) "
+			+ "order by v.id desc";
+		return entityManager.createQuery(qlString)
+		.setParameter("dato", "%" + dato + "%")
+		.setFirstResult(comienzo)
+		.setMaxResults(resultadosPorPagina)
+		.getResultList();
+	}
+
+	@Override
+	public void bajaVideojuego(int id) {
+		//Ya no borramos productos sino que los damos de baja
+		//entityManager.remove(entityManager.find(Videojuego.class, id));
+		Videojuego v = entityManager.find(Videojuego.class, id);
+		v.setAlta(false);
+		entityManager.merge(v);
+		
+	}
+
+	@Override
+	public void altaVideojuego(int id) {
+		Videojuego v = entityManager.find(Videojuego.class, id);
+		v.setAlta(true);
+		entityManager.merge(v);
 	}	
 
 	

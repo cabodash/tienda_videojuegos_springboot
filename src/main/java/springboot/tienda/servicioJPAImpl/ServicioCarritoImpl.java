@@ -79,6 +79,22 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	}
 
 	@Override
+	public void cambiarCantidadProducto(int idUsuario, int idProducto, int cantidad) {
+		Usuario u = (Usuario) entityManager.find(Usuario.class, idUsuario);
+		Carrito c = u.getCarrito();
+		if (c != null) {
+			Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_CAMBIAR_CANTIDAD_PRODUCTO_CARRITO);
+			query.setParameter("carrito_id", c.getId());
+			query.setParameter("videojuego_id", idProducto);
+			query.setParameter("cantidad", cantidad);
+			NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
+			nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+			query.executeUpdate();
+		}
+
+	}
+
+	@Override
 	public List<Map<String, Object>> obtenerProductosCarrito(int idUsuario) {
 		Usuario u = (Usuario) entityManager.find(Usuario.class, idUsuario);
 		Carrito c = u.getCarrito();

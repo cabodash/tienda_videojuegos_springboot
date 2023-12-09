@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import springboot.tienda.model.Genero;
-import springboot.tienda.model.Plataforma;
 import springboot.tienda.model.Videojuego;
 import springboot.tienda.services.ServicioGeneros;
 import springboot.tienda.services.ServicioPlataformas;
@@ -36,7 +34,7 @@ public class VideojuegosController {
 	@RequestMapping("obtenerVideojuegos")
 	public String obtenerVideojuegos(@RequestParam(name = "buscador", defaultValue = "") String nombre,@RequestParam(name = "comienzo", defaultValue = "0") Integer comienzo, Model model) {
 
-		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegosPorNombreComienzoFin(nombre, comienzo, 10));
+		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegosDatoPaginado(nombre, comienzo, 10));
 		model.addAttribute("nombre", nombre);
 		model.addAttribute("siguiente", comienzo + 10);
 		model.addAttribute("anterior", comienzo -10);
@@ -82,9 +80,15 @@ public class VideojuegosController {
 		return "admin/videojuegos_registro_ok";
 	}
 	
-	@RequestMapping("borrarVideojuego")
-	public String borrarVideojuego(@RequestParam("id") Integer id, Model model) {
-		servicioVideojuegos.borrarVideojuego(id);
+	@RequestMapping("bajaVideojuego")
+	public String bajaVideojuego(@RequestParam("id") Integer id, Model model) {
+		servicioVideojuegos.bajaVideojuego(id);
+		return "redirect:obtenerVideojuegos";
+	}
+
+	@RequestMapping("altaVideojuego")
+	public String altaVideojuego(@RequestParam("id") Integer id, Model model) {
+		servicioVideojuegos.altaVideojuego(id);
 		return "redirect:obtenerVideojuegos";
 	}
 	

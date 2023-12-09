@@ -1,6 +1,5 @@
 package springboot.tienda.controllers.admin;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +42,14 @@ public class UsuariosController {
 		return "admin/usuarios_registro_ok";
 	}
 	
-	@RequestMapping("borrarUsuario")
-	public String borrarUsuario(@RequestParam("id") Integer id, Model model) {
-		servicioUsuarios.borrarUsuario(id);
+	@RequestMapping("bajaUsuario")
+	public String bajaUsuario(@RequestParam("id") Integer id, Model model) {
+		servicioUsuarios.bajaUsuario(id);
+		return "redirect:obtenerUsuarios";
+	}
+	@RequestMapping("altaUsuario")
+	public String altaUsuario(@RequestParam("id") Integer id, Model model) {
+		servicioUsuarios.altaUsuario(id);
 		return "redirect:obtenerUsuarios";
 	}
 	

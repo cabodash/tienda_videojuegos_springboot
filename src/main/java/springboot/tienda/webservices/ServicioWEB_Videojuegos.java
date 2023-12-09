@@ -30,10 +30,10 @@ public class ServicioWEB_Videojuegos {
 	private ServicioVideojuegos servicioVideojuegos;
 	
 	@RequestMapping("obtenerVideojuegos")
-	public InfoVideojuegos obtenerVideojuegos(@RequestParam(name = "nombre", defaultValue = "") String nombre, @RequestParam(name = "comienzo", defaultValue = "0") Integer comienzo){
+	public InfoVideojuegos obtenerVideojuegos(@RequestParam(name = "dato", defaultValue = "") String dato, @RequestParam(name = "comienzo", defaultValue = "0") Integer comienzo){
 		InfoVideojuegos info = new InfoVideojuegos();
-		info.setVideojuegos(servicioVideojuegos.obtenerVideojuegosParaFormarJSON(nombre, comienzo));
-		info.setTotalVideojuegos(servicioVideojuegos.obtenerTotalVideojuegos(nombre));
+		info.setVideojuegos(servicioVideojuegos.obtenerVideojuegosParaFormarJSON(dato, comienzo));
+		info.setTotalVideojuegos(servicioVideojuegos.obtenerTotalVideojuegos(dato));
 		return info;
 	}
 	

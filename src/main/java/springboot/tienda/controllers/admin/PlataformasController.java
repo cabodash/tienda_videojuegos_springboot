@@ -43,9 +43,15 @@ public class PlataformasController {
 		return "admin/plataformas_registro_ok";
 	}
 	
-	@RequestMapping("borrarPlataforma")
-	public String borrarPlataforma(@RequestParam("id") Integer id, Model model) {
-		servicioPlataformas.borrarPlataforma(id);
+	@RequestMapping("bajaPlataforma")
+	public String bajaPlataforma(@RequestParam("id") Integer id, Model model) {
+		servicioPlataformas.bajaPlataforma(id);
+		return "redirect:obtenerPlataformas";
+	}
+
+	@RequestMapping("altaPlataforma")
+	public String altaPlataforma(@RequestParam("id") Integer id, Model model) {
+		servicioPlataformas.altaPlataforma(id);
 		return "redirect:obtenerPlataformas";
 	}
 	

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.constants.SQL.ConstantesSQL;
 import springboot.tienda.model.Genero;
+import springboot.tienda.model.Videojuego;
 import springboot.tienda.services.ServicioGeneros;
 
 @Service
@@ -36,10 +37,21 @@ public class ServicioGenerosJPAImpl implements ServicioGeneros{
 	}
 
 	@Override
-	public void borrarGenero(int id) {
-		entityManager.remove(entityManager.find(Genero.class, id));
+	public void bajaGenero(int id) {
+		//Ya no borramos productos sino que los damos de baja
+		//entityManager.remove(entityManager.find(Videojuego.class, id));
+		Genero g = entityManager.find(Genero.class, id);
+		g.setAlta(false);
+		entityManager.merge(g);
 		
 	}
+
+	@Override
+	public void altaGenero(int id) {
+		Genero g = entityManager.find(Genero.class, id);
+		g.setAlta(true);
+		entityManager.merge(g);
+	}	
 
 	@Override
 	public Genero obtenerGeneroPorId(int id) {

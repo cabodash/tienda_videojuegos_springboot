@@ -10,7 +10,8 @@ public interface ServicioUsuarios {
 	//Metodos para la administracion
 	List<Usuario> obtenerUsuarios();
 	void registrarUsuario(Usuario u);
-	void borrarUsuario(int id);
+	void bajaUsuario(int id);
+	void altaUsuario(int id);
 	Usuario obtenerUsuarioPorId(int id);
 	void guardarCambiosUsuario(Usuario u);
 	

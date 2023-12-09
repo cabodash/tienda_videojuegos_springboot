@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.model.Usuario;
+import springboot.tienda.model.Videojuego;
 import springboot.tienda.services.ServicioUsuarios;
 
 @Service
@@ -35,9 +36,16 @@ public class ServicioUsuariosJPAImpl implements ServicioUsuarios{
 	}
 
 	@Override
-	public void borrarUsuario(int id) {
-		entityManager.remove(entityManager.find(Usuario.class, id));
-		
+	public void bajaUsuario(int id) {
+		Usuario u = entityManager.find(Usuario.class, id);
+		u.setAlta(false);
+		entityManager.merge(u);
+	}
+	@Override
+	public void altaUsuario(int id) {
+		Usuario u = entityManager.find(Usuario.class, id);
+		u.setAlta(true);
+		entityManager.merge(u);
 	}
 
 	@Override

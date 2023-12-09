@@ -56,6 +56,8 @@ $("#registro").click(function () {
 				alert(res);
 			}
 
+		}).done(function (e){
+			actualizarNavbar();
 		});
 		event.preventDefault();
 	});
@@ -73,8 +75,6 @@ function inputs() {
 		input.addEventListener('focusout', function () {
 			isFilled(input, element);
 		});
-
-		
 
 	});
 

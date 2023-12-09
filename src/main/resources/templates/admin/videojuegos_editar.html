@@ -4,14 +4,14 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="../css/formularios_admin.css">
 <link rel="stylesheet" href="../css/nav_admin.css">
-<title th:text="#{admin.videojuego.registro.tituloPagina}"></title>
+<title th:text="#{admin.videojuego.editar.tituloPagina}"></title>
 </head>
 <body>
 
 	<div th:insert="fragments/general.html :: menu"></div>
 	
 	<form class="formulario" action="#" th:action="guardarCambiosVideojuego" th:object="${videojuegoEditar}" method="post" enctype="multipart/form-data" >
-		<h2 th:text="#{admin.videojuego.registro.tituloForm}"></h2>
+		<h2 th:text="#{admin.videojuego.editar.tituloForm}"></h2>
 
 		<img class="preview videojuego-img" id="preview-img" th:src="@{${ '../mostrar_imagen_videojuego?id=' + videojuegoEditar.id }}" alt="Imagen por defecto">
 		<input type="file" th:field="*{fotoSubida}" />
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<input type="hidden" th:field="*{id}"/>
-		<input class="btn-enviar" type="submit" th:value="#{admin.videojuego.registro.registrar}" />
+		<input class="btn-enviar" type="submit" th:value="#{admin.editar.confirmar}" />
 	</form>
 
 	<script src="../js/formulario_inputs.js"></script>

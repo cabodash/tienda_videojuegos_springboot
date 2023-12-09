@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springboot.tienda.constants.SQL.ConstantesSQL;
 import springboot.tienda.model.Plataforma;
+import springboot.tienda.model.Videojuego;
 import springboot.tienda.services.ServicioPlataformas;
 
 @Service
@@ -48,10 +49,21 @@ public class ServicioPlataformasJPAImpl implements ServicioPlataformas{
 	}
 
 	@Override
-	public void borrarPlataforma(int id) {
-		entityManager.remove(entityManager.find(Plataforma.class, id));
+	public void bajaPlataforma(int id) {
+		//Ya no borramos productos sino que los damos de baja
+		//entityManager.remove(entityManager.find(Videojuego.class, id));
+		Plataforma p = entityManager.find(Plataforma.class, id);
+		p.setAlta(false);
+		entityManager.merge(p);
 		
 	}
+
+	@Override
+	public void altaPlataforma(int id) {
+		Plataforma p = entityManager.find(Plataforma.class, id);
+		p.setAlta(true);
+		entityManager.merge(p);
+	}	
 
 	@Override
 	public Plataforma obtenerPlataformaPorId(int id) {

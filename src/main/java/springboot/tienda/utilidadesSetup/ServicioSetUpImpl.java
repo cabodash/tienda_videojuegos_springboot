@@ -148,7 +148,7 @@ public class ServicioSetUpImpl implements ServicioSetUp {
 			entityManager.persist(elden_ring);
 			
 			Videojuego rdr2 = new Videojuego("Red dead redemtion 2", "descripcion de Red dead 2", generosRedDead2,
-			plataformasFIFA, Date.valueOf("2018-10-26"), "EA", 9.3, 70);
+			plataformasFIFA, Date.valueOf("2018-10-26"), "Rockstar Games", 9.3, 70);
 			rdr2.setImagenPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/images/videojuegos/rdr2.jpg"));
 			rdr2.setVideoPortada( copiarArchivoBase("http://localhost:8080/recursos_setup/videos/videojuegos/rdr2.webm"));
 			entityManager.persist(rdr2);

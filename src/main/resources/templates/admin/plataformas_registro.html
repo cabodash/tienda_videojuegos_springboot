@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="../css/formularios_admin.css">
+	<link rel="stylesheet" href="../css/nav_admin.css">
+	<title th:text="#{admin.plataforma.registro.tituloPagina}"></title>
 </head>
+
 <body>
 
+	<div th:insert="fragments/general.html :: menu"></div>
 
-introduce los datos de la nueva plataforma:
+	<form class="formulario" action="#" th:action="guardarPlataforma" th:object="${nuevaPlataforma}" method="post"
+		enctype="multipart/form-data">
+		<h2 th:text="#{admin.plataforma.registro.tituloForm}"></h2>
 
-<form action="#" th:action="guardarPlataforma" th:object="${nuevaPlataforma}" method="post" enctype="multipart/form-data" >
-	nombre: <input type="text" th:field="*{nombre}" /> <br>
-	descripcion:<br> <textarea rows="3" cols="20" th:field="*{descripcion}"></textarea><br>
-	<input type="submit" value="Registrar Plataforma"/>
-</form>
+		<div class="input-box no-error">
+			<input type="text" name="nombre" th:field="*{nombre}">
+			<label for="nombre" th:text="#{plataforma.nombre}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+		</div>
+
+		<div class="textarea-box no-error">
+			<textarea th:field="*{descripcion}" maxlength="200" name="descripcion"></textarea>
+			<label for="descripcion" th:text="#{plataforma.descripcion}"></label>
+			<p class="suggestion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></p>
+		</div>
+		<input class="btn-enviar" type="submit" th:value="#{admin.plataforma.registro.registrar}" />
+	</form>
+
+	<script src="../js/formulario_inputs.js"></script>
 
 </body>
+
 </html>

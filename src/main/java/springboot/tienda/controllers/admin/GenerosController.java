@@ -43,9 +43,15 @@ public class GenerosController {
 		return "admin/generos_registro_ok";
 	}
 	
-	@RequestMapping("borrarGenero")
-	public String borrarGenero(@RequestParam("id") Integer id, Model model) {
-		servicioGeneros.borrarGenero(id);
+	@RequestMapping("bajaGenero")
+	public String bajaGenero(@RequestParam("id") Integer id, Model model) {
+		servicioGeneros.bajaGenero(id);
+		return "redirect:obtenerGeneros";
+	}
+
+	@RequestMapping("altaGenero")
+	public String altaGenero(@RequestParam("id") Integer id, Model model) {
+		servicioGeneros.altaGenero(id);
 		return "redirect:obtenerGeneros";
 	}
 	

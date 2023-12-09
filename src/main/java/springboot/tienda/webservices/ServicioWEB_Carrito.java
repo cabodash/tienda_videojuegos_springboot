@@ -59,6 +59,21 @@ public class ServicioWEB_Carrito {
 		servicioCarrito.borrarCarrito(idUsuario, id);
 		return "ok";
 	}
+
+	@RequestMapping("cambiarCantidadProducto")
+	public String cambiarCantidadProducto(@RequestParam("id") Integer id, @RequestParam("cantidad") Integer cantidad, HttpServletRequest request){
+		int idUsuario = ((Usuario) request.getSession().getAttribute("usuario_identificado")).getId();
+		if(cantidad < 1){
+			return "error_min_value";
+		} else if(cantidad > 10) {
+			return "error_max_value";
+		}else{
+			servicioCarrito.cambiarCantidadProducto(idUsuario, id, cantidad);
+			return "ok";
+		}
+		//-------------------Haz la vista y la funcionalidad de cliente(js)---------------------------//
+		
+	}
 	
 
 

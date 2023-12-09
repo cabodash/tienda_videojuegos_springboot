@@ -40,6 +40,8 @@ $("#identificar").click(function() {
 			} else {
 				alert(res);
 			}
+			actualizarNavbar();
+			cargar_plantilla_listado();
 		});
 		e.preventDefault();
 	});

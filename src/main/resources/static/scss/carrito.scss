@@ -1,0 +1,230 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap');
+
+*, *::before, *::after{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+$background-color-page: #272727;
+$background-color_2: lightblue;
+
+$ps-darkblue: #003087;
+$ps-lightblue: #36A9E1;
+$ps-darkgrey: #1B1D1F;
+
+$xb-darkgreen: #107C10;
+$xb-lightgreen: #52D726;
+$sw-red: #E60012;
+$sw_blue: #1E90FF;
+
+/* Inicio */
+body {
+	background-color: $background-color-page;
+	color: #FFF;
+	font-family: 'Roboto', sans-serif;
+}
+//enlaces-botones de la web
+.btn-primary {
+	position: relative;
+	white-space: nowrap;
+	background-color: $ps-darkblue;
+	color: white;
+	text-decoration: none;
+	border: none;
+	border-radius: 25px;
+	padding: 10px 20px;
+	transition: all 0.1s linear;
+	transform: translateY(0px);
+	
+	&:hover{
+		background-color: rgb(0, 50, 100);
+		color: #9dbcff;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	}
+}/* Carrito de la compra */
+.carrito {
+	h2 {
+		width: 100%;
+		background-color: #303134;
+		padding: 5px 10px;
+		text-align: center;
+		border-radius: 10px;
+	}
+	
+	.contenedor-articulos{
+		margin-top: 20px;
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		flex-wrap: wrap;
+		justify-content: center;
+		
+		.item-carrito {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			padding: 10px;
+			background-color: #303134;
+			border-radius: 10px;
+
+			img {
+				width: 100%;
+			    height: 300px;
+			    object-fit: cover;
+			    object-position: center;
+			    border-radius: 15px;
+			}
+	
+			.quantity {
+                height: 30px;
+                display: grid;
+				justify-items: center;
+                grid-template-columns: 1fr 1fr 1fr;
+                margin: auto;
+                background-color: #ffffff;
+                border: 1px solid #e5e5e5;
+                border-radius: 7px;
+                filter: drop-shadow(0px 1px 0px #efefef) drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+
+                label {
+                    width: 20px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-bottom: 2px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: black;
+                }
+                button {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 0;
+                    outline: none;
+                    background-color: transparent;
+                    padding-bottom: 2px;
+					.pequeña{
+						width: 20px;
+						height: 20px;
+					}
+					
+					&.aumentar:hover{
+						img{
+							content: url("../images/anadir_hover.png");
+						}
+					}
+					
+					&.restar:hover{
+						img{
+							content: url("../images/menos_hover.png");
+						}
+					}
+                }
+
+            }
+		}
+	}
+
+	.contenedor-boton-realizar-pedido {
+		margin-top: 20px;
+		display: flex;
+		justify-content: center;
+		
+		
+		.boton-realizar-pedido {
+			color: inherit;
+			/*Hacer algo */
+		}
+	}
+}
+
+
+/* checkout */
+
+
+.producto-item {
+		margin: 5px;
+		background-color: lightblue;
+		padding: 15px;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: black;
+
+		.item-enlaces {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			width: 100%;
+			
+		}
+	}
+
+
+
+
+.contenedor-checkout-4{
+	min-width: 600px;
+	width: 50%;	
+	background-color: white;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 0;
+		
+		
+	.header-resumen {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+		
+	.formulario-paso-4{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		
+		.contenedor-resumen-videojuegos{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+			
+			
+			
+			.item-videojuego{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.25rem;
+				background-color: lightblue;
+				border-radius: 10px;
+				padding: 10px 15px;
+				
+				
+				img{
+					width: 90%;
+				    height: 300px;
+				    object-fit: cover;
+				    object-position: center;
+				    border-radius: 10px;
+				}
+			}
+			
+		}
+		
+	}
+}
+

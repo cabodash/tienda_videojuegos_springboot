@@ -15,4 +15,6 @@ $("#inicio").click(function() {
 	$("#contenedor").html(plantillaInicio);
 });//end inicio
 
+actualizarNavbar();
+
 
