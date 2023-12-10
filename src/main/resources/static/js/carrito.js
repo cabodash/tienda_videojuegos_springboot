@@ -200,6 +200,7 @@ function checkout_paso_3_aceptar() {
 				$.ajax("servicioWebPedidos/paso4", {
 					sucess: function (res) {
 						alert("respuesta del servicio web: " + res);
+						cargar_plantilla_listado();
 					}
 				});
 			});

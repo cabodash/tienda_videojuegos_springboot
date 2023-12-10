@@ -1,5 +1,7 @@
 package springboot.tienda.webservices;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import springboot.tienda.data.webservices.ResumenPedido;
+import springboot.tienda.model.Pedido;
+import springboot.tienda.model.ProductoPedido;
 import springboot.tienda.model.Usuario;
 import springboot.tienda.services.ServicioPedidos;
 
@@ -60,5 +65,27 @@ public class ServicioWEB_Pedidos {
 		
 		return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 	}
+
+	@RequestMapping("obtenerPedidos")
+	public List<Pedido> obtenerPedidos(HttpServletRequest requert) throws Exception {
+		if (requert.getSession().getAttribute("usuario_identificado") != null) {
+			int idUsuario = ((Usuario) requert.getSession().getAttribute("usuario_identificado")).getId();
+			return servicioPedidos.obtenerPedidosCliente(idUsuario);
+		} else {
+			throw new Exception("usuario no identificado");
+		}
+	}
+	
+	//cambiar para que devuelva un List<Map<String, Object>>//
+	@RequestMapping("obtenerProductosPedido")
+	public List<ProductoPedido> obtenerProductosPedido(@RequestParam("id_pedido") Integer id_pedido, HttpServletRequest requert) throws Exception {
+		if (requert.getSession().getAttribute("usuario_identificado") != null) {
+			int idUsuario = ((Usuario) requert.getSession().getAttribute("usuario_identificado")).getId();
+			return servicioPedidos.obtenerProductosPedido(id_pedido);
+		} else {
+			throw new Exception("usuario no identificado");
+		}
+	}
+	
 	
 }

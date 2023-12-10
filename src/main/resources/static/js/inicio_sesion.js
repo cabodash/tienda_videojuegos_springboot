@@ -6,7 +6,9 @@ $.get("plantillas_mustache/identificar_usuario.html", function(data) {
 
 
 //Identificarse
-$("#identificar").click(function() {
+$("#inicio_sesion").click(iniciar_sesion);
+
+function iniciar_sesion() {
 	$('#estilo-actual').attr('href', 'css/inicio_sesion.css');
 	$("#contenedor").html(plantillaIdentificarUsuario);
 	
@@ -46,12 +48,7 @@ $("#identificar").click(function() {
 		e.preventDefault();
 	});
 	inputs();
-
-
-
-});
-
-
+}
 
 
 function inputs(){

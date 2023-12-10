@@ -71,6 +71,9 @@ function mostrar_videojuegos() {
 		let totalVideojuegos = "";
 		totalVideojuegos = res.totalVideojuegos;
 
+		//Poner foto por defecto si no tiene
+		
+
 		//Carga del html del listado
 		let html_listado = Mustache.render(plantillaListado, videojuegos);
 		$(".listado-videojuegos").html(html_listado);
@@ -100,8 +103,13 @@ function mostrar_videojuegos() {
 				}
 			).done(function (res) {
 				let html = Mustache.render(plantillaDetallesVideojuego, res);
+				$('#estilo-actual').attr('href', 'css/detalles_videojuego.css');
 				console.log(res);
 				$("#contenedor").html(html);
+
+				//Funcion de cambiar la cantidad
+				cambioCantidad();
+
 
 				//Indicamos que hace el enlace comprar
 				$(".enlace_comprar_listado_principal").click(function (res) {
@@ -110,7 +118,7 @@ function mostrar_videojuegos() {
 						$.post("servicioWebCarrito/agregarVideojuego",
 							{
 								id: id_producto,
-								cantidad: 1
+								cantidad: parseInt(document.querySelector(".cantidad").textContent)
 							}
 						).done(function (res) {
 							alert(res);
@@ -125,6 +133,39 @@ function mostrar_videojuegos() {
 	}).done(cargar_reproductores);
 }
 
+
+function cambioCantidad(){
+	document.querySelectorAll(".item-detalles").forEach(item => {
+		let precioCantidad = item.querySelector(".precio-cantidad");
+		let precio = parseInt(item.querySelector(".precio").textContent);
+		precioCantidad.textContent = precio * parseInt(item.querySelector(".cantidad").textContent);
+
+
+
+		item.querySelector(".aumentar").addEventListener("click", function () {
+			let cantidad = parseInt(item.querySelector(".cantidad").textContent);
+			if (cantidad >= 10) {
+
+			} else {
+				item.querySelector(".cantidad").textContent = cantidad + 1;
+				item.querySelector(".cantidad-juegos").textContent = cantidad + 1;
+				precioCantidad.textContent = precio * ( cantidad + 1);
+			}
+		});
+
+		item.querySelector(".restar").addEventListener("click", function () {
+			let cantidad = parseInt(item.querySelector(".cantidad").textContent);
+			if (cantidad <= 1) {
+
+			} else {
+				item.querySelector(".cantidad").textContent = cantidad - 1;
+				item.querySelector(".cantidad-juegos").textContent = cantidad - 1;
+				precioCantidad.textContent = precio * ( cantidad - 1);
+			}
+		});
+
+	});
+}
 
 //cargar la funcionalidad de los reproductores de video de los listados
 function cargar_reproductores() {

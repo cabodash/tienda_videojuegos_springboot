@@ -4,6 +4,7 @@ import java.util.List;
 
 import springboot.tienda.data.webservices.ResumenPedido;
 import springboot.tienda.model.Pedido;
+import springboot.tienda.model.ProductoPedido;
 
 
 
@@ -21,5 +22,8 @@ public interface ServicioPedidos {
 	void procesarPaso3(String personaContacto, String telefonoContacto, int idUsuario);
 	ResumenPedido obtenerResumenDelPedido(int idUsuario);
 	void confirmarPedido(int idUsuario);
+
+	List<ProductoPedido> obtenerProductosPedido(int idPedido);
+	List<Pedido> obtenerPedidosCliente(int idUsuario);
 
 }

@@ -1,0 +1,36 @@
+<div class="contenedor-pedidos">
+    <h2>Pedidos</h2>
+    {{#.}}
+	<div class="item_pedido" id-pedido="{{id}}">
+		<div class="contenedor-productos">
+			
+		</div>
+
+		<div class="datos-envio">
+			<h4>Datos de Envío</h4>
+			<p>Nombre: <span>{{nombre}}</span></p>
+			<p>Apellidos: <span>{{apellidos}}</span></p>
+			<p>Dirección: <span>{{direccion}}</span></p>
+			<p>Ciudad: <span>{{ciudad}}</span></p>
+			<p>Codigo Postal: <span>{{codigo_postal}}</span></p>
+			<p>Provincia: <span>{{provincia}}</span></p>
+		</div>
+
+		<div class="datos-pago">
+			<h4>Datos de Pago</h4>
+			<p>Tipo de Tarjeta: <span>{{tipo_tarjeta}}</span></p>
+			<p>Titular de la Tarjeta: <span>{{titular_tarjeta}}</span></p>
+			<p>Número de Tarjeta: <span>{{numero_tarjeta}}</span></p>
+			<p>Fecha de Caducidad: <span>{{fecha_caducidad}}</span></p>
+			<p>Codigo de Seguridad (CVV): <span>{{cvv}}</span></p>
+		</div>
+
+		<div class="datos-contacto">
+			<h4>Datos de Contacto</h4>
+			<p>Persona de contacto: <span>{{persona_contacto}}</span></p>
+			<p>Telefono de contacto: <span>{{telefono_contacto}}</span></p>
+        </div>
+	</div>
+    {{/.}}
+
+</div>

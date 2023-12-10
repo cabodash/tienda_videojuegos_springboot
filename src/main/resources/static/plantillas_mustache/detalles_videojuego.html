@@ -18,10 +18,20 @@
 		<p>fechaLanzamiento: {{fecha_lanzamiento}} </p>
 		<p>desarrollador: {{desarrollador}} </p>
 		<p>puntuacion: {{puntuacion}} </p>
-		<p>precio: {{precio}} </p>
+		<p>Precio/ud: <span class="precio">{{precio}}</span> &euro;</p>
+		<p>Precio por <span class="cantidad-juegos">1</span> juegos: <span class="precio-cantidad"></span> &euro;</p>
+		<div class="quantity">
+			<button class="restar" id-videojuego="{{id}}">
+				<img class="pequeña" src="images/menos.png" width="20px" height="20px">
+			</button>
+			<label class="cantidad">1</label>
+			<button class="aumentar" id-videojuego="{{id}}">
+				<img class="pequeña" src="images/anadir.png" width="20px" height="20px">
+			</button>
+		</div>
 		<div class="contenedor-cantidad">
 			
-			<p><a href="#" class="enlace_comprar_listado_principal" id-producto="{{id}}">Comprar</a></p>
+			<p><a href="#" class="enlace_comprar_listado_principal" id-producto="{{id}}">Añadir al carrito</a></p>
 		</div>
 	</div>
 	</div>

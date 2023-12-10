@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.query.internal.NativeQueryImpl;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -163,5 +165,25 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 		}		
 		return p;
 	}
+
+	@Override
+	public List<ProductoPedido> obtenerProductosPedido(int idPedido) {
+		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_PRODUCTOS_PEDIDO);
+		NativeQueryImpl nativequery = (NativeQueryImpl) query;
+		nativequery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		nativequery.setParameter("id_pedido", idPedido);
+		List<ProductoPedido> productos = nativequery.getResultList();
+		return productos;
+	}
+
+	@Override
+	public List<Pedido> obtenerPedidosCliente(int idUsuario) {
+		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_PEDIDOS_POR_ID_USUARIO);
+		NativeQueryImpl nativequery = (NativeQueryImpl) query;
+		nativequery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		nativequery.setParameter("id_usuario", idUsuario);
+		return nativequery.getResultList();
+	}
+
 
 }

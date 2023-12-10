@@ -1,6 +1,8 @@
 package springboot.tienda.controllers.image;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +23,7 @@ public class MostrarImagenUsuario {
 	public void mostrar_imagen_usuario(@RequestParam("id") Integer id, HttpServletResponse response) throws IOException{ // en springboot puedes marcar el id como integer
 		byte[] info = servicioUsuarios.obtenerUsuarioPorId(id).getImagenPerfil();
 		if (info == null) {
-			return;
+			info = Files.readAllBytes(Paths.get("src/main/resources/static/images/default_profile.png"));
 		}
 		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
 		response.getOutputStream().write(info);

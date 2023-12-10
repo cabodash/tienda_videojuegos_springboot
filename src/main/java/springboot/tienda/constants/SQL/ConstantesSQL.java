@@ -83,6 +83,15 @@ public class ConstantesSQL {
 			+ "SET cantidad = :cantidad "
 			+ "WHERE carrito_id = :carrito_id "
 			+ "AND videojuego_id = :videojuego_id";
+
+	public static final String SQL_OBTENER_PEDIDOS_POR_ID_USUARIO = 
+			"SELECT * FROM pedido " +
+			"WHERE pedido.usuario_id = :id_usuario";
+
+			//cambiar sql para que traiga datos como precio y eso//
+	public static final String SQL_OBTENER_PRODUCTOS_PEDIDO = 
+			"SELECT * FROM producto_pedido " +
+			"WHERE pedido_id = :id_pedido";
    
 
 	
