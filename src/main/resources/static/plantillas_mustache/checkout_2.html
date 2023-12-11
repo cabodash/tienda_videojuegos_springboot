@@ -4,22 +4,40 @@
 	<p>Introduce tus datos de Pago (Fase de pruebas, nunca introduzcas tus datos reales)</p>
 	
 	<div class="formulario-paso-2 formulario">
-		<div class="select">
+		<div class="select-container">
+			<label for="tipo_tarjeta" class="label-select">Tipo de Tarjeta</label>
 			<select id="tipo_tarjeta" class="select-text" required>
 				<option value="visa">VISA</option>
 				<option value="master_card">MasterCard</option>
 			</select>
-			<span class="select-highlight"></span>
-			<span class="select-bar"></span>
-			<label class="select-label">Tipo de Tarjeta</label>
 		</div>
+		<div class="input-box no-error" id="contenedor-numero_tarjeta">
+			<input type="text" id="numero_tarjeta" name="numero_tarjeta" >
+			<label for="numero_tarjeta">Numero Tarjeta</label>
+			<p class="suggestion"
+			texto-error="El numero de tarjeta solo puede contener numros y ser de 16 caracteres">El numero de tarjeta solo puede contener numros y ser de 16 caracteres</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-titular_tarjeta">
+			<input type="text" id="titular_tarjeta" placeholder="Titular de la Tarjeta">
+			<label for="titular_tarjeta">Titular de la Tarjeta</label>
+			<p class="suggestion"
+			texto-error="El titular de la tarjeta solo puede contener letras y espacios en blanco">El titular de la tarjeta solo puede contener letras y espacios en blanco</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-fecha_caducidad">
+			<input type="text" id="fecha_caducidad" placeholder="Fecha de caducidad">
+			<label for="fecha_caducidad">Fecha de caducidad</label>
+			<p class="suggestion"
+			texto-error="La fecha de caducidad debe tener el formato MM/AA">La fecha de caducidad debe tener el formato MM/AA</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-cvv_tarjeta">
+			<input type="text" id="cvv_tarjeta" placeholder="Código de Seguridad (CVV)">
+			<label for="cvv_tarjeta">Código de Seguridad (CVV)</label>
+			<p class="suggestion"
+			texto-error="El CVV debe ser un número de 3 dígitos">El CVV debe ser un número de 3 dígitos</p>
+		</div>
+
 		
-		<input type="text" placeholder="Numero de Tarjeta" id="numero_tarjeta"/>
-		<input type="text" placeholder="Titular de la Tarjeta" id="titular_tarjeta"/>
-		<input type="text" placeholder="Fecha de caducidad" id="fecha_caducidad"/>
-		<input type="text" placeholder="Código de Seguridad (CVV)" id="cvv_tarjeta"/>
-		
-		<input type="submit" id="aceptar_paso_2" value="Aceptar"/>
+		<input class="btn-enviar" type="submit" id="aceptar_paso_2" value="Aceptar"/>
 	</div>
 	
 </div>

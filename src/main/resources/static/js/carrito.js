@@ -24,14 +24,15 @@ $.get("plantillas_mustache/checkout_4.html", function (data) {
 });
 
 //Carrito
+
 $("#carrito").click(function () {
-	$('#estilo-actual').attr('href', 'css/carrito.css');
 	if (nombre_login != "") {
 		$.getJSON("servicioWebCarrito/obtenerProductosCarrito", res => {
 			if (res == null) {
-				alert("Aun no tienes productos en el carrito");
+				alert("Hubo un error con el carrito");
 			} else {
 				let html = Mustache.render(plantillaCarrito, res);
+				$('#estilo-actual').attr('href', 'css/carrito.css');
 				$("#contenedor").html(html);
 				$(".borrrar_producto_carrito").click(function (e) {
 					e.preventDefault();
@@ -47,6 +48,11 @@ $("#carrito").click(function () {
 							}
 						});
 				});
+				if (Object.keys(res).length === 0) {
+					//Desde aqui se pueden ocultar y mostrar cosas para cuando no hay cosas en el carrito
+					alert("Aun no tienes productos en el carrito");
+					$("#realizar_pedido").hide();
+				}
 
 				//hacemos click en realizar pedido
 				$("#realizar_pedido").click(checkout_paso_0);
@@ -56,6 +62,7 @@ $("#carrito").click(function () {
 			alert("Error, prueba a volver a identificarte");
 		}).done(function () {
 			document.querySelectorAll(".card").forEach(item => {
+				
 				let precioCantidad = item.querySelector(".precio-cantidad");
 				let precio = parseInt(item.querySelector(".precio").textContent);
 				precioCantidad.textContent = precio * parseInt(item.querySelector(".cantidad").textContent);
@@ -120,7 +127,9 @@ $("#carrito").click(function () {
 
 //Funciones de los pasos del checkout//
 function checkout_paso_0() {
+	$('#estilo-actual').attr('href', 'css/inicio_sesion.css');
 	$("#contenedor").html(plantillaCheckout_1);
+	inputs();
 	$("#aceptar_paso_1").click(checkout_paso_1_aceptar);
 
 }
@@ -134,9 +143,29 @@ function checkout_paso_1_aceptar() {
 	let codigoPostal = $("#campo_codigo_postal").val();
 	let provincia = $("#campo_provincia").val();
 
-
-	/* -TODO: validar campos del formulario */
-
+	let valid = true;
+	if (!validarNombre("contenedor-campo_nombre", nombre)) {
+		valid = false;
+	}
+	if (!validarApellidos("contenedor-campo_apellidos", apellidos)) {
+		valid = false;
+	}
+	if (!validarDireccion("contenedor-campo_direccion", direccion)) {
+		valid = false;
+	}
+	if (!validarCiudad("contenedor-campo_ciudad", ciudad)) {
+		valid = false;
+	}
+	if (!validarCodigoPostal("contenedor-campo_codigo_postal", codigoPostal)) {
+		valid = false;
+	}
+	if (!validarProvincia("contenedor-campo_provincia", provincia)) {
+		valid = false;
+	}
+	if(!valid){
+		alert("Hay errores en el formulario");
+		return;
+	}
 	$.post("servicioWebPedidos/paso1",
 		{
 			nombre: nombre,
@@ -149,6 +178,7 @@ function checkout_paso_1_aceptar() {
 			if (res == "ok") {
 				$("#contenedor").html(plantillaCheckout_2);
 				$("#aceptar_paso_2").click(checkout_paso_2_aceptar);
+				inputs();
 			} else {
 				alert(res);
 			}
@@ -162,6 +192,24 @@ function checkout_paso_2_aceptar() {
 	let fecha_caducidad = $("#fecha_caducidad").val();
 	let cvv_tarjeta = $("#cvv_tarjeta").val();
 
+	let valid = true;
+	if (!validarNumeroTarjeta("contenedor-numero_tarjeta", numero_tarjeta)) {
+		valid = false;
+	}
+	if (!validarTitularTarjeta("contenedor-titular_tarjeta", titular_tarjeta)) {
+		valid = false;
+	}
+	if (!validarFechaCaducidad("contenedor-fecha_caducidad", fecha_caducidad)) {
+		valid = false;
+	}
+	if (!validarCvvTarjeta("contenedor-cvv_tarjeta", cvv_tarjeta)) {
+		valid = false;
+	}
+	if(!valid){
+		alert("Hay errores en el formulario");
+		return;
+	}
+
 	$.post("servicioWebPedidos/paso2",
 		{
 			tarjeta: tipo_tarjeta,
@@ -174,6 +222,7 @@ function checkout_paso_2_aceptar() {
 			if (res == "ok") {
 				$("#contenedor").html(plantillaCheckout_3);
 				$("#aceptar_paso_3").click(checkout_paso_3_aceptar);
+				inputs();
 			} else {
 				alert(res);
 			}
@@ -184,6 +233,18 @@ function checkout_paso_2_aceptar() {
 function checkout_paso_3_aceptar() {
 	let persona_contacto = $("#persona_contacto").val();
 	let telefono_contacto = $("#telefono_contacto").val();
+
+	let valid = true;
+	if (!validarPersonaContacto("contenedor-persona_contacto", persona_contacto)) {
+		valid = false;
+	}
+	if (!validarTelefonoContacto("contenedor-telefono_contacto", telefono_contacto)) {
+		valid = false;
+	}
+	if(!valid){
+		alert("Hay errores en el formulario");
+		return;
+	}
 
 	$.post("servicioWebPedidos/paso3",
 		{
@@ -205,8 +266,36 @@ function checkout_paso_3_aceptar() {
 				});
 			});
 		});
+}
 
 
+function inputs(){
+	let inputContainers = document.querySelectorAll('.input-box');
+	inputContainers.forEach(element => {
+		let input = element.querySelector("input");
+
+		isFilled(input, element);
+		input.addEventListener('focusout', function () {
+			isFilled(input, element);
+		});
+
+	});
+
+	let textareaContainers = document.querySelectorAll('.textarea-box');
+	textareaContainers.forEach(element => {
+		let textarea = element.querySelector("textarea");
+		isFilled(textarea, element);
+		textarea.addEventListener('focusout', function () {
+			isFilled(textarea, element);
+		});
+	});
 
 
+	function isFilled(field, element) {
+		if (field.value.trim() === '') {
+			element.classList.remove('is-filled');
+		} else {
+			element.classList.add('is-filled');
+		}
+	}
 }

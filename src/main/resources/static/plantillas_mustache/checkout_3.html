@@ -1,14 +1,22 @@
 <div class="contenedor-checkout-3">
 	<h2>Realizar pedido</h2>
 	<h3>Paso 3</h3>
-	<p>Introduce los datos de contacto)</p>
+	<p>Introduce los datos de contacto</p>
 	
 	<div class="formulario-paso-3 formulario">
-		
-		<input type="text" placeholder="Persona de contacto" id="persona_contacto"/>
-		<input type="text" placeholder="Telefono de contacto" id="telefono_contacto"/>
-		
-		<input type="submit" id="aceptar_paso_3" value="Aceptar"/>
+		<div class="input-box no-error" id="contenedor-persona_contacto">
+			<input type="text" id="persona_contacto" name="persona_contacto" >
+			<label for="persona_contacto">Persona de contacto</label>
+			<p class="suggestion"
+			texto-error="La persona de contacto debe comprender entre 3-10 caracterees y ser solo letras, numeros y espacios en blanco">La persona de contacto debe comprender entre 3-10 caracterees y ser solo letras, numeros y espacios en blanco</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-telefono_contacto">
+			<input type="text" id="telefono_contacto" name="telefono_contacto" >
+			<label for="telefono_contacto">Telefono de contacto</label>
+			<p class="suggestion"
+			texto-error="El telefono de contacto debe ir con el prefijo del pais y seguidamente el numero de telefono (+34654765876)">El telefono de contacto debe ir con el prefijo del pais y seguidamente el numero de telefono (+34654765876)</p>
+		</div>
+		<input class="btn-enviar" type="submit" id="aceptar_paso_3" value="Aceptar"/>
 	</div>
 	
 </div>

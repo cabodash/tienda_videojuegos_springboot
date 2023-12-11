@@ -1,9 +1,15 @@
 .contenedor-identificar-usuario,
-.div-registro {
+.div-registro,
+.contenedor-checkout-1,
+.contenedor-checkout-2,
+.contenedor-checkout-3 {
   width: 100%;
 }
 .contenedor-identificar-usuario .formulario,
-.div-registro .formulario {
+.div-registro .formulario,
+.contenedor-checkout-1 .formulario,
+.contenedor-checkout-2 .formulario,
+.contenedor-checkout-3 .formulario {
   margin: 30px auto;
   width: 50%;
   min-width: 200px;
@@ -29,7 +35,10 @@
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.11);
 }
 .contenedor-identificar-usuario .formulario .preview,
-.div-registro .formulario .preview {
+.div-registro .formulario .preview,
+.contenedor-checkout-1 .formulario .preview,
+.contenedor-checkout-2 .formulario .preview,
+.contenedor-checkout-3 .formulario .preview {
   width: 40%;
   height: 40%;
   -o-object-fit: contain;
@@ -37,16 +46,25 @@
   border-radius: 100%;
 }
 .contenedor-identificar-usuario .formulario .title,
-.div-registro .formulario .title {
+.div-registro .formulario .title,
+.contenedor-checkout-1 .formulario .title,
+.contenedor-checkout-2 .formulario .title,
+.contenedor-checkout-3 .formulario .title {
   font-size: 1.2rem;
   color: darkgrey;
 }
 .contenedor-identificar-usuario .formulario .no-error,
-.div-registro .formulario .no-error {
+.div-registro .formulario .no-error,
+.contenedor-checkout-1 .formulario .no-error,
+.contenedor-checkout-2 .formulario .no-error,
+.contenedor-checkout-3 .formulario .no-error {
   position: relative;
 }
 .contenedor-identificar-usuario .formulario .no-error label,
-.div-registro .formulario .no-error label {
+.div-registro .formulario .no-error label,
+.contenedor-checkout-1 .formulario .no-error label,
+.contenedor-checkout-2 .formulario .no-error label,
+.contenedor-checkout-3 .formulario .no-error label {
   position: absolute;
   top: 50%;
   left: 12px;
@@ -63,7 +81,13 @@
 .contenedor-identificar-usuario .formulario .no-error input,
 .contenedor-identificar-usuario .formulario .no-error textarea,
 .div-registro .formulario .no-error input,
-.div-registro .formulario .no-error textarea {
+.div-registro .formulario .no-error textarea,
+.contenedor-checkout-1 .formulario .no-error input,
+.contenedor-checkout-1 .formulario .no-error textarea,
+.contenedor-checkout-2 .formulario .no-error input,
+.contenedor-checkout-2 .formulario .no-error textarea,
+.contenedor-checkout-3 .formulario .no-error input,
+.contenedor-checkout-3 .formulario .no-error textarea {
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -79,34 +103,61 @@
 .contenedor-identificar-usuario .formulario .no-error input:hover,
 .contenedor-identificar-usuario .formulario .no-error textarea:hover,
 .div-registro .formulario .no-error input:hover,
-.div-registro .formulario .no-error textarea:hover {
+.div-registro .formulario .no-error textarea:hover,
+.contenedor-checkout-1 .formulario .no-error input:hover,
+.contenedor-checkout-1 .formulario .no-error textarea:hover,
+.contenedor-checkout-2 .formulario .no-error input:hover,
+.contenedor-checkout-2 .formulario .no-error textarea:hover,
+.contenedor-checkout-3 .formulario .no-error input:hover,
+.contenedor-checkout-3 .formulario .no-error textarea:hover {
   outline: 1px solid #007a91;
   color: #007a91;
 }
 .contenedor-identificar-usuario .formulario .no-error input:focus,
 .contenedor-identificar-usuario .formulario .no-error textarea:focus,
 .div-registro .formulario .no-error input:focus,
-.div-registro .formulario .no-error textarea:focus {
+.div-registro .formulario .no-error textarea:focus,
+.contenedor-checkout-1 .formulario .no-error input:focus,
+.contenedor-checkout-1 .formulario .no-error textarea:focus,
+.contenedor-checkout-2 .formulario .no-error input:focus,
+.contenedor-checkout-2 .formulario .no-error textarea:focus,
+.contenedor-checkout-3 .formulario .no-error input:focus,
+.contenedor-checkout-3 .formulario .no-error textarea:focus {
   outline: 2px solid #007a91;
   color: #007a91;
 }
 .contenedor-identificar-usuario .formulario .no-error input:hover + label,
 .contenedor-identificar-usuario .formulario .no-error textarea:hover + label,
 .div-registro .formulario .no-error input:hover + label,
-.div-registro .formulario .no-error textarea:hover + label {
+.div-registro .formulario .no-error textarea:hover + label,
+.contenedor-checkout-1 .formulario .no-error input:hover + label,
+.contenedor-checkout-1 .formulario .no-error textarea:hover + label,
+.contenedor-checkout-2 .formulario .no-error input:hover + label,
+.contenedor-checkout-2 .formulario .no-error textarea:hover + label,
+.contenedor-checkout-3 .formulario .no-error input:hover + label,
+.contenedor-checkout-3 .formulario .no-error textarea:hover + label {
   color: #007a91;
 }
 .contenedor-identificar-usuario .formulario .no-error input:focus + label,
 .contenedor-identificar-usuario .formulario .no-error textarea:focus + label,
 .div-registro .formulario .no-error input:focus + label,
-.div-registro .formulario .no-error textarea:focus + label {
+.div-registro .formulario .no-error textarea:focus + label,
+.contenedor-checkout-1 .formulario .no-error input:focus + label,
+.contenedor-checkout-1 .formulario .no-error textarea:focus + label,
+.contenedor-checkout-2 .formulario .no-error input:focus + label,
+.contenedor-checkout-2 .formulario .no-error textarea:focus + label,
+.contenedor-checkout-3 .formulario .no-error input:focus + label,
+.contenedor-checkout-3 .formulario .no-error textarea:focus + label {
   color: #007a91;
   top: 0;
   font-size: 12px;
   background-color: #303134;
 }
 .contenedor-identificar-usuario .formulario .no-error .suggestion,
-.div-registro .formulario .no-error .suggestion {
+.div-registro .formulario .no-error .suggestion,
+.contenedor-checkout-1 .formulario .no-error .suggestion,
+.contenedor-checkout-2 .formulario .no-error .suggestion,
+.contenedor-checkout-3 .formulario .no-error .suggestion {
   max-width: 90%;
   position: absolute;
   bottom: -20px;
@@ -118,7 +169,10 @@
   overflow: hidden;
 }
 .contenedor-identificar-usuario .formulario .no-error .suggestion:after,
-.div-registro .formulario .no-error .suggestion:after {
+.div-registro .formulario .no-error .suggestion:after,
+.contenedor-checkout-1 .formulario .no-error .suggestion:after,
+.contenedor-checkout-2 .formulario .no-error .suggestion:after,
+.contenedor-checkout-3 .formulario .no-error .suggestion:after {
   max-width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -138,12 +192,18 @@
   white-space: wrap;
 }
 .contenedor-identificar-usuario .formulario .no-error .suggestion:hover,
-.div-registro .formulario .no-error .suggestion:hover {
+.div-registro .formulario .no-error .suggestion:hover,
+.contenedor-checkout-1 .formulario .no-error .suggestion:hover,
+.contenedor-checkout-2 .formulario .no-error .suggestion:hover,
+.contenedor-checkout-3 .formulario .no-error .suggestion:hover {
   overflow: visible;
   visibility: hidden;
 }
 .contenedor-identificar-usuario .formulario .no-error .suggestion:hover:after,
-.div-registro .formulario .no-error .suggestion:hover:after {
+.div-registro .formulario .no-error .suggestion:hover:after,
+.contenedor-checkout-1 .formulario .no-error .suggestion:hover:after,
+.contenedor-checkout-2 .formulario .no-error .suggestion:hover:after,
+.contenedor-checkout-3 .formulario .no-error .suggestion:hover:after {
   opacity: 1;
   z-index: 1;
   visibility: visible;
@@ -152,21 +212,36 @@
 .contenedor-identificar-usuario .formulario .no-error.is-filled input,
 .contenedor-identificar-usuario .formulario .no-error.is-filled textarea,
 .div-registro .formulario .no-error.is-filled input,
-.div-registro .formulario .no-error.is-filled textarea {
+.div-registro .formulario .no-error.is-filled textarea,
+.contenedor-checkout-1 .formulario .no-error.is-filled input,
+.contenedor-checkout-1 .formulario .no-error.is-filled textarea,
+.contenedor-checkout-2 .formulario .no-error.is-filled input,
+.contenedor-checkout-2 .formulario .no-error.is-filled textarea,
+.contenedor-checkout-3 .formulario .no-error.is-filled input,
+.contenedor-checkout-3 .formulario .no-error.is-filled textarea {
   color: white;
 }
 .contenedor-identificar-usuario .formulario .no-error.is-filled label,
-.div-registro .formulario .no-error.is-filled label {
+.div-registro .formulario .no-error.is-filled label,
+.contenedor-checkout-1 .formulario .no-error.is-filled label,
+.contenedor-checkout-2 .formulario .no-error.is-filled label,
+.contenedor-checkout-3 .formulario .no-error.is-filled label {
   top: 0;
   font-size: 12px;
   background-color: #303134;
 }
 .contenedor-identificar-usuario .formulario .error,
-.div-registro .formulario .error {
+.div-registro .formulario .error,
+.contenedor-checkout-1 .formulario .error,
+.contenedor-checkout-2 .formulario .error,
+.contenedor-checkout-3 .formulario .error {
   position: relative;
 }
 .contenedor-identificar-usuario .formulario .error label,
-.div-registro .formulario .error label {
+.div-registro .formulario .error label,
+.contenedor-checkout-1 .formulario .error label,
+.contenedor-checkout-2 .formulario .error label,
+.contenedor-checkout-3 .formulario .error label {
   position: absolute;
   top: 50%;
   left: 12px;
@@ -183,7 +258,13 @@
 .contenedor-identificar-usuario .formulario .error input,
 .contenedor-identificar-usuario .formulario .error textarea,
 .div-registro .formulario .error input,
-.div-registro .formulario .error textarea {
+.div-registro .formulario .error textarea,
+.contenedor-checkout-1 .formulario .error input,
+.contenedor-checkout-1 .formulario .error textarea,
+.contenedor-checkout-2 .formulario .error input,
+.contenedor-checkout-2 .formulario .error textarea,
+.contenedor-checkout-3 .formulario .error input,
+.contenedor-checkout-3 .formulario .error textarea {
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -199,34 +280,61 @@
 .contenedor-identificar-usuario .formulario .error input:hover,
 .contenedor-identificar-usuario .formulario .error textarea:hover,
 .div-registro .formulario .error input:hover,
-.div-registro .formulario .error textarea:hover {
+.div-registro .formulario .error textarea:hover,
+.contenedor-checkout-1 .formulario .error input:hover,
+.contenedor-checkout-1 .formulario .error textarea:hover,
+.contenedor-checkout-2 .formulario .error input:hover,
+.contenedor-checkout-2 .formulario .error textarea:hover,
+.contenedor-checkout-3 .formulario .error input:hover,
+.contenedor-checkout-3 .formulario .error textarea:hover {
   outline: 1px solid red;
   color: red;
 }
 .contenedor-identificar-usuario .formulario .error input:focus,
 .contenedor-identificar-usuario .formulario .error textarea:focus,
 .div-registro .formulario .error input:focus,
-.div-registro .formulario .error textarea:focus {
+.div-registro .formulario .error textarea:focus,
+.contenedor-checkout-1 .formulario .error input:focus,
+.contenedor-checkout-1 .formulario .error textarea:focus,
+.contenedor-checkout-2 .formulario .error input:focus,
+.contenedor-checkout-2 .formulario .error textarea:focus,
+.contenedor-checkout-3 .formulario .error input:focus,
+.contenedor-checkout-3 .formulario .error textarea:focus {
   outline: 2px solid red;
   color: red;
 }
 .contenedor-identificar-usuario .formulario .error input:hover + label,
 .contenedor-identificar-usuario .formulario .error textarea:hover + label,
 .div-registro .formulario .error input:hover + label,
-.div-registro .formulario .error textarea:hover + label {
+.div-registro .formulario .error textarea:hover + label,
+.contenedor-checkout-1 .formulario .error input:hover + label,
+.contenedor-checkout-1 .formulario .error textarea:hover + label,
+.contenedor-checkout-2 .formulario .error input:hover + label,
+.contenedor-checkout-2 .formulario .error textarea:hover + label,
+.contenedor-checkout-3 .formulario .error input:hover + label,
+.contenedor-checkout-3 .formulario .error textarea:hover + label {
   color: red;
 }
 .contenedor-identificar-usuario .formulario .error input:focus + label,
 .contenedor-identificar-usuario .formulario .error textarea:focus + label,
 .div-registro .formulario .error input:focus + label,
-.div-registro .formulario .error textarea:focus + label {
+.div-registro .formulario .error textarea:focus + label,
+.contenedor-checkout-1 .formulario .error input:focus + label,
+.contenedor-checkout-1 .formulario .error textarea:focus + label,
+.contenedor-checkout-2 .formulario .error input:focus + label,
+.contenedor-checkout-2 .formulario .error textarea:focus + label,
+.contenedor-checkout-3 .formulario .error input:focus + label,
+.contenedor-checkout-3 .formulario .error textarea:focus + label {
   color: red;
   top: 0;
   font-size: 12px;
   background-color: #303134;
 }
 .contenedor-identificar-usuario .formulario .error .suggestion,
-.div-registro .formulario .error .suggestion {
+.div-registro .formulario .error .suggestion,
+.contenedor-checkout-1 .formulario .error .suggestion,
+.contenedor-checkout-2 .formulario .error .suggestion,
+.contenedor-checkout-3 .formulario .error .suggestion {
   max-width: 90%;
   position: absolute;
   bottom: -20px;
@@ -238,7 +346,10 @@
   overflow: hidden;
 }
 .contenedor-identificar-usuario .formulario .error .suggestion:after,
-.div-registro .formulario .error .suggestion:after {
+.div-registro .formulario .error .suggestion:after,
+.contenedor-checkout-1 .formulario .error .suggestion:after,
+.contenedor-checkout-2 .formulario .error .suggestion:after,
+.contenedor-checkout-3 .formulario .error .suggestion:after {
   max-width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -258,12 +369,18 @@
   white-space: wrap;
 }
 .contenedor-identificar-usuario .formulario .error .suggestion:hover,
-.div-registro .formulario .error .suggestion:hover {
+.div-registro .formulario .error .suggestion:hover,
+.contenedor-checkout-1 .formulario .error .suggestion:hover,
+.contenedor-checkout-2 .formulario .error .suggestion:hover,
+.contenedor-checkout-3 .formulario .error .suggestion:hover {
   overflow: visible;
   visibility: hidden;
 }
 .contenedor-identificar-usuario .formulario .error .suggestion:hover:after,
-.div-registro .formulario .error .suggestion:hover:after {
+.div-registro .formulario .error .suggestion:hover:after,
+.contenedor-checkout-1 .formulario .error .suggestion:hover:after,
+.contenedor-checkout-2 .formulario .error .suggestion:hover:after,
+.contenedor-checkout-3 .formulario .error .suggestion:hover:after {
   opacity: 1;
   z-index: 1;
   visibility: visible;
@@ -272,21 +389,36 @@
 .contenedor-identificar-usuario .formulario .error.is-filled input,
 .contenedor-identificar-usuario .formulario .error.is-filled textarea,
 .div-registro .formulario .error.is-filled input,
-.div-registro .formulario .error.is-filled textarea {
+.div-registro .formulario .error.is-filled textarea,
+.contenedor-checkout-1 .formulario .error.is-filled input,
+.contenedor-checkout-1 .formulario .error.is-filled textarea,
+.contenedor-checkout-2 .formulario .error.is-filled input,
+.contenedor-checkout-2 .formulario .error.is-filled textarea,
+.contenedor-checkout-3 .formulario .error.is-filled input,
+.contenedor-checkout-3 .formulario .error.is-filled textarea {
   color: white;
 }
 .contenedor-identificar-usuario .formulario .error.is-filled label,
-.div-registro .formulario .error.is-filled label {
+.div-registro .formulario .error.is-filled label,
+.contenedor-checkout-1 .formulario .error.is-filled label,
+.contenedor-checkout-2 .formulario .error.is-filled label,
+.contenedor-checkout-3 .formulario .error.is-filled label {
   top: 0;
   font-size: 12px;
   background-color: #303134;
 }
 .contenedor-identificar-usuario .formulario .checkbox,
-.div-registro .formulario .checkbox {
+.div-registro .formulario .checkbox,
+.contenedor-checkout-1 .formulario .checkbox,
+.contenedor-checkout-2 .formulario .checkbox,
+.contenedor-checkout-3 .formulario .checkbox {
   color: #c9c9c9;
 }
 .contenedor-identificar-usuario .formulario .btn-enviar,
-.div-registro .formulario .btn-enviar {
+.div-registro .formulario .btn-enviar,
+.contenedor-checkout-1 .formulario .btn-enviar,
+.contenedor-checkout-2 .formulario .btn-enviar,
+.contenedor-checkout-3 .formulario .btn-enviar {
   color: white;
   background-color: #003087;
   width: 66.5%;
@@ -297,7 +429,46 @@
   font-size: 1.1em;
 }
 .contenedor-identificar-usuario .formulario .btn-enviar:hover,
-.div-registro .formulario .btn-enviar:hover {
+.div-registro .formulario .btn-enviar:hover,
+.contenedor-checkout-1 .formulario .btn-enviar:hover,
+.contenedor-checkout-2 .formulario .btn-enviar:hover,
+.contenedor-checkout-3 .formulario .btn-enviar:hover {
   background-color: rgb(0, 50, 100);
   color: #9dbcff;
+}
+
+.select-container .label-select + .select-text {
+  -webkit-margin-before: 0.5rem;
+          margin-block-start: 0.5rem;
+}
+.select-container .select-text {
+  color: white;
+  background-color: #232325;
+  border-color: rgb(104, 104, 104);
+  display: block;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  padding-block: 0.625rem;
+  -webkit-padding-start: 0.875rem;
+          padding-inline-start: 0.875rem;
+  -webkit-padding-end: 2.1875rem;
+          padding-inline-end: 2.1875rem;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  line-height: 1.375;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='20' height='21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m5 7.61 5 5 5-5' stroke='%23667085' stroke-width='1.667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), -webkit-gradient(linear, left top, left bottom, color-stop(0, #232325), to(#232325));
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='20' height='21' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m5 7.61 5 5 5-5' stroke='%23667085' stroke-width='1.667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"), linear-gradient(to bottom, #232325 0, #232325 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.875rem top 50%, 0 0;
+  background-size: 1em auto, 100%;
+  border: 1px solid rgb(104, 104, 104);
+  border-radius: 0.25rem;
+}
+.select-container .select-text:hover {
+  border-color: white;
 }

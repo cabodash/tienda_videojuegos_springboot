@@ -1,74 +1,92 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="../css/nav_admin.css">
+	<link rel="stylesheet" href="../css/listados_admin.css">
+	<title>Insert title here</title>
 </head>
+
 <body>
-	
-	<div>
-	<h2>Detalles del Pedido</h2>
-	
+
+	<div style="width: 50%; min-width: 500px; background-color: #242424; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); margin: 15px auto; align-items: center; text-align: center;">
+		<h2>Detalles del Pedido</h2>
+
+		<br>
+		<br>
 		<div class="detalles-pedido-item">
 			<div class="datos-envio">
 				<h4>Datos de Envio</h4>
-				<p>Nombre <span th:text="${pedido.nombre}"></span></p>
-				<p>Apellidos <span th:text="${pedido.apellidos}"></span></p>
-				<p>Direccion <span th:text="${pedido.direccion}"></span></p>
-				<p>Ciudad <span th:text="${pedido.ciudad}"></span></p>
-				<p>Codigo Postal <span th:text="${pedido.codigoPostal}"></span></p>
-				<p>Provincia <span th:text="${pedido.provincia}"></span></p>
+				<p>Nombre:  <span th:text="${pedido.nombre}"></span></p>
+				<p>Apellidos:  <span th:text="${pedido.apellidos}"></span></p>
+				<p>Direccion:  <span th:text="${pedido.direccion}"></span></p>
+				<p>Ciudad:  <span th:text="${pedido.ciudad}"></span></p>
+				<p>Codigo Postal:  <span th:text="${pedido.codigoPostal}"></span></p>
+				<p>Provincia:  <span th:text="${pedido.provincia}"></span></p>
 			</div>
-			
+			<br>
+
 			<div class="datos-pago">
 				<h4>Datos de Envio</h4>
-				<p>Titular Tarjeta <span th:text="${pedido.titularTarjeta}"></span></p>
-				<p>Numero de tarjeta <span th:text="${pedido.numeroTarjeta}"></span></p>
-				<p>Tipo de Tarjeta <span th:text="${pedido.tipoTarjeta}"></span></p>
-				<p>Fecha de caducidad <span th:text="${pedido.fechaCaducidad}"></span></p>
-				<p>Codigo Seguridad (CVV) <span th:text="${pedido.cvv}"></span></p>
+				<p>Titular Tarjeta:  <span th:text="${pedido.titularTarjeta}"></span></p>
+				<p>Numero de tarjeta:  <span th:text="${pedido.numeroTarjeta}"></span></p>
+				<p>Tipo de Tarjeta: <span th:text="${pedido.tipoTarjeta}"></span></p>
+				<p>Fecha de caducidad:  <span th:text="${pedido.fechaCaducidad}"></span></p>
+				<p>Codigo Seguridad (CVV):  <span th:text="${pedido.cvv}"></span></p>
 			</div>
+			<br>
 		</div>
-		
+		<br>
+
 		<div class="contenedor-productos">
-			<div  th:each="productoPedido: ${pedido.productosPedidos}">
+			<div th:each="productoPedido: ${pedido.productosPedidos}">
 				<div class="producto-item">
-					<h4>Nombre <span th:text="${productoPedido.videojuego.nombre}"></span></h4>
-					<p>Precio/Unidad <span th:text="${productoPedido.videojuego.precio}"></span></p>
-					<p>Cantidad <span th:text="${productoPedido.cantidad}"></span></p>
-		
+					<h4>Nombre:  <span th:text="${productoPedido.videojuego.nombre}"></span></h4>
+					<p>Precio/Unidad:  <span th:text="${productoPedido.videojuego.precio}"></span></p>
+					<p>Cantidad:  <span th:text="${productoPedido.cantidad}"></span></p>
+
 				</div>
-				
+
 			</div>
+			<br>
 		</div>
-		
-	<h3>Estado del pedido</h3>
-	<input type="hidden" id="id_pedido" th:field="${pedido.id}"/>
-	<select id="select_estado" th:field="${pedido.estado}">
-			<option th:each="e : ${estados}" th:text="${e.value}" th:value="${e.key}"/>		
-	</select>
-</div>
+		<br>
+
+		<h3>Estado del pedido</h3>
+		<input type="hidden" id="id_pedido" th:field="${pedido.id}" />
+		<!-- <select id="select_estado" th:field="${pedido.estado}">
+			<option th:each="e : ${estados}" th:text="${e.value}" th:value="${e.key}" />
+		</select> -->
+		<div class="select-container" style="margin: auto; width: fit-content;">
+			<label for="select_estado" class="label-select"></label>
+			<select id="select_estado" class="select-text" th:field="${pedido.estado}" required>
+				<option th:each="e : ${estados}" th:text="${e.value}" th:value="${e.key}" />
+			</select>
+		</div>
+	</div>
 
 
-<script src="../libreriasJS/jquery.js"></script>
+	<script src="../libreriasJS/jquery.js"></script>
 
-<script>
-	$("#select_estado").change(function (e){
-		let estado = $("#select_estado").find(":selected").val();
-		let idPedido = $("#id_pedido").val();
-		alert(`Estado: ${estado} para la id del pedido: ${idPedido}`);
-		$.post("servicioWebPedidos/actualizarEstadoPedido", 
-		{
-			id: idPedido,
-			estado: estado
-		}
-		).done(function (res){
-			if(res != "ok"){
-				alert(res);
-			}
+	<script>
+		$("#select_estado").change(function (e) {
+			let estado = $("#select_estado").find(":selected").val();
+			let idPedido = $("#id_pedido").val();
+			alert(`Estado: ${estado} para la id del pedido: ${idPedido}`);
+			$.post("servicioWebPedidos/actualizarEstadoPedido",
+				{
+					id: idPedido,
+					estado: estado
+				}
+			).done(function (res) {
+				if (res != "ok") {
+					alert(res);
+				}
+			});
 		});
-	});
-	
-</script>
+
+	</script>
 </body>
+
 </html>

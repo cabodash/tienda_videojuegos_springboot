@@ -3,15 +3,45 @@
 	<h3>Paso 1</h3>
 	<p>Introduce tus datos de envío</p>
 	
-	<div class="formulario-paso-1 formulario">
-		<input type="text" placeholder="Nombre" id="campo_nombre"/>
-		<input type="text" placeholder="Apellidos" id="campo_apellidos"/>
-		<input type="text" placeholder="Dirección" id="campo_direccion"/>
-		<input type="text" placeholder="Ciudad" id="campo_ciudad"/>
-		<input type="text" placeholder="Codigo Postal" id="campo_codigo_postal"/>
-		<input type="text" placeholder="Provincia" id="campo_provincia"/>
+	<div class="formulario formulario-paso-1">
+		<div class="input-box no-error" id="contenedor-campo_nombre">
+			<input type="text" id="campo_nombre" name="campo_nombre" >
+			<label for="campo_nombre">Nombre</label>
+			<p class="suggestion"
+			texto-error="El nombre debe comprender entre 3-10 caracteres y ser solo letras, numeros y espacios en blanco">El nombre debe comprender entre 3-10 caracterees y ser solo letras, numeros y espacios en blanco</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-campo_apellidos">
+			<input type="text" id="campo_apellidos" name="campo_apellidos" >
+			<label for="campo_apellidos">Apellidos</label>
+			<p class="suggestion"
+			texto-error="Los apellidos deben comprender entre 3-10 caracteres y ser solo letras, numeros y espacios en blanco">Los apellidos deben comprender entre 3-10 caracterees y ser solo letras, numeros y espacios en blanco</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-campo_direccion">
+			<input type="text" id="campo_direccion" name="campo_direccion" >
+			<label for="campo_direccion">Dirección</label>
+			<p class="suggestion"
+			texto-error="La dirección debe comprender entre 5-20 caracteres y ser solo letras, numeros y espacios en blanco">La dirección debe comprender entre 5-20 caracterees y ser solo letras, numeros y espacios en blanco</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-campo_ciudad">
+			<input type="text" id="campo_ciudad" name="campo_ciudad" >
+			<label for="campo_ciudad">Ciudad</label>
+			<p class="suggestion"
+			texto-error="La ciudad debe comprender entre 3-15 caracteres y ser solo letras, numeros y espacios en blanco">La ciudad debe comprender entre 3-15 caracterees y ser solo letras, numeros y espacios en blanco</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-campo_codigo_postal">
+			<input type="text" id="campo_codigo_postal" name="campo_codigo_postal" >
+			<label for="campo_codigo_postal">Código Postal</label>
+			<p class="suggestion"
+			texto-error="El código postal debe comprender entre 5-8 caracteres y ser solo números">El código postal debe comprender entre 5-8 caracteres y ser solo números</p>
+		</div>
+		<div class="input-box no-error" id="contenedor-campo_provincia">
+			<input type="text" id="campo_provincia" name="campo_provincia" >
+			<label for="campo_provincia">Provincia</label>
+			<p class="suggestion"
+			texto-error="La provincia debe comprender entre 3-20 caracteres y ser solo letras, numeros y espacios en blanco">La provincia debe comprender entre 3-20 caracteres y ser solo letras, numeros y espacios en blanco</p>
+		</div>
 		
-		<input type="submit" id="aceptar_paso_1" value="Aceptar"/>
+		<input class="btn-enviar" type="submit" id="aceptar_paso_1" value="Aceptar"/>
 	</div>
 	
 </div>
