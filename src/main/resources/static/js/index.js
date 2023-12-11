@@ -1,7 +1,6 @@
 let plantillaInicio = "";
 
-//variable que indica el nombre de usuario si se ha identificado correctamente
-let nombre_login = "";
+
 
 
 $.get("plantillas_mustache/inicio.html", function(data) {

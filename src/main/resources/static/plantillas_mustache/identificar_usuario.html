@@ -1,19 +1,21 @@
 <div class="contenedor-identificar-usuario">
 	<form id="form_login" class="formulario">
 		<p class="title">Introduce tus datos de inicio de sesión</p>
-		
-		<div class="input-box no-error">
-		    <input type="text" id="email" name="email">
-		    <label for="email">Email</label>
-		    <p class="suggestion"></p>
+
+		<div class="input-box no-error" id="contenedor-email">
+			<input type="text" id="email" name="email" >
+			<label for="email">Email</label>
+			<p class="suggestion" texto-error="El email debe ser un email valido">El email debe ser un email valido</p>
 		</div>
-		
-		<div class="input-box no-error">
-		    <input type="password" id="pass" name="pass">
-		    <label for="pass">Contraseña</label>
-		    <p class="suggestion"></p>
+
+		<div class="input-box no-error" id="contenedor-pass">
+			<input type="password" id="pass" name="pass" >
+			<label for="pass">Contraseña</label>
+			<p class="suggestion"
+				texto-error="La contraseña solo puede contener letras, numeros y debe ser de entre 3-20 caracteres">La
+				contraseña solo puede contener letras, numeros y debe ser de entre 3-20 caracteres</p>
 		</div>
-		<div><input class="checkbox" type="checkbox" id="recordarDatos" checked/> Recordar mis datos</div>
-		<input class="btn-enviar" type="submit" value="Identificarme"/>
+		<div><input class="checkbox" type="checkbox" id="recordarDatos" checked /> Recordar mis datos</div>
+		<input class="btn-enviar" type="submit" value="Identificarme" />
 	</form>
 </div>

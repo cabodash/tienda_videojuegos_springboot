@@ -33,7 +33,7 @@ public class ConstantesSQL {
 
 			
 	public static final String SQL_OBTENER_PRODUCTOS_CARRITO = 
-			"SELECT v.id AS videojuego_id, v.nombre, v.precio, pc.cantidad "
+			"SELECT v.id AS videojuego_id, v.nombre, v.descripcion, v.precio, pc.cantidad "
 			+ "FROM videojuego AS v, producto_carrito AS pc "
 			+ "WHERE pc.videojuego_id = v.id "
 			+ "AND pc.carrito_id = :carrito_id  "
@@ -85,13 +85,21 @@ public class ConstantesSQL {
 			+ "AND videojuego_id = :videojuego_id";
 
 	public static final String SQL_OBTENER_PEDIDOS_POR_ID_USUARIO = 
-			"SELECT * FROM pedido " +
-			"WHERE pedido.usuario_id = :id_usuario";
+			"SELECT p.id, p.nombre, p.apellidos, p.direccion, p.ciudad, p.codigo_postal, p.provincia, " +
+			"p.tipo_tarjeta, p.titular_tarjeta, p.numero_tarjeta, p.cvv, p.persona_contacto, p.telefono_contacto, " +
+			"SUM(v.precio * pp.cantidad) as precio_total_pedido " +
+			"FROM pedido p " +
+			"JOIN producto_pedido pp ON p.id = pp.pedido_id " +
+			"JOIN videojuego v ON pp.videojuego_id = v.id " +
+			"WHERE p.usuario_id = :id_usuario " +
+			"GROUP BY p.id";
 
 			//cambiar sql para que traiga datos como precio y eso//
 	public static final String SQL_OBTENER_PRODUCTOS_PEDIDO = 
-			"SELECT * FROM producto_pedido " +
-			"WHERE pedido_id = :id_pedido";
+			"SELECT pp.videojuego_id, v.nombre, v.precio, pp.cantidad, (v.precio * pp.cantidad) as precio_total " +
+			"FROM producto_pedido pp " +
+			"JOIN videojuego v ON pp.videojuego_id = v.id " +
+			"WHERE pp.pedido_id = :id_pedido";
    
 
 	

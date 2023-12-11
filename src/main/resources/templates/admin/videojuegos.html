@@ -5,6 +5,9 @@
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="../css/nav_admin.css">
 	<link rel="stylesheet" href="../css/listados_admin.css">
+	<link rel="stylesheet" href="../css/contenedor_checkboxes.css">
+
+
 	<title th:text="#{admin.videojuego.listado.tituloPagina}"></title>
 </head>
 
@@ -12,14 +15,44 @@
 
 	<div th:insert="fragments/general.html :: menu"></div>
 	<br>
+
 	<form th:action="obtenerVideojuegos" class="form-buscador ">
 		<img class="lupa" src="/images/lupa.png">
 		<input type="text" name="buscador" th:value="${nombre}"
 			th:placeholder="#{admin.videojuego.listado.buscador.placeholder}" autocomplete="off">
 		<input class="btn-buscar" type="submit" th:value="#{admin.listado.buscador.buscar}">
+		<div class="ajustes-buscador wrap">
+			<div class="listados-checkboxes">
+				<div class="opciones-generos">
+					Generos
+					<div class="opcion" th:each="genero : ${generos}">
+						<input type="checkbox" th:value="${genero.id}" name="generosSeleccionados" th:checked="${generosBuscador != null && generosBuscador.contains(genero)}"/>
+						<!-- Si los generos no estan en null (si no peta) -->
+						<label class="" th:text="${genero.nombre}"></label>
+					</div>
+				</div>
+				<div class="opciones-plataformas">
+					Plataformas
+					<div class="opcion" th:each="plataforma : ${plataformas}">
+						<input type="checkbox" th:value="${plataforma.id}" name="plataformasSeleccionadas" th:checked="${plataformasBuscador != null && plataformasBuscador.contains(plataforma)}"/>
+						<!-- Si los plataformas no estan en null (si no peta) -->
+						<label class="" th:text="${plataforma.nombre}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<label class="hamburger">
+			<input id="ajustes_toggle" type="checkbox">
+			<svg viewBox="0 0 32 32">
+				<path class="line line-top-bottom"
+					d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22">
+				</path>
+				<path class="line" d="M7 16 27 16"></path>
+			</svg>
+		</label>
 	</form>
 
-	<div>
+	<div style="width: fit-content; margin: 10px auto;">
 		<a th:if="${anterior >= 0}" th:href="@{${ 'obtenerVideojuegos?comienzo=' + anterior + '&nombre=' + nombre }}"
 			th:text="#{admin.listado.textoAnterior}"></a>
 		<a th:if="${siguiente < total}"
@@ -48,16 +81,18 @@
 			<div class="item-enlaces">
 				<a class="btn-primary" th:href="@{${ 'editarVideojuego?id=' + videojuego.id }}"
 					th:text="#{admin.listado.item.editar}"></a>
-				<a class="btn-primary" th:if= "${videojuego.alta == false}"
+				<a class="btn-primary" th:if="${videojuego.alta == false}"
 					th:href="@{${ 'altaVideojuego?id=' + videojuego.id }}" th:text="#{admin.listado.item.alta}"></a>
-				<a class="btn-primary" th:if= "${videojuego.alta == true}"
+				<a class="btn-primary" th:if="${videojuego.alta == true}"
 					th:href="@{${ 'bajaVideojuego?id=' + videojuego.id }}" th:text="#{admin.listado.item.baja}"></a>
 			</div>
 
 		</div>
 	</div>
 
+	<script src="../libreriasJS/jquery.js"></script>
 	<script src="../js/alta_admin.js"></script>
+	<script src="../js/eleccion_checkboxes.js"></script>
 
 </body>
 

@@ -17,7 +17,7 @@ public interface ServicioVideojuegos {
 
 	List<Videojuego> obtenerVideojuegosPorNombreComienzoFin(String nombre, int comienzo, int resultadosPorPagina);
 
-	List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina);
+	List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina, List<Integer> plataformasSeleccionadas, List<Integer> plataformasSeleccionados);
 	
 	public int obtenerTotalVideojuegos (String nombre);
 	

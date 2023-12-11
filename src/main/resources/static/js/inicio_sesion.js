@@ -20,6 +20,18 @@ function iniciar_sesion() {
 		$("#pass").val(Cookies.get("pass"));
 	}
 	$("#form_login").submit(function(e) {
+		let valid = true;
+		if (!validarEmail("contenedor-email", $("#email").val())) {
+			valid = false;
+		}
+		if (!validarContraseña("contenedor-pass", $("#pass").val())) {
+			valid = false;
+		}
+		if(!valid){
+			e.preventDefault();
+			alert("Hay errores en el formulario");
+			return;
+		}
 		$.post("servicioWEB_Usuarios/identificarUsuario",
 			{
 				email: $("#email").val(),
@@ -38,12 +50,16 @@ function iniciar_sesion() {
 					Cookies.set("pass", $("#pass").val(), {
 						expires: 100	
 					});
+				} else {
+					Cookies.remove("email");
+					Cookies.remove("pass");
 				}
+				actualizarNavbar();
+				cargar_plantilla_listado();
 			} else {
 				alert(res);
 			}
-			actualizarNavbar();
-			cargar_plantilla_listado();
+			
 		});
 		e.preventDefault();
 	});

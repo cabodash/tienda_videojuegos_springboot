@@ -1,10 +1,10 @@
 package springboot.tienda.services;
 
 import java.util.List;
+import java.util.Map;
 
 import springboot.tienda.data.webservices.ResumenPedido;
 import springboot.tienda.model.Pedido;
-import springboot.tienda.model.ProductoPedido;
 
 
 
@@ -23,7 +23,7 @@ public interface ServicioPedidos {
 	ResumenPedido obtenerResumenDelPedido(int idUsuario);
 	void confirmarPedido(int idUsuario);
 
-	List<ProductoPedido> obtenerProductosPedido(int idPedido);
-	List<Pedido> obtenerPedidosCliente(int idUsuario);
+	List<Map<String, Object>> obtenerProductosPedido(int idPedido);
+	List<Map<String, Object>> obtenerPedidosCliente(int idUsuario);
 
 }

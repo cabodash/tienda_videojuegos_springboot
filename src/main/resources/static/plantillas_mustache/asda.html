@@ -1,0 +1,113 @@
+<div id="q-app">
+    <div class="q-pa-md" style="max-width: 300px">
+      <div class="q-gutter-md">
+        <q-badge color="secondary" multi-line>
+          Model: "{{ profile }}"
+        </q-badge>
+  
+        <q-select
+            v-model="profile"
+            :options="profileOptions"
+            label="Profiles"
+            dense
+            options-dense
+            outlined
+            multiple
+            use-chips
+            emit-value
+            map-options
+            @input="profileSelected"
+            style="font-size: 20px; width: 750px"
+        >
+          <template #before-options>
+            <q-item            
+            >
+              <q-item-section>
+                <q-item-label>Select All</q-item-label>
+              </q-item-section>
+              <q-item-section side>
+                <q-checkbox v-model="all" @input="checkAll"></q-checkbox>
+              </q-item-section>
+            </q-item>
+          </template>
+          <template v-slot:option="scope">
+            <q-item
+              v-bind="scope.itemProps"
+              v-on="scope.itemEvents"      
+            >
+              <q-item-section>
+                <q-item-label v-html="scope.opt.label"></q-item-label>
+              </q-item-section>
+              <q-item-section side>
+                <q-checkbox v-model="profile" @input="profileSelected" :val="scope.opt.value"></q-checkbox>
+              </q-item-section>
+            </q-item>
+          </template>
+          <template v-slot:append>
+          <q-icon name="close" @click.stop="profileCleared" class="cursor-pointer" />
+        </template>
+        </q-select>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+  el: '#q-app',
+  data () {
+    return {
+      profile: [],
+      all: false,
+      profileOptions: [
+        { label: 'Anesthesia', value: 'Anesthesia' },
+        { label: 'Diagnostic Imaging', value: 'DiagnosticImaging' },
+        { label: 'ECMO', value: 'ECMO' },
+        { label: 'ED', value: 'ED' },
+        { label: 'ICU', value: 'ICU' },
+        { label: 'Infusion Center', value: 'Infusion Center' },
+        { label: 'Med', value: 'Med' },
+        { label: 'Misc', value: 'Misc' },
+        { label: 'MonitoredONC', value: 'MonitoredONC' },
+        { label: 'Nursery', value: 'Nursery' },
+        { label: 'NICU', value: 'NICU' },
+        { label: 'OB', value: 'OB' },
+        { label: 'Oncology', value: 'Oncology' },
+        { label: 'PACU', value: 'PACU' },
+        { label: 'PEDS', value: 'PEDS' },
+        { label: 'Peds Oncology', value: 'Peds Oncology' },
+        { label: 'PICU', value: 'PICU' },
+        { label: 'Procedural', value: 'Procedural' },
+        { label: 'Step Down', value: 'Step Down' },
+        { label: 'Surg', value: 'Surg' },
+        { label: 'TELE', value: 'TELE' }
+      ]
+    }
+  },
+  methods: {
+    checkAll (v) {
+      if (v) {
+        this.profile = this.profileOptions.map(v => v.value)
+        this.profileSelected()
+        return
+      }
+      this.profileCleared()
+    },
+    profileSelected () {
+      if (this.profile.length === 21) {
+        this.all = true
+      } else {
+        this.all = false
+      }
+      this.loadTable()
+    },
+    profileCleared () {
+      this.all = false
+      this.profile = []
+      this.profileSelected()
+    },
+    loadTable () {
+      // do stuff
+    }
+  }
+})
+  </script>

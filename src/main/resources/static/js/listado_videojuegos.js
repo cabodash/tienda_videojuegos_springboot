@@ -8,7 +8,7 @@ $.get("plantillas_mustache/listado_videojuegos.html", function(data) {
 
 $.get("plantillas_mustache/videojuegos.html", function(data) {
 	plantillaVideojuegos = data;
-	setTimeout(mostrar_videojuegos, 200);
+	setTimeout(iniciar_sesion, 200);
 });
 
 

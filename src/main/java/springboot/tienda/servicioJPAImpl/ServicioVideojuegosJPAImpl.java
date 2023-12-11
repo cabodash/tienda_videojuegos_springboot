@@ -1,6 +1,7 @@
 package springboot.tienda.servicioJPAImpl;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -139,8 +140,23 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		return detallesVideojuego;
 	}
 
+	// @Override
+	// public List<Videojuego> obtenerVideojuegosPorGeneros(List<Integer> generosSeleccionados) {
+	// 	String qlString = 
+	// 		"select distinct v from Videojuego v "
+	// 		+ "left join v.generos g "
+	// 		+ "where g.id in :generosSeleccionados "
+	// 		+ "order by v.id desc";
+	// 	if (generosSeleccionados.isEmpty()) {
+	// 		qlString = "select distinct v from Videojuego v order by v.id desc";
+	// 	}
+	// 	return entityManager.createQuery(qlString)
+	// 	.setParameter("generosSeleccionados", generosSeleccionados)
+	// 	.getResultList();
+	// }
+
 	@Override
-	public List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina) {
+	public List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina, List<Integer> plataformasSeleccionadas, List<Integer> generosSeleccionados) {
 		String qlString = 
 			"select distinct v from Videojuego v "
 			+ "left join v.generos g "
@@ -148,10 +164,14 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 			+ "where (v.nombre like :dato "
 			+ "or v.desarrollador like :dato "
 			+ "or g.nombre like :dato "
-			+ "or p.nombre like :dato) "
+			+ "or p.nombre like :dato "
+			+ "or g.id in :generosSeleccionados "
+			+ "or p.id in :plataformasSeleccionadas) "
 			+ "order by v.id desc";
 		return entityManager.createQuery(qlString)
 		.setParameter("dato", "%" + dato + "%")
+		.setParameter("generosSeleccionados", generosSeleccionados != null ? generosSeleccionados : Collections.emptyList())
+		.setParameter("plataformasSeleccionadas", plataformasSeleccionadas != null ? plataformasSeleccionadas : Collections.emptyList())
 		.setFirstResult(comienzo)
 		.setMaxResults(resultadosPorPagina)
 		.getResultList();

@@ -3,8 +3,8 @@ let dato_a_buscar = "";
 let comienzo_resultados = 0;
 const cantidad_paginacion = 6;
 
-
-
+//variable que indica el nombre de usuario si se ha identificado correctamente
+let nombre_login = "";
 
 function cargar_plantilla_listado(){
 	// cargar css del listado
@@ -202,15 +202,17 @@ function cargar_reproductores() {
 function actualizarNavbar(){
 	if (nombre_login != "") {
 		$("#registro").hide();
-		$("#identificar").hide();
+		$("#inicio_sesion").hide();
 		$("#carrito").show();
 		$("#misdatos").show();
+		$("#mispedidos").show();
 		$("#logout").show();
 	} else {
 		$("#registro").show();
-		$("#identificar").show();
+		$("#inicio_sesion").show();
 		$("#carrito").hide();
 		$("#misdatos").hide();
+		$("#mispedidos").hide();
 		$("#logout").hide();
 	}
 }

@@ -55,7 +55,7 @@ $("#carrito").click(function () {
 		}).fail(function () {
 			alert("Error, prueba a volver a identificarte");
 		}).done(function () {
-			document.querySelectorAll(".item-carrito").forEach(item => {
+			document.querySelectorAll(".card").forEach(item => {
 				let precioCantidad = item.querySelector(".precio-cantidad");
 				let precio = parseInt(item.querySelector(".precio").textContent);
 				precioCantidad.textContent = precio * parseInt(item.querySelector(".cantidad").textContent);
@@ -75,7 +75,6 @@ $("#carrito").click(function () {
 							}).done(function (res) {
 								if (res == "ok") {
 									item.querySelector(".cantidad").textContent = cantidad + 1;
-									item.querySelector(".cantidad-juegos").textContent = cantidad + 1;
 									precioCantidad.textContent = precio * ( cantidad + 1);
 								} else {
 									alert(res);
@@ -97,7 +96,6 @@ $("#carrito").click(function () {
 							}).done(function (res) {
 								if (res == "ok") {
 									item.querySelector(".cantidad").textContent = cantidad - 1;
-									item.querySelector(".cantidad-juegos").textContent = cantidad - 1;
 									precioCantidad.textContent = precio * ( cantidad - 1);
 								} else {
 									alert(res);
@@ -202,6 +200,8 @@ function checkout_paso_3_aceptar() {
 						alert("respuesta del servicio web: " + res);
 						cargar_plantilla_listado();
 					}
+				}).done(()=>{
+					cargar_plantilla_listado();
 				});
 			});
 		});

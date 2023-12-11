@@ -1,6 +1,7 @@
 package springboot.tienda.servicioJPAImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -167,17 +168,16 @@ public class ServicioPedidosImpl implements ServicioPedidos{
 	}
 
 	@Override
-	public List<ProductoPedido> obtenerProductosPedido(int idPedido) {
+	public List<Map<String, Object>> obtenerProductosPedido(int idPedido) {
 		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_PRODUCTOS_PEDIDO);
 		NativeQueryImpl nativequery = (NativeQueryImpl) query;
 		nativequery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
 		nativequery.setParameter("id_pedido", idPedido);
-		List<ProductoPedido> productos = nativequery.getResultList();
-		return productos;
+		return nativequery.getResultList();
 	}
 
 	@Override
-	public List<Pedido> obtenerPedidosCliente(int idUsuario) {
+	public List<Map<String, Object>> obtenerPedidosCliente(int idUsuario) {
 		Query query = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_PEDIDOS_POR_ID_USUARIO);
 		NativeQueryImpl nativequery = (NativeQueryImpl) query;
 		nativequery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);

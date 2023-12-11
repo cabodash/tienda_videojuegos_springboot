@@ -1,44 +1,58 @@
+IMPORTANTES:
+ -validacion en el checkout
+ -Ocultar boton mis datos
+ -adminPedidos
+ -Input file para videos de videojuegos
+ -arreglar filtros de buscador admin
+ -vista detalles Juego cliente
+ -vista pasos checkout
+ -vista mis pedidos
+
+
+
+
+
     
 -añadir filtrado por generos y plataformas
 
--Permitir buscar tambien por genero, plataforma, desarrollador, (rangos de precio y puntuacion si se hacen los anteriores)
+👍-Permitir buscar tambien por genero, plataforma, desarrollador, (rangos de precio y puntuacion si se hacen los anteriores)
 -buscador en cliente que lance la query (el servicioVideojuegos/obtenerPorXcosa?cosa=valor) por keyup,
  y muestre los resultados en un contenedor como busqueda rapida, y que al darle al enter cargue esa busqueda en el contenedor de cliente
+-Añadir buscador en usuarios, generos y plataformas
 
- -Dar estilo al contenedor de imagen de registro en cliente
+👍-Dar estilo al contenedor de imagen de registro en cliente
 
- -Dar estilo a detalles videojuego en cliente
 
- -ocultar y mostrar las opciones de registro, cerrar sesion... dependiendo de si el usuario esta identificado o no (  $(#cosa).hide y esas cosas  )
- -Añadir opcion de elegir cantidad de juegos a añadir en detalles videojuego
+ 👍-ocultar y mostrar las opciones de registro, cerrar sesion... dependiendo de si el usuario esta identificado o no (  $(#cosa).hide y esas cosas  )
+ 👍-Añadir opcion de elegir cantidad de juegos a añadir en detalles videojuego
 
- -Mejorar diseño carrito
- -Añadir posibilidad de cambiar cantidad de juegos en carrito (diseño como el de amazon en movil)
+ 👍-Mejorar diseño carrito
+ 👍-Añadir posibilidad de cambiar cantidad de juegos en carrito (diseño como el de amazon en movil)
 
  -Mejorar diseño pasos checkout
 
- -Al confirmar el pedido cambiar de vista a la de videojuegos o si esta implementada,a la de mis pedidos
+ 👍-Al confirmar el pedido cambiar de vista a la de videojuegos o si esta implementada,a la de mis pedidos
 
  -Implementar la parte de mis datos y poder editar los datos de usuario en cliente
 
  -mejorar diseño login administracion (en el boton de aceptar pone aceptat)
 
- -Mejorar diseño de listado de generos y plataformas (mismo que los demas)
+ 👍-Mejorar diseño de listado de generos y plataformas (mismo que los demas)
 
- -Mejorar diseño de crear nueva entidad 
+ 👍-Mejorar diseño de crear nueva entidad 
 
- -Añadir traducciones en toda la administracion (Por lo menos para ingles)
-  `--->A medio hacer, pero la funcionalidad de que no pete entre paginas por los parametros como en editarEntidad esta apañada redirigiendo a la de videojuegos
+ 👍-Añadir traducciones en toda la administracion (Por lo menos para ingles)
+ 👍 `--->A medio hacer, pero la funcionalidad de que no pete entre paginas por los parametros como en editarEntidad esta apañada redirigiendo a la de videojuegos
 
 
- -Arreglar validaciones en servidor y añadir las faltantes en servidor y cliente 
-  `---> Terminada validacion funcional en servidor de videojuego (La mas tocha)
+ 👍-Arreglar validaciones en servidor y añadir las faltantes en servidor y cliente 
+ 👍 `---> Terminada validacion funcional en servidor de videojuego (La mas tocha)
 
- -añadir opcion de si no dispones de video en cliente se quede la foto, y de no haber foto cargar una por defecto
+ -añadir opcion de si no dispones de video en cliente se quede la foto,  👍 y de no haber foto cargar una por defecto
 
  -Quitar la creacion de los productos vacios esos y meter 20 o 30 de verdad
 
- -Permitir dar de alta y de baja entidades (videojuegos, generos, plataformas, usuarios...)
+ 👍-Permitir dar de alta y de baja entidades (videojuegos, generos, plataformas, usuarios...)
 
  -Poner un input file para el video de los videojuegos 
 

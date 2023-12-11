@@ -1,6 +1,7 @@
 package springboot.tienda.webservices;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -67,7 +68,7 @@ public class ServicioWEB_Pedidos {
 	}
 
 	@RequestMapping("obtenerPedidos")
-	public List<Pedido> obtenerPedidos(HttpServletRequest requert) throws Exception {
+	public List<Map<String, Object>> obtenerPedidos(HttpServletRequest requert) throws Exception {
 		if (requert.getSession().getAttribute("usuario_identificado") != null) {
 			int idUsuario = ((Usuario) requert.getSession().getAttribute("usuario_identificado")).getId();
 			return servicioPedidos.obtenerPedidosCliente(idUsuario);
@@ -78,9 +79,8 @@ public class ServicioWEB_Pedidos {
 	
 	//cambiar para que devuelva un List<Map<String, Object>>//
 	@RequestMapping("obtenerProductosPedido")
-	public List<ProductoPedido> obtenerProductosPedido(@RequestParam("id_pedido") Integer id_pedido, HttpServletRequest requert) throws Exception {
+	public List<Map<String, Object>> obtenerProductosPedido(@RequestParam("id_pedido") Integer id_pedido, HttpServletRequest requert) throws Exception {
 		if (requert.getSession().getAttribute("usuario_identificado") != null) {
-			int idUsuario = ((Usuario) requert.getSession().getAttribute("usuario_identificado")).getId();
 			return servicioPedidos.obtenerProductosPedido(id_pedido);
 		} else {
 			throw new Exception("usuario no identificado");
