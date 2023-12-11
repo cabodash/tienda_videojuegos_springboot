@@ -89,6 +89,9 @@ public class Videojuego {
     
     @Transient //Con esto decimos a hibernate que no considere este campo
 	private MultipartFile fotoSubida;
+
+	@Transient //Con esto decimos a hibernate que no considere este campo
+	private MultipartFile videoSubido;
     
     @Id
     @GeneratedValue
@@ -262,6 +265,14 @@ public class Videojuego {
 
 	public void setProductoCarrito(ProductoCarrito productoCarrito) {
 		this.productoCarrito = productoCarrito;
+	}
+
+	public MultipartFile getVideoSubido() {
+		return videoSubido;
+	}
+
+	public void setVideoSubido(MultipartFile videoSubido) {
+		this.videoSubido = videoSubido;
 	}
 
 }

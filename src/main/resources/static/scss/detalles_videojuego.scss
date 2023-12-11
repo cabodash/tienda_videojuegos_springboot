@@ -1,5 +1,8 @@
 .detalles {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
     .imagen-producto {
         width: 40%;
@@ -15,7 +18,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 10px;ñ
+        gap: 10px;
 
     }
 }

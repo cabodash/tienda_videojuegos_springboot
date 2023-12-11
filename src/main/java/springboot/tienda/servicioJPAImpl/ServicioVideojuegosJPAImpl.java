@@ -43,6 +43,12 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		try {
+		v.setVideoPortada(v.getVideoSubido().getBytes());
+		entityManager.persist(v);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -76,6 +82,19 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 			System.out.println("[i] -Asignar una nueva foto");
 			try {
 				v.setImagenPortada(v.getFotoSubida().getBytes());
+			} catch (IOException e) {
+				System.out.println("[e] -No se pudo procesar la foto subida");
+				e.printStackTrace();
+			}
+		}
+		if(v.getVideoSubido().getSize() == 0) {
+			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());
+			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual: " + vAnterior.getVideoPortada());
+			v.setVideoPortada(vAnterior.getVideoPortada());
+		}else {
+			System.out.println("[i] -Asignar una nueva foto");
+			try {
+				v.setVideoPortada(v.getVideoSubido().getBytes());
 			} catch (IOException e) {
 				System.out.println("[e] -No se pudo procesar la foto subida");
 				e.printStackTrace();

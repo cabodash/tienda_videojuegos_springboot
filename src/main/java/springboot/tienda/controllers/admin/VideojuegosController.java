@@ -41,8 +41,8 @@ public class VideojuegosController {
 		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegosDatoPaginado(nombre, comienzo, 10, plataformasSeleccionadas, generosSeleccionados));
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
-		model.addAttribute("generosBuscador", servicioGeneros.obtenerGenerosPorIds(generosSeleccionados));
-		model.addAttribute("plataformasBuscador", servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
+		model.addAttribute("generosSeleccionados", servicioGeneros.obtenerGenerosPorIds(generosSeleccionados));
+		model.addAttribute("plataformasSeleccionadas", servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
 		model.addAttribute("nombre", nombre);
 		model.addAttribute("siguiente", comienzo + 10);
 		model.addAttribute("anterior", comienzo - 10);

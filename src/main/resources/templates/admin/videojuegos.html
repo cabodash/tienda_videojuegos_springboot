@@ -26,17 +26,18 @@
 				<div class="opciones-generos">
 					Generos
 					<div class="opcion" th:each="genero : ${generos}">
-						<input type="checkbox" th:value="${genero.id}" name="generosSeleccionados" th:checked="${generosBuscador != null && generosBuscador.contains(genero)}"/>
+						<input type="checkbox" th:value="${genero.id}" name="generosSeleccionados" th:checked="${generosSeleccionados != null && generosSeleccionados.contains(genero)}"/>
 						<!-- Si los generos no estan en null (si no peta) -->
-						<label class="" th:text="${genero.nombre}"></label>
+						<label class="" th:classappend="${generosSeleccionados != null && generosSeleccionados.contains(genero) ? 'selected' : ''}" th:text="${genero.nombre}"></label>
 					</div>
 				</div>
 				<div class="opciones-plataformas">
 					Plataformas
 					<div class="opcion" th:each="plataforma : ${plataformas}">
-						<input type="checkbox" th:value="${plataforma.id}" name="plataformasSeleccionadas" th:checked="${plataformasBuscador != null && plataformasBuscador.contains(plataforma)}"/>
+						<input type="checkbox" th:value="${plataforma.id}" name="plataformasSeleccionadas" th:checked="${plataformasSeleccionadas != null && plataformasSeleccionadas.contains(plataforma)}"/>
 						<!-- Si los plataformas no estan en null (si no peta) -->
-						<label class="" th:text="${plataforma.nombre}"></label>
+						
+						<label class="" th:classappend="${plataformasSeleccionadas != null && plataformasSeleccionadas.contains(plataforma) ? 'selected' : ''}" th:text="${plataforma.nombre}"></label>
 					</div>
 				</div>
 			</div>

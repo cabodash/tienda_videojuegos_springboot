@@ -6,9 +6,9 @@ const cantidad_paginacion = 6;
 //variable que indica el nombre de usuario si se ha identificado correctamente
 let nombre_login = "";
 
-function cargar_plantilla_listado(){
+function cargar_plantilla_listado() {
 	// cargar css del listado
-	if ( $('#estilo-actual').attr("href") != "css/listado_videojuegos.css"){
+	if ($('#estilo-actual').attr("href") != "css/listado_videojuegos.css") {
 		$('#estilo-actual').attr('href', 'css/listado_videojuegos.css');
 	}
 
@@ -20,20 +20,23 @@ function cargar_plantilla_listado(){
 	//Buscador
 	$("#buscador").keyup(function (e) {
 		clearTimeout(typingTimer);
-		typingTimer = setTimeout(function(){
+		typingTimer = setTimeout(function () {
 			dato_a_buscar = $("#buscador").val();
 			comienzo_resultados = 0;
 			mostrar_videojuegos();
 		}, 500);
-		
-		
+
+
 	});
-	
+
 	//borrar texto del buscador
-	$("#imagen-borrar").click(function (e) {
+	$("#borrar-texto-busqueda").click(function (e) {
 		console.log("borrar datos busqueda");
 		$("#buscador").val("");
-		
+		dato_a_buscar = "";
+		comienzo_resultados = 0;
+		mostrar_videojuegos();
+
 	});
 
 
@@ -41,19 +44,19 @@ function cargar_plantilla_listado(){
 	mostrar_videojuegos();
 
 	//Paginacion anterior
-	$("#enlace_anterior").click(function (e) { 
+	$("#enlace_anterior").click(function (e) {
 		e.preventDefault();
 		comienzo_resultados -= cantidad_paginacion;
 		mostrar_videojuegos();
 	});
 
 	//paginacion siguiente
-	$("#enlace_siguiente").click(function (e) { 
+	$("#enlace_siguiente").click(function (e) {
 		e.preventDefault();
 		comienzo_resultados += cantidad_paginacion;
 		mostrar_videojuegos();
 	});
-	
+
 
 
 
@@ -61,7 +64,7 @@ function cargar_plantilla_listado(){
 function mostrar_videojuegos() {
 	//cargar JSON de videojuegos
 	$.getJSON("servicioWebVideojuegos/obtenerVideojuegos", { dato: dato_a_buscar, comienzo: comienzo_resultados }).done(function (res) {
-		
+
 		//antes de mostrar el resultado usando la plantilla podemos prepararlo un poco
 		let videojuegos = res.videojuegos;
 		for (i in videojuegos) {
@@ -72,24 +75,24 @@ function mostrar_videojuegos() {
 		totalVideojuegos = res.totalVideojuegos;
 
 		//Poner foto por defecto si no tiene
-		
+
 
 		//Carga del html del listado
 		let html_listado = Mustache.render(plantillaListado, videojuegos);
 		$(".listado-videojuegos").html(html_listado);
 
 		//esconder y mostrar paginacion
-		if(comienzo_resultados <= 0){
+		if (comienzo_resultados <= 0) {
 			$("#enlace_anterior").hide();
-		}else{
+		} else {
 			$("#enlace_anterior").show();
 		}
-		
+
 		$("#comienzo_resultado").html(comienzo_resultados);
 		$("#total_resultados").html(totalVideojuegos);
-		if(comienzo_resultados > totalVideojuegos){
+		if ((comienzo_resultados + cantidad_paginacion) > totalVideojuegos) {
 			$("#enlace_siguiente").hide();
-		}else{
+		} else {
 			$("#enlace_siguiente").show();
 		}
 
@@ -134,35 +137,55 @@ function mostrar_videojuegos() {
 }
 
 
-function cambioCantidad(){
-	document.querySelectorAll(".item-detalles").forEach(item => {
+function cambioCantidad() {
+	document.querySelectorAll(".detalles").forEach(item => {
 		let precioCantidad = item.querySelector(".precio-cantidad");
-		let precio = parseInt(item.querySelector(".precio").textContent);
-		precioCantidad.textContent = precio * parseInt(item.querySelector(".cantidad").textContent);
+				let precio = parseInt(item.querySelector(".precio").textContent);
+				precioCantidad.textContent = precio * parseInt(item.querySelector(".cantidad").textContent);
 
 
 
-		item.querySelector(".aumentar").addEventListener("click", function () {
-			let cantidad = parseInt(item.querySelector(".cantidad").textContent);
-			if (cantidad >= 10) {
+				item.querySelector(".aumentar").addEventListener("click", function () {
+					let cantidad = parseInt(item.querySelector(".cantidad").textContent);
+					let id_videojuego = $(this).attr("id-videojuego");
+					if (cantidad >= 10) {
 
-			} else {
-				item.querySelector(".cantidad").textContent = cantidad + 1;
-				item.querySelector(".cantidad-juegos").textContent = cantidad + 1;
-				precioCantidad.textContent = precio * ( cantidad + 1);
-			}
-		});
+					} else {
+						$.post("servicioWebCarrito/cambiarCantidadProducto",
+							{
+								id: id_videojuego,
+								cantidad: cantidad + 1
+							}).done(function (res) {
+								if (res == "ok") {
+									item.querySelector(".cantidad").textContent = cantidad + 1;
+									precioCantidad.textContent = precio * ( cantidad + 1);
+								} else {
+									alert(res);
+								}
+							});
+					}
+				});
 
-		item.querySelector(".restar").addEventListener("click", function () {
-			let cantidad = parseInt(item.querySelector(".cantidad").textContent);
-			if (cantidad <= 1) {
+				item.querySelector(".restar").addEventListener("click", function () {
+					let cantidad = parseInt(item.querySelector(".cantidad").textContent);
+					let id_videojuego = $(this).attr("id-videojuego");
+					if (cantidad <= 1) {
 
-			} else {
-				item.querySelector(".cantidad").textContent = cantidad - 1;
-				item.querySelector(".cantidad-juegos").textContent = cantidad - 1;
-				precioCantidad.textContent = precio * ( cantidad - 1);
-			}
-		});
+					} else {
+						$.post("servicioWebCarrito/cambiarCantidadProducto",
+							{
+								id: id_videojuego,
+								cantidad: cantidad - 1
+							}).done(function (res) {
+								if (res == "ok") {
+									item.querySelector(".cantidad").textContent = cantidad - 1;
+									precioCantidad.textContent = precio * ( cantidad - 1);
+								} else {
+									alert(res);
+								}
+							});
+					}
+				});
 
 	});
 }
@@ -199,7 +222,7 @@ function cargar_reproductores() {
 }
 
 
-function actualizarNavbar(){
+function actualizarNavbar() {
 	if (nombre_login != "") {
 		$("#registro").hide();
 		$("#inicio_sesion").hide();

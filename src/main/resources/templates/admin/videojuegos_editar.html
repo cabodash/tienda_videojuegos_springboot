@@ -14,7 +14,17 @@
 		<h2 th:text="#{admin.videojuego.editar.tituloForm}"></h2>
 
 		<img class="preview videojuego-img" id="preview-img" th:src="@{${ '../mostrar_imagen_videojuego?id=' + videojuegoEditar.id }}" alt="Imagen por defecto">
-		<input type="file" th:field="*{fotoSubida}" />
+		
+		<label class="fileInput">
+			<span>Foto Portada: Selecciona o arrastra una Foto</span>
+			<input type="file" th:field="*{fotoSubida}" />
+		</label>
+
+		
+		<label class="fileInput">
+			<span>Video Portada: Selecciona o arrastra un Video</span>
+			<input type="file" th:field="*{videoSubido}">
+		</label>
 
 		<div class="input-box no-error">
 			<input type="text" name="nombre" th:field="*{nombre}">
