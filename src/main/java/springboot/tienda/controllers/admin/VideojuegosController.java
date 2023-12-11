@@ -38,7 +38,7 @@ public class VideojuegosController {
 			@RequestParam(required = false) List<Integer> generosSeleccionados,
 			@RequestParam(required = false) List<Integer> plataformasSeleccionadas,
 			Model model) {
-		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegosDatoPaginado(nombre, comienzo, 10, plataformasSeleccionadas, generosSeleccionados));
+		model.addAttribute("videojuegos", servicioVideojuegos.obtenerVideojuegosDatoPaginado(nombre, comienzo, 10, generosSeleccionados, plataformasSeleccionadas));
 		model.addAttribute("generos", servicioGeneros.obtenerGeneros());
 		model.addAttribute("plataformas", servicioPlataformas.obtenerPlataformas());
 		model.addAttribute("generosSeleccionados", servicioGeneros.obtenerGenerosPorIds(generosSeleccionados));

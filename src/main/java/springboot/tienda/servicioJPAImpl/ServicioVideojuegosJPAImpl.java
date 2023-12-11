@@ -24,7 +24,7 @@ import springboot.tienda.services.ServicioVideojuegos;
 
 @Service
 @Transactional
-public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
+public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -38,18 +38,18 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	@Override
 	public void registrarVideojuego(Videojuego v) {
 		try {
-		v.setImagenPortada(v.getFotoSubida().getBytes());
-		entityManager.persist(v);
-		}catch(IOException e) {
+			v.setImagenPortada(v.getFotoSubida().getBytes());
+			entityManager.persist(v);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		try {
-		v.setVideoPortada(v.getVideoSubido().getBytes());
-		entityManager.persist(v);
-		}catch(IOException e) {
+			v.setVideoPortada(v.getVideoSubido().getBytes());
+			entityManager.persist(v);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -59,26 +59,27 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		return entityManager.createQuery("select v from Videojuego v order by v.id desc").getResultList();
 	}
 
-	
-
 	@Override
 	public Videojuego obtenerVideojuegoPorId(int id) {
 		return entityManager.find(Videojuego.class, id);
 	}
 
 	@Override
-	public void guardarCambiosVideojuego(Videojuego v, List<Integer> generosSeleccionados, List<Integer> plataformasSeleccionadas) {
+	public void guardarCambiosVideojuego(Videojuego v, List<Integer> generosSeleccionados,
+			List<Integer> plataformasSeleccionadas) {
 		v.setAlta(true);
-		//Primero hay que borrar las relaciones entre el videojuego y las entidades para evitar un error de multiple merges in videojuego
+		// Primero hay que borrar las relaciones entre el videojuego y las entidades
+		// para evitar un error de multiple merges in videojuego
 		servicioGeneros.borrarGenerosVideojuegoPorIdVideojuego(v.getId());
 		servicioPlataformas.borrarPlataformasVideojuegoPorIdVideojuego(v.getId());
 		v.setGeneros(new HashSet<>(servicioGeneros.obtenerGenerosPorIds(generosSeleccionados)));
 		v.setPlataformas(servicioPlataformas.obtenerPlataformasPorIds(plataformasSeleccionadas));
-		if(v.getFotoSubida().getSize() == 0) {
+		if (v.getFotoSubida().getSize() == 0) {
 			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());
-			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual: " + vAnterior.getImagenPortada());
+			System.out
+					.println("[i] -No se subio una nueva foto, se mantiene la actual: " + vAnterior.getImagenPortada());
 			v.setImagenPortada(vAnterior.getImagenPortada());
-		}else {
+		} else {
 			System.out.println("[i] -Asignar una nueva foto");
 			try {
 				v.setImagenPortada(v.getFotoSubida().getBytes());
@@ -87,11 +88,12 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 				e.printStackTrace();
 			}
 		}
-		if(v.getVideoSubido().getSize() == 0) {
+		if (v.getVideoSubido().getSize() == 0) {
 			Videojuego vAnterior = entityManager.find(Videojuego.class, v.getId());
-			System.out.println("[i] -No se subio una nueva foto, se mantiene la actual: " + vAnterior.getVideoPortada());
+			System.out
+					.println("[i] -No se subio una nueva foto, se mantiene la actual: " + vAnterior.getVideoPortada());
 			v.setVideoPortada(vAnterior.getVideoPortada());
-		}else {
+		} else {
 			System.out.println("[i] -Asignar una nueva foto");
 			try {
 				v.setVideoPortada(v.getVideoSubido().getBytes());
@@ -101,45 +103,42 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 			}
 		}
 		entityManager.merge(v);
-		 
-	}
 
-	
+	}
 
 	@Override
 	public List<Videojuego> obtenerVideojuegosPorNombre(String nombre) {
 		return entityManager.createQuery("select v from Videojuego v where v.nombre like :nombre order by v.id desc")
-		.setParameter("nombre", "%" + nombre + "%")
-		.getResultList();
+				.setParameter("nombre", "%" + nombre + "%")
+				.getResultList();
 	}
 
 	@Override
 	public List<Videojuego> obtenerVideojuegosPorNombreComienzoFin(String nombre, int comienzo,
 			int resultadosPorPagina) {
 		return entityManager.createQuery("select v from Videojuego v where v.nombre like :nombre order by v.id desc")
-		.setParameter("nombre", "%" + nombre + "%")
-		.setFirstResult(comienzo)
-		.setMaxResults(resultadosPorPagina)
-		.getResultList();
+				.setParameter("nombre", "%" + nombre + "%")
+				.setFirstResult(comienzo)
+				.setMaxResults(resultadosPorPagina)
+				.getResultList();
 	}
 
 	@Override
-	public int obtenerTotalVideojuegos (String nombre) {
+	public int obtenerTotalVideojuegos(String nombre) {
 		Query q = entityManager.createNativeQuery(ConstantesSQL.SQL_OBTENER_TOTAL_VIDEOJUEGOS)
-		.setParameter("nombre",  "%" + nombre + "%");
+				.setParameter("nombre", "%" + nombre + "%");
 		int totalVideojuegos = Integer.parseInt((q.getSingleResult().toString()));
 		return totalVideojuegos;
 	}
-	
-	
-	//Metodos para cliente
+
+	// Metodos para cliente
 	@Override
 	public List<Map<String, Object>> obtenerVideojuegosParaFormarJSON(String dato, int comienzo) {
 		Query query = entityManager.createNativeQuery(
 				ConstantesSQL.SQL_OBTENER_VIDEOJUEGOS_DATO_JSON);
 		NativeQueryImpl nativeQuery = (NativeQueryImpl) query;
 		nativeQuery.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
-		nativeQuery.setParameter("dato","%" + dato + "%");
+		nativeQuery.setParameter("dato", "%" + dato + "%");
 		nativeQuery.setParameter("comienzo", comienzo);
 		List<Map<String, Object>> videojuegos = nativeQuery.getResultList();
 		return videojuegos;
@@ -160,50 +159,60 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 	}
 
 	// @Override
-	// public List<Videojuego> obtenerVideojuegosPorGeneros(List<Integer> generosSeleccionados) {
-	// 	String qlString = 
-	// 		"select distinct v from Videojuego v "
-	// 		+ "left join v.generos g "
-	// 		+ "where g.id in :generosSeleccionados "
-	// 		+ "order by v.id desc";
-	// 	if (generosSeleccionados.isEmpty()) {
-	// 		qlString = "select distinct v from Videojuego v order by v.id desc";
-	// 	}
-	// 	return entityManager.createQuery(qlString)
-	// 	.setParameter("generosSeleccionados", generosSeleccionados)
-	// 	.getResultList();
+	// public List<Videojuego> obtenerVideojuegosPorGeneros(List<Integer>
+	// generosSeleccionados) {
+	// String qlString =
+	// "select distinct v from Videojuego v "
+	// + "left join v.generos g "
+	// + "where g.id in :generosSeleccionados "
+	// + "order by v.id desc";
+	// if (generosSeleccionados.isEmpty()) {
+	// qlString = "select distinct v from Videojuego v order by v.id desc";
+	// }
+	// return entityManager.createQuery(qlString)
+	// .setParameter("generosSeleccionados", generosSeleccionados)
+	// .getResultList();
 	// }
 
 	@Override
-	public List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina, List<Integer> plataformasSeleccionadas, List<Integer> generosSeleccionados) {
-		String qlString = 
-			"select distinct v from Videojuego v "
-			+ "left join v.generos g "
-			+ "left join v.plataformas p "
-			+ "where (v.nombre like :dato "
-			+ "or v.desarrollador like :dato "
-			+ "or g.nombre like :dato "
-			+ "or p.nombre like :dato "
-			+ "or g.id in :generosSeleccionados "
-			+ "or p.id in :plataformasSeleccionadas) "
-			+ "order by v.id desc";
-		return entityManager.createQuery(qlString)
-		.setParameter("dato", "%" + dato + "%")
-		.setParameter("generosSeleccionados", generosSeleccionados != null ? generosSeleccionados : Collections.emptyList())
-		.setParameter("plataformasSeleccionadas", plataformasSeleccionadas != null ? plataformasSeleccionadas : Collections.emptyList())
-		.setFirstResult(comienzo)
-		.setMaxResults(resultadosPorPagina)
-		.getResultList();
+	public List<Videojuego> obtenerVideojuegosDatoPaginado(String dato, int comienzo, int resultadosPorPagina,
+			List<Integer> generosSeleccionados, List<Integer> plataformasSeleccionadas) {
+		
+		String qlString = "select distinct v from Videojuego v "
+				+ "left join v.generos g "
+				+ "left join v.plataformas p "
+				+ "where (v.nombre like :dato "
+				+ "or v.desarrollador like :dato "
+				+ "or p.nombre like :dato "
+				+ "or g.nombre like :dato) ";
+		if (generosSeleccionados != null && !generosSeleccionados.isEmpty()) {
+			qlString += "and (g.id in :generosSeleccionados) ";
+		}
+		if (plataformasSeleccionadas != null && !plataformasSeleccionadas.isEmpty()) {
+			qlString += "and (p.id in :plataformasSeleccionadas) ";
+		}
+		qlString += "order by v.id desc";
+		Query query = entityManager.createQuery(qlString)
+				.setParameter("dato", "%" + dato + "%");
+		if (plataformasSeleccionadas != null && !plataformasSeleccionadas.isEmpty()) {
+			query.setParameter("plataformasSeleccionadas", plataformasSeleccionadas);
+		}
+		if (generosSeleccionados != null && !generosSeleccionados.isEmpty()) {
+			query.setParameter("generosSeleccionados", generosSeleccionados);
+		}
+		query.setFirstResult(comienzo)
+				.setMaxResults(resultadosPorPagina);
+		return query.getResultList();
 	}
 
 	@Override
 	public void bajaVideojuego(int id) {
-		//Ya no borramos productos sino que los damos de baja
-		//entityManager.remove(entityManager.find(Videojuego.class, id));
+		// Ya no borramos productos sino que los damos de baja
+		// entityManager.remove(entityManager.find(Videojuego.class, id));
 		Videojuego v = entityManager.find(Videojuego.class, id);
 		v.setAlta(false);
 		entityManager.merge(v);
-		
+
 	}
 
 	@Override
@@ -211,7 +220,6 @@ public class ServicioVideojuegosJPAImpl implements ServicioVideojuegos{
 		Videojuego v = entityManager.find(Videojuego.class, id);
 		v.setAlta(true);
 		entityManager.merge(v);
-	}	
+	}
 
-	
 }
