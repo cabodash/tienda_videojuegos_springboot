@@ -1,11 +1,11 @@
 IMPORTANTES:
- -validacion en el checkout
- -Ocultar boton mis datos
- -adminPedidos
+ -validacion en el checkout 👍
+ -Ocultar boton mis datos 👍
+ -adminPedidos 👍
  -Input file para videos de videojuegos
  -arreglar filtros de buscador admin
  -vista detalles Juego cliente
- -vista pasos checkout
+ -vista pasos checkout 👍
  -vista mis pedidos
 
 
